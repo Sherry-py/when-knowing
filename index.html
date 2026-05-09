@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>When Knowing Is Not Enough</title>
+  <meta name="description" content="A bilingual research-node homepage prototype for governing AI before execution." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style id="lang-override">.zh{display:none!important}</style>
+  <style>
+    :root, [data-theme="light"] {
+      --color-bg:#f5f4ef; --color-surface:#fbfaf7; --color-surface-2:#f1efe9; --color-surface-offset:#ebe8e1;
+      --color-border:#d9d5cc; --color-divider:#e1ddd4; --color-text:#181715; --color-text-muted:#68655d; --color-text-faint:#9c998f;
+      --color-primary:#0f5f62; --color-primary-hover:#0a4749; --color-primary-highlight:#dce9e6; --color-success:#3e7c34; --color-warning:#9b5521; --color-error:#96326c;
+      --shadow-sm:0 1px 2px rgba(24,23,21,.05); --shadow-md:0 14px 34px rgba(24,23,21,.07); --shadow-lg:0 24px 64px rgba(24,23,21,.1);
+      --radius-sm:.3rem; --radius-md:.65rem; --radius-lg:1rem; --radius-xl:1.25rem; --radius-full:999px;
+      --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.25rem; --space-6:1.5rem; --space-8:2rem; --space-10:2.5rem; --space-12:3rem; --space-16:4rem; --space-20:5rem;
+      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem); --text-sm:clamp(.875rem,.8rem + .35vw,1rem); --text-base:clamp(1rem,.95rem + .25vw,1.08rem); --text-lg:clamp(1.1rem,1rem + .75vw,1.35rem); --text-xl:clamp(1.45rem,1.2rem + 1.25vw,2rem); --text-2xl:clamp(2rem,1.2rem + 2.5vw,3rem); --text-hero:clamp(2.7rem,.5rem + 7vw,5.3rem);
+      --font-display:'Instrument Serif', Georgia, serif; --font-body:'Inter','Helvetica Neue',Arial,sans-serif; --font-mono:'IBM Plex Mono','SFMono-Regular',monospace;
+      --content-default:1140px; --content-wide:1320px;
+    }
+    [data-theme="dark"] {
+      --color-bg:#121210; --color-surface:#171715; --color-surface-2:#1d1d1a; --color-surface-offset:#23231f;
+      --color-border:#34332f; --color-divider:#2a2925; --color-text:#ece9e2; --color-text-muted:#aaa69d; --color-text-faint:#77746c;
+      --color-primary:#68a5a6; --color-primary-hover:#4b8d8f; --color-primary-highlight:#213133; --color-success:#83c56a; --color-warning:#d39866; --color-error:#d772ad;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.18); --shadow-md:0 14px 34px rgba(0,0,0,.28); --shadow-lg:0 24px 64px rgba(0,0,0,.4);
+    }
+    *,:before,:after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;background:
+      radial-gradient(circle at top right, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent 28%),
+      linear-gradient(180deg, var(--color-bg), var(--color-bg));color:var(--color-text);letter-spacing:-.01em}
+    img,svg{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;cursor:pointer}
+    .container{width:100%;max-width:var(--content-default);margin-inline:auto;padding-inline:2rem}
+    .wide{width:100%;max-width:var(--content-wide);margin-inline:auto;padding-inline:2rem}
+    .skip-link{position:absolute;left:-9999px;top:auto}
+    .skip-link:focus{left:1rem;top:1rem;background:var(--color-primary);color:white;padding:.75rem 1rem;border-radius:var(--radius-md);z-index:999}
+    .site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:color-mix(in srgb, var(--color-bg) 88%, transparent);border-bottom:1px solid var(--color-divider)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:.9rem 0}
+    .brand{display:flex;align-items:center;gap:.85rem;min-width:0}
+    .brand-mark{width:2.4rem;height:2.4rem;border-radius:.85rem;border:1px solid var(--color-border);background:var(--color-surface);display:grid;place-items:center;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    .brand-mark:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 55%)}
+    .brand-mark svg{width:1.2rem;height:1.2rem;position:relative}
+    .brand-copy{min-width:0}
+    .brand-title{font-size:var(--text-sm);font-weight:600;letter-spacing:.01em}
+    .brand-subtitle{font-size:var(--text-xs);color:var(--color-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-mono)}
+    .nav{display:flex;align-items:center;gap:1rem}.nav-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .nav a{font-size:var(--text-sm);color:var(--color-text-muted)} .nav a:hover{color:var(--color-text)}
+    .theme-toggle{width:2.6rem;height:2.6rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface)}
+    .hero{padding:clamp(3rem,8vw,7rem) 0 2.5rem}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:start}
+    .eyebrow{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-primary);font-weight:700;margin-bottom:var(--space-4);font-family:var(--font-mono)}
+    h1,h2,h3{margin:0;line-height:1.04}
+    h1{font-family:var(--font-display);font-size:var(--text-hero);max-width:12ch;letter-spacing:-.04em}
+    h2{font-family:var(--font-display);font-size:var(--text-2xl);letter-spacing:-.03em;margin-bottom:var(--space-4)}
+    h3{font-size:var(--text-lg);margin-bottom:var(--space-3)}
+    p{margin:0;max-width:70ch}
+    .hero-copy p{font-size:var(--text-lg);color:var(--color-text-muted);margin-top:var(--space-4);max-width:44rem}
+    .button-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:var(--space-8)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;border-radius:var(--radius-md);padding:.95rem 1.15rem;border:1px solid transparent;font-size:var(--text-sm);font-weight:600;min-height:44px;transition:.18s ease}
+    .btn-primary{background:var(--color-primary);color:#fff}.btn-primary:hover{background:var(--color-primary-hover)}
+    .btn-secondary{background:var(--color-surface);border-color:var(--color-border)}
+    .btn-secondary:hover{border-color:var(--color-primary);color:var(--color-primary)}
+    .hero-card,.question-card,.feature-card,.proto-card,.bio-card,.stat-card,.panel,.demo-col{background:color-mix(in srgb, var(--color-surface) 92%, transparent);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    .hero-card:before,.panel:before,.demo-col:before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-primary) 35%, transparent),transparent)}
+    .hero-card{padding:var(--space-8);box-shadow:var(--shadow-md)}
+    .path-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6)}
+    .path-pill,.status,.label,.mini{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+    .path-pill{padding:.45rem .8rem;border-radius:var(--radius-full)}
+    .pill-risk{background:rgba(161,53,68,.12);color:#922d39}.pill-safe{background:var(--color-primary-highlight);color:var(--color-primary)}
+    .arrow{height:1px;background:var(--color-divider)}
+    .path-list{display:grid;gap:.75rem}
+    .path-item{display:flex;gap:.75rem;align-items:flex-start;padding:.9rem 1rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px solid color-mix(in srgb, var(--color-text) 8%, transparent);transition:.18s ease}
+    .path-item .dot{width:.62rem;height:.62rem;border-radius:50%;margin-top:.48rem;background:var(--color-text-faint);box-shadow:0 0 0 4px color-mix(in srgb, var(--color-text) 4%, transparent)}
+    .path-item.active{border-color:var(--color-primary);background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface-2));transform:translateY(-1px)}
+    .path-item.active .dot{background:var(--color-primary);box-shadow:0 0 0 4px color-mix(in srgb, var(--color-primary) 12%, transparent)}
+    .qs-strip{padding:1.5rem 0 0}.question-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .question-card{padding:1.2rem;cursor:pointer;transition:.18s ease}.question-card:hover,.proto-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+    .question-card.active{border-color:var(--color-primary);background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface))}
+    .question-card strong{display:block;color:var(--color-primary);margin-bottom:.6rem;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    section{padding:clamp(3rem,8vw,6rem) 0}.section-lead{color:var(--color-text-muted);margin-bottom:var(--space-8);max-width:54rem}
+    .demo-shell{display:grid;gap:1.4rem}.demo-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .case-tabs{display:flex;flex-wrap:wrap;gap:.65rem}.case-tab{padding:.75rem 1rem;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);min-height:44px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .case-tab.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
+    .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.demo-col{padding:1.15rem 1.15rem 1.25rem}.result-box{margin-top:1rem;padding:1rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px dashed var(--color-border)}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.feature-card,.proto-card,.bio-card,.panel,.stat-card{padding:1.15rem}
+    .feature-card .mini{color:var(--color-primary);margin-bottom:.65rem}.rule-bar{margin-top:1rem;padding:1rem 1.2rem;background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
+    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+    .stat-card .value{font-size:var(--text-xl);font-family:var(--font-display);color:var(--color-primary);margin-bottom:.35rem}.proto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .proto-card .label{color:var(--color-text-muted);margin-bottom:.7rem}.bio-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:1rem}
+    .portrait{aspect-ratio:3/4;border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-md);overflow:hidden;background:var(--color-surface-offset)}.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
+    .meta-list{display:grid;gap:.75rem;margin-top:1rem}.meta-item{display:flex;justify-content:space-between;gap:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--color-divider);font-size:var(--text-sm)}
+    .footer-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}footer{padding:0 0 4rem}.small{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .lang-toggle{display:inline-flex;gap:.35rem;margin-top:1rem;padding:.3rem;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+    .lang-toggle button{border:none;padding:.55rem .8rem;border-radius:calc(var(--radius-md) - .18rem);background:transparent;min-height:40px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase}
+    .lang-toggle button.active{background:var(--color-primary);color:white}
+    ul#contextList{font-size:var(--text-sm);color:var(--color-text-muted)}
+    
+    .hero-console{padding:0;background:linear-gradient(180deg,color-mix(in srgb,var(--color-surface) 88%, transparent),var(--color-surface-2));}
+    .console-topbar{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border-bottom:1px solid var(--color-divider);background:color-mix(in srgb,var(--color-surface) 95%, transparent)}
+    .console-dots{display:flex;gap:.35rem}.console-dots span{width:.55rem;height:.55rem;border-radius:50%;background:var(--color-text-faint);opacity:.55}
+    .console-title{font-family:var(--font-mono);font-size:12px;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.08em}
+    .console-block{padding:1rem;display:grid;gap:.65rem;border-bottom:1px solid var(--color-divider)}
+    .console-line{display:flex;justify-content:space-between;gap:1rem;align-items:center;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding:.7rem .85rem;border:1px solid color-mix(in srgb,var(--color-text) 9%, transparent);background:var(--color-surface-2);border-radius:var(--radius-md)}
+    .console-line .k{color:var(--color-text-muted)} .console-line .v{color:var(--color-text)}
+    .console-grid{padding:1rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem;border-bottom:1px solid var(--color-divider)}
+    .console-metric{display:flex;justify-content:space-between;align-items:center;padding:.8rem .9rem;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+    .state{padding:.28rem .5rem;border-radius:999px}.state.ok{background:color-mix(in srgb,var(--color-success) 14%, transparent);color:var(--color-success)}.state.fail{background:color-mix(in srgb,var(--color-error) 14%, transparent);color:var(--color-error)}
+    .console-split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem}
+    .console-panel{padding:1rem;border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent);background:var(--color-surface)}
+    .console-panel.risk{background:color-mix(in srgb,var(--color-warning) 4%, var(--color-surface))}
+    .console-panel.safe{background:color-mix(in srgb,var(--color-primary) 4%, var(--color-surface))}
+    .console-label{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-bottom:.75rem}
+    .demo-stage{display:grid;grid-template-columns:1.02fr .98fr;gap:1rem}
+    .lab-pane{padding:1.15rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    .lab-pane:before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--color-primary) 35%, transparent),transparent)}
+    .source-window{padding:0;overflow:hidden}
+    .source-head{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1rem;border-bottom:1px solid var(--color-divider);background:var(--color-surface-2)}
+    .source-title{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)}
+    .source-body{padding:1rem;display:grid;gap:.75rem}
+    .source-snippet{padding:.9rem 1rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent)}
+    .source-snippet.flag{border-color:color-mix(in srgb,var(--color-error) 28%, var(--color-border));background:color-mix(in srgb,var(--color-error) 4%, var(--color-surface-2))}
+    .decision-stack{display:grid;gap:.75rem}
+    .verdict-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:999px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+    .verdict-refuse{background:color-mix(in srgb,var(--color-error) 12%, transparent);color:var(--color-error)}
+    .verdict-clarify{background:color-mix(in srgb,var(--color-warning) 14%, transparent);color:var(--color-warning)}
+    .verdict-pass{background:color-mix(in srgb,var(--color-success) 14%, transparent);color:var(--color-success)}
+
+    .scroll-story{position:relative}
+    .scroll-story-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:1.2rem;align-items:start}
+    .story-copy{position:sticky;top:5.5rem;align-self:start}
+    .story-steps{display:grid;gap:.85rem}
+    .story-step{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.05rem;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);opacity:.68;transform:translateY(10px);transition:.3s ease}
+    .story-step.active{opacity:1;transform:none;border-color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 6%, var(--color-surface))}
+    .step-tag{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary);padding:.35rem .45rem;border-radius:.45rem;background:var(--color-primary-highlight);min-width:2.2rem;text-align:center}
+    .story-visual{min-height:120vh;display:grid;align-items:start}
+    .scroll-console{position:sticky;top:5.5rem}
+    .trace-row{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;padding:.8rem .9rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+    .trace-row.highlight{border-color:color-mix(in srgb,var(--color-error) 32%, var(--color-border));background:color-mix(in srgb,var(--color-error) 4%, var(--color-surface-2))}
+    .trace-index{color:var(--color-text-muted)}
+    .trace-row{transition:opacity .35s ease,border-color .35s ease,background .35s ease}
+    .trace-row.dim{opacity:.18}
+    .trace-row.trace-current{border-color:color-mix(in srgb,var(--color-primary) 45%,var(--color-border));background:color-mix(in srgb,var(--color-primary) 7%,var(--color-surface-2))}
+    .dim-group{margin-bottom:var(--space-8)}
+    .dim-group-label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .85rem;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-4)}
+    .dim-group-critical .dim-group-label{background:color-mix(in srgb,var(--color-error) 10%,transparent);color:var(--color-error)}
+    .dim-group-noncritical .dim-group-label{background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning)}
+    .dim-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .rule-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:var(--space-6)}
+    .rule-item{display:flex;align-items:center;gap:.85rem;padding:1rem 1.1rem;border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px solid var(--color-border)}
+    .fnd-contrast{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:stretch;margin:var(--space-6) 0}
+    .fnd-col{padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--color-border)}
+    .fnd-high{background:color-mix(in srgb,var(--color-success) 5%,var(--color-surface));border-color:color-mix(in srgb,var(--color-success) 22%,var(--color-border))}
+    .fnd-low{background:color-mix(in srgb,var(--color-error) 5%,var(--color-surface));border-color:color-mix(in srgb,var(--color-error) 22%,var(--color-border))}
+    .fnd-label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+    .fnd-high .fnd-label{color:var(--color-success)}.fnd-low .fnd-label{color:var(--color-error)}
+    .fnd-value{font-family:var(--font-display);font-size:var(--text-2xl);margin-bottom:.4rem}
+    .fnd-high .fnd-value{color:var(--color-success)}.fnd-low .fnd-value{color:var(--color-error)}
+    .fnd-gap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:0 .5rem}
+    .fnd-gap-value{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text)}
+    .fnd-gap-label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted);text-align:center}
+@media (max-width: 1040px){.hero-grid,.bio-grid,.footer-panel,.demo-grid,.demo-lab-grid,.demo-stage,.console-split,.console-grid,.scroll-story-grid{grid-template-columns:1fr}.grid-4,.proto-grid,.three-col,.stat-row{grid-template-columns:repeat(2,1fr)}.question-grid{grid-template-columns:1fr}.hero-card{order:-1}.dim-pair,.fnd-contrast,.rule-flow{grid-template-columns:1fr}}
+    @media (max-width: 700px){.nav-links{display:none}.grid-4,.proto-grid,.three-col,.stat-row{grid-template-columns:1fr}.container,.wide{padding-inline:1.25rem}.hero{padding-top:2rem}.hero-card,.demo-col,.panel,.feature-card,.proto-card,.bio-card,.stat-card{padding:1rem}h1{max-width:11ch}}
+    @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto;transition:none !important;animation:none !important}}
+</style>
+</head>
+<body class="lang en">
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M5 7h14M5 12h10M5 17h7" />
+            <path d="M16 10l3 2-3 2" />
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <div class="brand-title">When Knowing Is Not Enough</div>
+          <div class="brand-subtitle">Research node for execution-layer AI governance</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <div class="nav-links">
+          <a href="#research">Mechanism</a>
+          <a href="#demo">Findings</a>
+          <a href="#prototypes">Prototypes</a>
+          <a href="#roadmap">Roadmap</a>
+          <a href="#about">About</a>
+          <a href="#collaborate">Collaborate</a>
+        </div>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow en">Under review · <em>Information &amp; Management</em> · UNSW ISTM</div>
+          <div class="eyebrow zh">审稿中 · <em>Information &amp; Management</em> · UNSW ISTM</div>
+          <h1 class="en">The agent knows the context is broken. It acts anyway.</h1>
+          <h1 class="zh">代理知道上下文有问题。它仍然继续执行。</h1>
+          <p class="en">LLM agents accurately diagnose defective context — yet authorize execution anyway. I formalize this <strong>diagnostic–authorization gap</strong> as a new IS governance failure mode (structural routing failure) and argue that closing it requires not a better model, but an <strong>execution harness</strong>: GateFix, a pre-execution governance layer grounded in principal–agent theory that structurally routes context quality verification into the authorization decision before any action proceeds. A within-subject experiment across 500 financial reasoning tasks and 4 frontier LLMs shows it reduces false authorization on defective contexts from ~50% to under 5% on capable models.</p>
+          <p class="zh">LLM 代理能准确识别上下文缺陷 —— 却仍然继续授权执行。我把这种<strong>诊断–授权裂隙</strong>形式化为一种新的 IS 治理失败模式（结构性路由失败），并主张：弥合它所需要的不是更好的模型，而是一个<strong>执行 harness</strong>——GateFix，一种基于委托–代理理论的执行前治理层，将上下文质量验证结构性地接入授权决策，在任何行动发生之前。跨 500 项金融推理任务与 4 个前沿 LLM 的被试内实验显示，它将缺陷上下文上的错误授权率从约 50% 降至 5% 以下。</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
+            <a class="btn btn-secondary" href="#about"><span class="en">About the researcher</span><span class="zh">关于研究者</span></a>
+          </div>
+          <div class="lang-toggle" aria-label="Language toggle">
+            <button class="active" data-lang="en">EN</button>
+            <button data-lang="zh">中文</button>
+          </div>
+        </div>
+        <aside class="hero-card hero-console" aria-label="System paths overview">
+          <div class="console-topbar">
+            <div class="console-dots"><span></span><span></span><span></span></div>
+            <div class="console-title">governance-composition.lab</div>
+          </div>
+          <div class="console-block">
+            <div class="console-label en">Incoming request</div>
+            <div class="console-label zh">收到任务</div>
+            <div style="margin-top:.35rem;padding:.65rem .85rem;background:var(--color-surface-2);border-radius:var(--radius-md);border:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text);">
+              <span class="en">"Generate the Q3 board revenue summary"</span>
+              <span class="zh">"生成第三季度董事会营收摘要"</span>
+            </div>
+          </div>
+          <div class="console-block" style="background:color-mix(in srgb,var(--color-error) 4%,transparent)">
+            <div class="console-label" style="color:var(--color-error)"><span class="en">Problem found</span><span class="zh">发现问题</span></div>
+            <div style="margin-top:.35rem;padding:.65rem .85rem;background:color-mix(in srgb,var(--color-error) 6%,var(--color-surface));border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-error) 20%,var(--color-border));font-family:var(--font-mono);font-size:12px;">
+              <span class="en">Q3 actual revenue figure — not in context</span>
+              <span class="zh">Q3 实际营收数字 — 上下文中未找到</span>
+            </div>
+          </div>
+          <div style="padding:.6rem 1rem;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);text-align:center;">
+            <span class="en">The AI knows. Does it stop?</span>
+            <span class="zh">AI 已知晓此问题 — 它会停下来吗？</span>
+          </div>
+          <div class="console-split">
+            <div class="console-panel risk">
+              <div class="console-label en">Without governance</div>
+              <div class="console-label zh">无治理</div>
+              <div class="console-line" style="margin-top:.5rem;flex-direction:column;gap:.3rem;align-items:flex-start;">
+                <span class="v en">Proceeds anyway</span>
+                <span class="v zh">仍然继续执行</span>
+                <span class="v en" style="color:var(--color-error);font-size:11px;">Wrong data enters the report</span>
+                <span class="v zh" style="color:var(--color-error);font-size:11px;">错误数据进入报告</span>
+              </div>
+            </div>
+            <div class="console-panel safe">
+              <div class="console-label en">With GateFix</div>
+              <div class="console-label zh">有 GateFix</div>
+              <div class="console-line" style="margin-top:.5rem;flex-direction:column;gap:.3rem;align-items:flex-start;">
+                <span class="v">REFUSE</span>
+                <span class="v en" style="color:var(--color-success);font-size:11px;">Asks for missing data first</span>
+                <span class="v zh" style="color:var(--color-success);font-size:11px;">先要求补充缺失数据</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="business-layer" class="scroll-story">
+      <div class="wide scroll-story-grid">
+        <div class="story-copy">
+          <div class="eyebrow en">Business-layer emergence</div>
+          <div class="eyebrow zh">业务层问题如何出现</div>
+          <h2 class="en">The problem becomes dangerous when a simple judgment enters a workflow</h2>
+          <h2 class="zh">当一个简单判断进入工作流，这个问题就变得危险了</h2>
+          <p class="section-lead en">The organizational problem begins when an LLM is embedded as an execution agent and the pipeline still allows action after the defect is noticed.</p>
+          <p class="section-lead zh">从原则上说，缺失数字、来源冲突或噪声上下文并不难识别。真正的组织问题出现在：LLM 被嵌入工作流充当执行代理之后，即使缺陷已被发现，管线仍然允许它继续行动。</p>
+          <div class="story-steps">
+            <div class="story-step active">
+              <div class="step-tag">01</div>
+              <div>
+                <strong class="en">A normal task arrives</strong>
+                <strong class="zh">一个正常任务到达</strong>
+                <p class="small en">Generate a report, check compliance, summarize a filing, calculate growth.</p>
+                <p class="small zh">生成报告、检查合规、总结文件、计算增长率。</p>
+              </div>
+            </div>
+            <div class="story-step">
+              <div class="step-tag">02</div>
+              <div>
+                <strong class="en">The context is defective</strong>
+                <strong class="zh">上下文存在缺陷</strong>
+                <p class="small en">A key quantity is absent, two sources disagree, or noisy context surrounds the task.</p>
+                <p class="small zh">关键数字缺失、两个来源冲突，或任务被噪声上下文包围。</p>
+              </div>
+            </div>
+            <div class="story-step">
+              <div class="step-tag">03</div>
+              <div>
+                <strong class="en">The model notices the defect</strong>
+                <strong class="zh">模型识别到缺陷</strong>
+                <p class="small en">If asked directly, the agent can identify the defect precisely.</p>
+                <p class="small zh">如果被直接询问，代理往往能够指出哪里有问题。</p>
+              </div>
+            </div>
+            <div class="story-step">
+              <div class="step-tag">04</div>
+              <div>
+                <strong class="en">Execution still proceeds</strong>
+                <strong class="zh">执行却仍然继续</strong>
+                <p class="small en">Because the diagnostic signal is not structurally routed into authorization.</p>
+                <p class="small zh">因为诊断信号并没有被结构性地接入授权决策。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="story-visual">
+          <div class="lab-pane source-window scroll-console">
+            <div class="source-head">
+              <div class="source-title en">workflow execution trace</div>
+              <div class="source-title zh">工作流执行轨迹</div>
+              <div class="source-title" id="traceScene">scene 01 / 04</div>
+            </div>
+            <div class="source-body">
+              <div class="trace-row" data-trace="0"><span class="trace-index">01</span><span class="en">task: compute revenue growth</span><span class="zh">任务：计算营收增长率</span></div>
+              <div class="trace-row" data-trace="1"><span class="trace-index">02</span><span class="en">context: primary source missing 2018 figure</span><span class="zh">上下文：主要来源缺失 2018 数字</span></div>
+              <div class="trace-row" data-trace="2"><span class="trace-index">03</span><span class="en">diagnostic query: defect detected</span><span class="zh">诊断查询：检测到缺陷</span></div>
+              <div class="trace-row" data-trace="3"><span class="trace-index">04</span><span class="en">authorization path: still proceeds</span><span class="zh">授权路径：仍然继续执行</span></div>
+              <div class="trace-row" data-trace="4"><span class="trace-index">05</span><span class="en">downstream: report output enters workflow</span><span class="zh">下游：报告输出进入工作流</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="research">
+      <div class="container">
+        <h2 class="en">The GateFix mechanism</h2>
+        <h2 class="zh">GateFix 的工作机制</h2>
+        <p class="section-lead en">Four dimensions. Two are critical — failure blocks execution outright. Two are non-critical — failure requests clarification. Together they produce one of three verdicts.</p>
+        <p class="section-lead zh">四个维度。两个关键维度失败则直接阻止执行，两个非关键维度失败则请求澄清。组合产生三种授权裁决之一。</p>
+
+        <div class="dim-group dim-group-critical">
+          <div class="dim-group-label en">Critical — failure → REFUSE</div>
+          <div class="dim-group-label zh">关键维度 — 失败 → REFUSE</div>
+          <div class="dim-pair">
+            <article class="feature-card">
+              <div class="mini">Relevance</div>
+              <h3 class="en">Is this context for the right task?</h3>
+              <h3 class="zh">上下文是否对应正确的任务？</h3>
+              <p class="small en">The context must address the actual task — not a related but misaligned one.</p>
+              <p class="small zh">上下文必须对应当前任务，而非相关但错位的任务。</p>
+            </article>
+            <article class="feature-card">
+              <div class="mini">Coverage</div>
+              <h3 class="en">Are all required facts present?</h3>
+              <h3 class="zh">所需的关键信息是否齐备？</h3>
+              <p class="small en">All facts or quantities necessary to complete the task must be present and verifiable.</p>
+              <p class="small zh">完成任务所需的所有事实或数量必须存在且可验证。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="dim-group dim-group-noncritical">
+          <div class="dim-group-label en">Non-critical — failure → CLARIFY</div>
+          <div class="dim-group-label zh">非关键维度 — 失败 → CLARIFY</div>
+          <div class="dim-pair">
+            <article class="feature-card">
+              <div class="mini">Ordering</div>
+              <h3 class="en">Is the information sequence coherent?</h3>
+              <h3 class="zh">信息顺序是否连贯？</h3>
+              <p class="small en">Information must be presented in a sequence coherent enough to support valid reasoning and execution.</p>
+              <p class="small zh">信息必须以足够连贯的顺序呈现，以支持有效推理与执行。</p>
+            </article>
+            <article class="feature-card">
+              <div class="mini">Robustness</div>
+              <h3 class="en">Is the context stable against noise?</h3>
+              <h3 class="zh">上下文是否能抵抗噪声？</h3>
+              <p class="small en">The context must remain stable under distraction, noise, or adversarial contamination.</p>
+              <p class="small zh">上下文在干扰、噪声或对抗性污染下必须保持稳定。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="rule-flow">
+          <div class="rule-item">
+            <span class="verdict-badge verdict-pass">PASS</span>
+            <div>
+              <div class="small" style="font-weight:600;margin-bottom:.2rem"><span class="en">All dimensions adequate</span><span class="zh">所有维度合格</span></div>
+              <div class="small" style="color:var(--color-text-muted)"><span class="en">Execution authorized</span><span class="zh">授权执行</span></div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <span class="verdict-badge verdict-clarify">CLARIFY</span>
+            <div>
+              <div class="small" style="font-weight:600;margin-bottom:.2rem"><span class="en">Non-critical dimension(s) fail</span><span class="zh">非关键维度失败</span></div>
+              <div class="small" style="color:var(--color-text-muted)"><span class="en">Clarification required first</span><span class="zh">先行澄清再决定</span></div>
+            </div>
+          </div>
+          <div class="rule-item">
+            <span class="verdict-badge verdict-refuse">REFUSE</span>
+            <div>
+              <div class="small" style="font-weight:600;margin-bottom:.2rem"><span class="en">Any critical dimension fails</span><span class="zh">任一关键维度失败</span></div>
+              <div class="small" style="color:var(--color-text-muted)"><span class="en">Execution blocked</span><span class="zh">执行被阻止</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="wide demo-shell">
+        <div>
+          <h2 class="en">What the research found</h2>
+          <h2 class="zh">研究发现了什么</h2>
+          <p class="section-lead en">Within-subject experiment across 4 commercial LLMs and 3 financial benchmarks (TAT-QA, ConvFinQA, FinQA), 500 reasoning tasks. GateFix reduces false authorization on defective contexts from ~50% to under 5% — a structural routing fix, not a model improvement.</p>
+          <p class="section-lead zh">在 4 个商业 LLM 与 3 个金融基准（TAT-QA、ConvFinQA、FinQA）上的被试内实验，500 项推理任务。GateFix 把错误授权率从约 50% 降至 5% 以下 —— 这是结构性路由修复，不是模型能力提升。诊断能力是必要而非充分条件：只有结构性机制才能把它转化为安全行为。</p>
+        </div>
+        <div class="fnd-contrast">
+          <div class="fnd-col fnd-low">
+            <div class="fnd-label en">Baseline · without governance</div>
+            <div class="fnd-label zh">基线 · 无治理</div>
+            <div class="fnd-value">~50%</div>
+            <p class="small en">False authorization rate on defective contexts</p>
+            <p class="small zh">缺陷上下文上的错误授权率 —— LLM 代理虽已诊断到缺陷，却仍然继续执行</p>
+          </div>
+          <div class="fnd-gap">
+            <div class="fnd-gap-value">−45pp</div>
+            <div class="fnd-gap-label en">GateFix<br>effect</div>
+            <div class="fnd-gap-label zh">GateFix<br>干预效应</div>
+          </div>
+          <div class="fnd-col fnd-high">
+            <div class="fnd-label en">With GateFix · capable models</div>
+            <div class="fnd-label zh">启用 GateFix · 能力达标模型</div>
+            <div class="fnd-value">&lt;5%</div>
+            <p class="small en">For models above a ~70% diagnostic-accuracy floor — capability matters, but governance structure converts it into safety</p>
+            <p class="small zh">在诊断准确率达到约 70% 阈值的模型上 —— 能力重要，但只有治理结构能把它转化为安全</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prototypes">
+      <div class="container">
+        <h2 class="en">Applied prototype</h2>
+        <h2 class="zh">应用原型</h2>
+        <p class="section-lead en">The same governance logic extended to a student-facing advisory context — same 4D-CQ constraints, different domain.</p>
+        <p class="section-lead zh">同一套治理逻辑从金融问答延伸至面向学生的选课咨询场景，检验领域范围化上下文质量约束能否跨任务类型清晰迁移。</p>
+        <div class="proto-grid" style="grid-template-columns:1fr;max-width:520px">
+          <article class="proto-card">
+            <div class="label">Applied prototype · Education domain</div>
+            <h3>UNSW Advisor assistant</h3>
+            <p class="small en">Applies bounded-domain query governance to course and programme advisory — scope constraints and context quality directly gate recommendation authorization, not just generation.</p>
+            <p class="small zh">将有界领域查询治理应用于选课与项目咨询 —— 范围约束与上下文质量直接管控建议的授权决策，而不仅仅是内容生成。</p>
+            <div class="button-row" style="margin-top:1rem"><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://unsw-advisor.streamlit.app/">Open prototype</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <div class="container">
+        <h2 class="en">Research roadmap · next 18 months</h2>
+        <h2 class="zh">研究路线图 · 未来 18 个月</h2>
+        <p class="section-lead en">This work is the first paper of a multi-paper programme on execution-layer governance for AI-enabled organizational systems.</p>
+        <p class="section-lead zh">这项研究是关于"AI 赋能组织系统执行层治理"系列论文的第一篇。接下来四条主线各自把框架向前推进一步。</p>
+        <div style="margin-top:2rem">
+
+          <!-- Foundation: Paper 1 -->
+          <div style="border:1px solid var(--color-border);border-top:3px solid var(--color-primary);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.3rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem" class="en">Paper 1 · Under review · Information &amp; Management</div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem" class="zh">论文一 · 审稿中 · Information &amp; Management</div>
+              <div style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.25;margin-bottom:.45rem" class="en">Structural routing failure — when AI knows but the signal never reaches authorization</div>
+              <div style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.25;margin-bottom:.45rem" class="zh">结构性路由失败 — AI 已知晓，但信号从未到达授权决策</div>
+              <p class="small en" style="color:var(--color-text-muted)">GateFix: a pre-execution governance harness. Within-subject experiment · 500 tasks · 4 frontier LLMs · 3 financial benchmarks.</p>
+              <p class="small zh" style="color:var(--color-text-muted)">GateFix：执行前治理 harness。被试内实验 · 500 项任务 · 4 个前沿 LLM · 3 个金融基准。</p>
+            </div>
+            <div style="text-align:center;padding:.75rem 1.25rem;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 8%,var(--color-surface-2));border:1px solid color-mix(in srgb,var(--color-primary) 18%,var(--color-border));min-width:7rem">
+              <div style="font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-primary);line-height:1">−45pp</div>
+              <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-top:.3rem" class="en">gap closed</div>
+              <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-top:.3rem" class="zh">缺口弥合</div>
+            </div>
+          </div>
+
+          <!-- Branch connector: Paper 1 → S01/S02/S03 -->
+          <div style="position:relative;height:2.8rem;margin:0">
+            <div style="position:absolute;left:50%;top:0;width:1px;height:50%;background:var(--color-border)"></div>
+            <div style="position:absolute;left:16.67%;right:16.67%;top:50%;height:1px;background:var(--color-border)"></div>
+            <div style="position:absolute;left:16.67%;top:50%;width:1px;height:50%;background:var(--color-border)"></div>
+            <div style="position:absolute;left:50%;top:50%;width:1px;height:50%;background:var(--color-border)"></div>
+            <div style="position:absolute;right:16.67%;top:50%;width:1px;height:50%;background:var(--color-border)"></div>
+          </div>
+
+          <!-- Streams 01 / 02 / 03 -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem">
+            <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 01 · Behavioural</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Do governance signals restore human control — or shift automation bias upstream?</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">治理信号恢复人类控制，还是把自动化偏差前移？</div>
+              <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">First causal test of <em>human-in-command</em> at the execution layer</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">执行层"人类指挥"模型的首个因果实验</div>
+              </div>
+            </div>
+            <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 02 · Cross-domain</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Safety transfers. Accuracy is contingent. That asymmetry is the design principle.</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">安全可迁移，准确率是条件依赖的 — 这个不对称本身是设计原则。</div>
+              <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">Falsifiable scope conditions for execution governance</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">执行治理的可证伪边界条件</div>
+              </div>
+            </div>
+            <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 03 · IS Theory</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Delegation theory named the fidelity gap. This paper closes it.</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">委托理论命名了保真度缺口。这篇论文关闭它。</div>
+              <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">Structural routing failure as delegation fidelity breakdown · MISQ / ISR</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">结构性路由失败作为委托保真度崩溃 · MISQ / ISR</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Connector: streams → S04 -->
+          <div style="display:flex;justify-content:center;height:2rem;align-items:stretch">
+            <div style="width:1px;background:var(--color-primary)"></div>
+          </div>
+
+          <!-- Frontier: Stream 04 -->
+          <div style="border:2px solid var(--color-primary);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));padding:1.3rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center">
+            <div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem">Stream 04 · Commit-point infrastructure · In progress</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.65rem" class="en">Every AI safety system governs at the platform. Accountability sits with you. Commit points fix this.</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.65rem" class="zh">所有 AI 安全系统的治理权在平台。责任在你。Commit point 纠正这个错位。</div>
+              <div style="border-top:1px solid color-mix(in srgb,var(--color-primary) 20%,var(--color-divider));padding-top:.6rem">
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="en">Commit points as IS design construct · restoring Weill &amp; Ross governance locus in the agent era. Not a safety feature — a governance architecture.</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="zh">Commit point 作为 IS 设计构件 · 在 Agent 时代恢复 Weill &amp; Ross 的治理归属。不是安全功能，而是治理架构。</div>
+              </div>
+            </div>
+            <div style="text-align:center;padding:.75rem 1rem;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);min-width:6rem">
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary)" class="en">In<br>progress</div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary)" class="zh">进行中</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="perspective">
+      <div class="container">
+        <div class="eyebrow en">Researcher's perspective</div>
+        <div class="eyebrow zh">研究者视角</div>
+        <h2 class="en">Why this moment. Why IS.</h2>
+        <h2 class="zh">为什么是这个时刻，为什么是 IS</h2>
+
+        <blockquote style="margin:2.5rem 0;padding:1.8rem 2.2rem;border-left:3px solid var(--color-primary);border-radius:0 var(--radius-lg) var(--radius-lg) 0;background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));position:relative;">
+          <p class="en" style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.6;font-style:italic;color:var(--color-text);max-width:64ch;margin-bottom:1rem">"If you, like many of you, dedicate yourselves night and day to mastering these tools and combine that with your deep creativity, you will create things that are truly extraordinary."</p>
+          <p class="zh" style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.6;font-style:italic;color:var(--color-text);max-width:64ch;margin-bottom:1rem">"如果像你们中的许多人那样日以继夜地钻研这些工具，并将其与深层的创造力结合，就能创造出更不可思议的作品。"</p>
+          <cite style="font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);font-style:normal;">— Demis Hassabis, co-founder &amp; CEO, Google DeepMind</cite>
+        </blockquote>
+
+        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis frames the coming decade as one of <em>human–AI symbiosis</em>: not AI replacing human judgment, but AI amplifying it — with humans providing the creativity, taste, and authorization that machines cannot supply from within. "AI Agents are precisely the path to that goal," he argued. The architecture that makes such symbiosis possible is not a model problem. It is a governance problem.</p>
+        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis 把未来十年定性为<em>人机共生</em>时代：不是 AI 取代人的判断，而是 AI 放大人的判断 — 由人提供创造力、品位与授权，这是机器无法从内部供给的。"AI Agent 正是通往这一目标的路径。" 而支撑这种共生的架构，不是模型问题，而是治理问题。</p>
+
+        <div style="margin:2.5rem 0">
+          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1.2rem" class="en">The AI development arc — where governance enters</div>
+          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1.2rem" class="zh">AI 发展弧线 — 治理在哪里介入</div>
+          <div class="proto-grid">
+            <article class="proto-card" style="border-top:2px solid var(--color-border)">
+              <div class="label">2016 · AlphaGo</div>
+              <h3 style="font-size:var(--text-sm)" class="en">Perception era</h3>
+              <h3 style="font-size:var(--text-sm)" class="zh">感知时代</h3>
+              <p class="small en">AI surpasses human intuition in bounded domains. Capability proven. Every consequential action is still executed by humans. The governance question does not yet exist.</p>
+              <p class="small zh">AI 在有界领域超越人类直觉，能力得到验证。但每一个后果性行动仍由人类执行，治理问题尚未出现。</p>
+            </article>
+            <article class="proto-card" style="border-top:2px solid color-mix(in srgb,var(--color-warning) 55%,transparent)">
+              <div class="label">2022 · ChatGPT</div>
+              <h3 style="font-size:var(--text-sm)" class="en">Language era</h3>
+              <h3 style="font-size:var(--text-sm)" class="zh">语言时代</h3>
+              <p class="small en">AI can articulate, advise, draft. The knowing–doing gap still belongs to humans. AI recommends; humans authorize and act. Governance is informal — a human is always in the loop.</p>
+              <p class="small zh">AI 能够表达、建议、起草。知与行的裂隙仍属于人类。AI 推荐；人类授权并行动。治理是非正式的 — 人类始终在回路中。</p>
+            </article>
+            <article class="proto-card" style="border-top:2px solid var(--color-primary)">
+              <div class="label">2024–now · Agents</div>
+              <h3 style="font-size:var(--text-sm)" class="en">Agent era &larr; we are here</h3>
+              <h3 style="font-size:var(--text-sm)" class="zh">Agent 时代 &larr; 我们在这里</h3>
+              <p class="small en">AI acts. The knowing–doing gap closes — but authorization is now the critical uncoupled variable. Governance failures become execution failures in production systems at scale.</p>
+              <p class="small zh">AI 开始行动。知与行之间的裂隙弥合 — 但授权成为关键的未耦合变量。治理失败直接变为生产系统中的执行失败，且以规模发生。</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="rule-bar" style="margin-top:2rem">
+          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:1rem" class="en">Why IS is the right discipline for this problem</div>
+          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:1rem" class="zh">为什么 IS 是解决这个问题的正确学科</div>
+          <p class="small en">CS asks what AI can do; management asks how humans adapt; IS asks how organizational rules and technical capabilities get <em>structurally coupled</em> — and when that coupling fails. The diagnostic–authorization gap is precisely an IS failure mode: the right capability, the right rules, and the right intent, but not routed to meet. No other discipline holds both principal–agent governance theory and design science method to address that coupling directly.</p>
+          <p class="small zh">计算机科学问 AI 能做什么；管理学问人类如何适应；IS 问的是组织规则与技术能力如何<em>结构性耦合</em> — 以及耦合何时失败。诊断–授权裂隙恰恰是 IS 式的失败：能力、规则、意图都在，却没有被路由到一起。没有任何其他学科同时拥有委托–代理治理理论与设计科学方法来直接处理这个问题。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container bio-grid">
+        <div class="bio-card">
+          <div class="portrait">
+            <img src="photo.png" alt="Xirui (Sherry) Lian" />
+          </div>
+          <div style="margin-top:.9rem;text-align:center;">
+            <div style="font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;letter-spacing:.02em;margin-bottom:.55rem;color:var(--color-text);">Xirui (Sherry) Lian</div>
+            <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
+              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 10%,transparent);color:var(--color-primary);">Researcher</span>
+              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);">Builder</span>
+              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning);">UNFCCC Initiator</span>
+            </div>
+          </div>
+        </div>
+        <article class="bio-card">
+          <h2 class="en">About the researcher</h2>
+          <h2 class="zh">关于研究者</h2>
+          <p class="en">Xirui (Sherry) Lian is a researcher at UNSW ISTM working at the intersection of <strong>IS governance theory, AI execution governance, and design science research</strong>. The path to this research began in climate governance: she co-launched ICECI at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and engaged as a practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Inside that decade of multi-stakeholder governance work she came to a single observation: governance fails not because principles are unknown, but because diagnostic awareness is structurally disconnected from authorization. Her current research transposes that lens to AI systems and shows the same pathology — at pipeline scale — inside agentic LLM workflows.</p>
+          <p class="zh">Xirui（Sherry）Lian 是 UNSW ISTM 的研究者，工作位于 <strong>IS 治理理论、AI 执行治理与设计科学研究</strong> 的交叉处。她进入这一研究的起点是气候治理：在 COP28 联合发起 ICECI —— 一个 UNFCCC 注册气候倡议，获中国气候变化特使解振华背书，并被联合国亚太经社会列为 ICT 赋能气候治理区域典范——并连续参与了六届联合国气候大会（COP24–COP29）。十年的多方治理实践让她得出一个观察：治理之所以失败，不是因为原则不被知晓，而是因为诊断认知在结构上与授权决策脱钩。她当前的研究把这一视角迁移到 AI 系统，证明同样的病理在 agentic LLM 管线中以更大尺度重演。</p>
+          <div class="meta-list">
+            <div class="meta-item"><span>Email</span><span><a href="mailto:z5709117@ad.unsw.edu.au" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">z5709117@ad.unsw.edu.au</a></span></div>
+            <div class="meta-item"><span>GitHub</span><span><a href="https://github.com/Sherry-py" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">github.com/Sherry-py</a></span></div>
+            <div class="meta-item"><span class="en">Under review · <em>Information &amp; Management</em></span><span class="zh">审稿中 · <em>Information &amp; Management</em></span><span>When Knowing Is Not Enough: Designing Pre-Execution Governance for LLM Agents in Organizational Systems</span></div>
+            <div class="meta-item"><span>ICECI</span><span class="en"><a href="https://climateaction.unfccc.int/Initiatives?id=Intelligent_Climate_and_Eco_Civilization_Initiative" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC Partner · NAZCA</a> · Climate Neutral Now · COP24–COP29 delegate · <a href="http://www.china.org.cn/world/2023-12/11/content_116871129.htm" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">China.org.cn</a> · <a href="https://www.youtube.com/watch?v=L7zFNjTkmK0&amp;t=30s" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC video</a> · <a href="https://www.unescap.org/node/38083" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UN ESCAP</a></span><span class="zh"><a href="https://climateaction.unfccc.int/Initiatives?id=Intelligent_Climate_and_Eco_Civilization_Initiative" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC 合作伙伴 · NAZCA</a> · Climate Neutral Now · COP24–COP29 代表 · <a href="http://www.china.org.cn/world/2023-12/11/content_116871129.htm" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">China.org.cn 报道</a> · <a href="https://www.youtube.com/watch?v=L7zFNjTkmK0&amp;t=30s" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC 视频</a> · <a href="https://www.unescap.org/node/38083" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UN ESCAP</a></span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="collaborate">
+    <div class="container">
+      <div class="panel" style="max-width:700px">
+        <h3 class="en">Research conversations &amp; visiting affiliation</h3>
+        <h3 class="zh">研究对话与学术访问</h3>
+        <p class="small en">The diagnostic–authorization gap is a structural form of <em>judgment–action dissociation</em> — the proposed remedy is a piece of decision architecture. UNSW ISTM is the natural home for that combination, and the next stage of this programme is a natural fit for the group's expertise in governance and behavioural experiments.</p>
+        <p class="small zh">诊断–授权裂隙在行为运营语言里是一种结构性的<em>判断–行动分离</em>，拟议的对策是一种"决策架构"。UNSW ISTM 是这一组合的天然归处，这一项目的下一阶段与 ISTM 在治理与行为实验方面的研究专长高度契合。</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
+          <a class="btn btn-secondary" href="mailto:z5709117@ad.unsw.edu.au?subject=Research%20conversation%20—%20execution-layer%20governance"><span class="en">Open a conversation</span><span class="zh">联系研究者</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Lang toggle
+    const langStyle = document.getElementById('lang-override');
+    function applyLang(lang) {
+      langStyle.textContent = lang === 'zh'
+        ? '.en{display:none!important}'
+        : '.zh{display:none!important}';
+      document.body.className = 'lang ' + lang;
+      document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    }
+    document.querySelectorAll('[data-lang]').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    // Question cards — static active state only
+    document.querySelectorAll('.question-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+
+    const storySteps = [...document.querySelectorAll('.story-step')];
+    const storyVisual = document.querySelector('.story-visual');
+
+    function updateTrace(stepIdx) {
+      const sceneEl = document.getElementById('traceScene');
+      if (sceneEl) sceneEl.textContent = 'scene ' + String(stepIdx + 1).padStart(2, '0') + ' / 04';
+      document.querySelectorAll('[data-trace]').forEach(row => {
+        const t = Number(row.dataset.trace);
+        const isDanger = stepIdx === 3 && t >= 3;
+        const isCurrent = !isDanger && t === stepIdx;
+        const isRevealed = stepIdx === 3 ? true : t <= stepIdx;
+        row.classList.toggle('dim', !isRevealed);
+        row.classList.toggle('trace-current', isCurrent);
+        row.classList.toggle('highlight', isDanger);
+      });
+    }
+
+    if(storyVisual && storySteps.length){
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const idx = Number(entry.target.dataset.stepIndex || 0);
+            storySteps.forEach((step,i)=>step.classList.toggle('active', i===idx));
+            updateTrace(idx);
+          }
+        });
+      }, {threshold:.55});
+
+      const anchors = [];
+      storySteps.forEach((step, i)=>{
+        const anchor = document.createElement('div');
+        anchor.style.height = '28vh';
+        anchor.dataset.stepIndex = i;
+        storyVisual.appendChild(anchor);
+        observer.observe(anchor);
+        anchors.push(anchor);
+      });
+    }
+
+    const themeToggle = document.querySelector('[data-theme-toggle]');
+    let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    function updateThemeIcon(){
+      themeToggle.innerHTML = theme === 'dark'
+      ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>'
+      : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+    }
+    updateThemeIcon();
+    themeToggle.addEventListener('click', ()=>{ theme = theme === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', theme); updateThemeIcon(); });
+    updateTrace(0);
+  </script>
+</body>
+</html>
