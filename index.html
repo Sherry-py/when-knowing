@@ -208,8 +208,8 @@
           <div class="eyebrow zh">审稿中 · <em>Information &amp; Management</em> · UNSW ISTM</div>
           <h1 class="en">The agent knows the context is broken. It acts anyway.</h1>
           <h1 class="zh">代理知道上下文有问题。它仍然继续执行。</h1>
-          <p class="en">LLM agents accurately diagnose defective context — yet authorize execution anyway. I formalize this <strong>diagnostic–authorization gap</strong> as a new IS governance failure mode (structural routing failure) and argue that closing it requires not a better model, but an <strong>execution harness</strong>: GateFix, a pre-execution governance layer grounded in principal–agent theory that structurally routes context quality verification into the authorization decision before any action proceeds. A within-subject experiment across 500 financial reasoning tasks and 4 frontier LLMs shows it reduces false authorization on defective contexts from ~50% to under 5% on capable models.</p>
-          <p class="zh">LLM 代理能准确识别上下文缺陷 —— 却仍然继续授权执行。我把这种<strong>诊断–授权裂隙</strong>形式化为一种新的 IS 治理失败模式（结构性路由失败），并主张：弥合它所需要的不是更好的模型，而是一个<strong>执行 harness</strong>——GateFix，一种基于委托–代理理论的执行前治理层，将上下文质量验证结构性地接入授权决策，在任何行动发生之前。跨 500 项金融推理任务与 4 个前沿 LLM 的被试内实验显示，它将缺陷上下文上的错误授权率从约 50% 降至 5% 以下。</p>
+          <p class="en">LLM agents accurately diagnose defective context — yet authorize execution anyway. I formalize this <strong>diagnostic–authorization gap</strong> as <strong>structural routing failure</strong>: a previously uncharacterized IS governance failure mode whose remedy is not a better model but an <strong>execution harness</strong> — GateFix, a pre-execution governance layer grounded in principal–agent theory. A within-subject experiment across 500 financial reasoning tasks and 4 frontier LLMs shows a <strong>~45 percentage-point reduction</strong> in false authorization on defective contexts (from ~50% to under 5% on capable models).</p>
+          <p class="zh">LLM 代理能准确识别上下文缺陷 —— 却仍然继续授权执行。我把这种<strong>诊断–授权裂隙</strong>形式化为<strong>结构性路由失败</strong>：一种此前尚未被系统刻画的 IS 治理失败模式 —— 它的对策不是更好的模型，而是一个<strong>执行 harness</strong>：GateFix，一种基于委托–代理理论的执行前治理层。跨 500 项金融推理任务与 4 个前沿 LLM 的被试内实验显示，错误授权率在缺陷上下文上<strong>下降约 45 个百分点</strong>（从约 50% 降至 5% 以下，在能力达标的模型上）。</p>
           <div class="button-row">
             <a class="btn btn-primary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
             <a class="btn btn-secondary" href="#about"><span class="en">About the researcher</span><span class="zh">关于研究者</span></a>
@@ -237,6 +237,10 @@
             <div style="margin-top:.35rem;padding:.65rem .85rem;background:color-mix(in srgb,var(--color-error) 6%,var(--color-surface));border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-error) 20%,var(--color-border));font-family:var(--font-mono);font-size:12px;">
               <span class="en">Q3 actual revenue figure — not in context</span>
               <span class="zh">Q3 实际营收数字 — 上下文中未找到</span>
+            </div>
+            <div style="margin-top:.45rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;color:var(--color-text-faint);line-height:1.5;">
+              <span class="en">Representative case from the 500-task experiment — a simple context defect entering a real workflow.</span>
+              <span class="zh">来自 500 项任务实验中的代表性案例 —— 一个简单的上下文缺陷如何进入真实工作流。</span>
             </div>
           </div>
           <div style="padding:.6rem 1rem;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);text-align:center;">
@@ -275,7 +279,7 @@
           <div class="eyebrow zh">业务层问题如何出现</div>
           <h2 class="en">The problem becomes dangerous when a simple judgment enters a workflow</h2>
           <h2 class="zh">当一个简单判断进入工作流，这个问题就变得危险了</h2>
-          <p class="section-lead en">The organizational problem begins when an LLM is embedded as an execution agent and the pipeline still allows action after the defect is noticed.</p>
+          <p class="section-lead en">Missing figures, conflicting sources, or noisy context are not hard to identify in principle. The organizational problem begins when an LLM is embedded as an execution agent and the pipeline still allows action after the defect is noticed.</p>
           <p class="section-lead zh">从原则上说，缺失数字、来源冲突或噪声上下文并不难识别。真正的组织问题出现在：LLM 被嵌入工作流充当执行代理之后，即使缺陷已被发现，管线仍然允许它继续行动。</p>
           <div class="story-steps">
             <div class="story-step active">
@@ -338,8 +342,69 @@
       <div class="container">
         <h2 class="en">The GateFix mechanism</h2>
         <h2 class="zh">GateFix 的工作机制</h2>
+
+        <figure style="margin:var(--space-8) auto var(--space-12);max-width:920px;padding:0;">
+          <svg viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figTitle figDesc" style="display:block;width:100%;height:auto;font-family:'IBM Plex Mono','SFMono-Regular',monospace;">
+            <title id="figTitle">From claim to state transition</title>
+            <desc id="figDesc">Two-panel comparison: an agent's claim without commit-point gating leaves world state undetermined; a claim routed through a commit point gate produces a verified state transition.</desc>
+            <defs>
+              <marker id="arrGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#9c998f"/></marker>
+              <marker id="arrBlack" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#181715"/></marker>
+              <marker id="arrTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0f5f62"/></marker>
+            </defs>
+
+            <!-- LEFT PANEL: claim without state transition -->
+            <text x="225" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.6" fill="#9c998f">CLAIM WITHOUT STATE TRANSITION</text>
+            <text x="225" y="50" text-anchor="middle" font-size="10" font-style="italic" fill="#9c998f">speech act only</text>
+
+            <g opacity="0.75">
+              <rect x="60" y="100" width="80" height="55" rx="3" fill="none" stroke="#68655d" stroke-width="1.5"/>
+              <text x="100" y="133" text-anchor="middle" font-size="11" fill="#68655d">agent</text>
+            </g>
+            <line x1="145" y1="128" x2="173" y2="128" stroke="#9c998f" stroke-width="1.3" marker-end="url(#arrGray)"/>
+            <rect x="180" y="102" width="215" height="52" rx="6" fill="#f1efe9" stroke="#68655d" stroke-width="1.3" opacity="0.9"/>
+            <text x="287" y="134" text-anchor="middle" font-size="12" fill="#181715">&quot;task complete ✓&quot;</text>
+
+            <text x="225" y="215" text-anchor="middle" font-size="10" letter-spacing="1.4" fill="#9c998f">THE WORLD</text>
+            <rect x="65" y="228" width="320" height="92" rx="4" fill="none" stroke="#9c998f" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.55"/>
+            <text x="225" y="287" text-anchor="middle" font-size="38" fill="#9c998f" opacity="0.5" font-weight="300">? ? ?</text>
+
+            <!-- DIVIDER -->
+            <line x1="470" y1="70" x2="470" y2="350" stroke="#d9d5cc" stroke-width="1" stroke-dasharray="3,6"/>
+
+            <!-- RIGHT PANEL: claim licensed by evidence -->
+            <text x="720" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.6" fill="#0f5f62">CLAIM LICENSED BY EVIDENCE</text>
+            <text x="720" y="50" text-anchor="middle" font-size="10" font-style="italic" fill="#0f5f62">state transition</text>
+
+            <rect x="510" y="100" width="80" height="55" rx="3" fill="none" stroke="#181715" stroke-width="1.5"/>
+            <text x="550" y="133" text-anchor="middle" font-size="11" fill="#181715">agent</text>
+            <line x1="595" y1="128" x2="623" y2="128" stroke="#181715" stroke-width="1.3" marker-end="url(#arrBlack)"/>
+            <rect x="630" y="102" width="200" height="52" rx="6" fill="#fbfaf7" stroke="#181715" stroke-width="1.3"/>
+            <text x="730" y="134" text-anchor="middle" font-size="12" fill="#181715">&quot;task complete&quot;</text>
+
+            <line x1="720" y1="160" x2="720" y2="192" stroke="#0f5f62" stroke-width="1.5" marker-end="url(#arrTeal)"/>
+
+            <rect x="520" y="200" width="400" height="50" rx="4" fill="#dce9e6" stroke="#0f5f62" stroke-width="2"/>
+            <text x="720" y="217" text-anchor="middle" font-size="10" letter-spacing="1.5" font-weight="600" fill="#0f5f62">COMMIT POINT</text>
+            <text x="720" y="238" text-anchor="middle" font-size="9" fill="#0f5f62">source data linked · computation traced · missing values flagged</text>
+
+            <line x1="720" y1="254" x2="720" y2="287" stroke="#0f5f62" stroke-width="1.5" marker-end="url(#arrTeal)"/>
+
+            <rect x="520" y="290" width="400" height="62" rx="4" fill="#dce9e6" stroke="#0f5f62" stroke-width="2"/>
+            <text x="720" y="308" text-anchor="middle" font-size="10" letter-spacing="1.4" font-weight="600" fill="#0f5f62">THE WORLD</text>
+            <text x="720" y="337" text-anchor="middle" font-size="17" fill="#0f5f62">✓ verified state change</text>
+          </svg>
+          <figcaption style="font-family:var(--font-display);font-size:var(--text-base);font-style:italic;color:var(--color-text);text-align:center;margin-top:var(--space-6);line-height:1.45;max-width:62ch;margin-inline:auto;">
+            <span class="en">&ldquo;Accountability is not what the agent says it did — it is what the architecture can prove.&rdquo;</span>
+            <span class="zh">&ldquo;问责不是 agent 声称做了什么 —— 而是架构能证明什么。&rdquo;</span>
+          </figcaption>
+        </figure>
+
         <p class="section-lead en">Four dimensions. Two are critical — failure blocks execution outright. Two are non-critical — failure requests clarification. Together they produce one of three verdicts.</p>
         <p class="section-lead zh">四个维度。两个关键维度失败则直接阻止执行，两个非关键维度失败则请求澄清。组合产生三种授权裁决之一。</p>
+
+        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:var(--space-8);">These four dimensions are derived from <strong>Wang &amp; Strong's (1996) contextual data quality subset</strong>, specialized for the moment of <em>action authorization</em> — that is, made action-relative rather than retrospective. Critical dimensions capture properties whose failure makes execution <em>structurally invalid</em>; non-critical dimensions capture properties whose failure makes execution <em>unreliable but recoverable</em>.</p>
+        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:var(--space-8);">这四个维度由 <strong>Wang &amp; Strong (1996) 提出的语境化数据质量子集</strong>派生而来，针对<em>行动授权</em>这一时刻进行专门化 —— 即从事后回顾转为面向行动。关键维度刻画的是其失败将使执行<em>在结构上无效</em>的属性；非关键维度刻画的则是失败会让执行<em>不可靠但可恢复</em>的属性。</p>
 
         <div class="dim-group dim-group-critical">
           <div class="dim-group-label en">Critical — failure → REFUSE</div>
@@ -414,7 +479,7 @@
         <div>
           <h2 class="en">What the research found</h2>
           <h2 class="zh">研究发现了什么</h2>
-          <p class="section-lead en">Within-subject experiment across 4 commercial LLMs and 3 financial benchmarks (TAT-QA, ConvFinQA, FinQA), 500 reasoning tasks. GateFix reduces false authorization on defective contexts from ~50% to under 5% — a structural routing fix, not a model improvement.</p>
+          <p class="section-lead en">Within-subject experiment across 4 commercial LLMs and 3 financial benchmarks (TAT-QA, ConvFinQA, FinQA), 500 reasoning tasks. GateFix reduces false authorization on defective contexts from ~50% to under 5% — a structural routing fix, not a model improvement. Diagnostic capability is necessary but not sufficient: only structure converts it into safe behaviour.</p>
           <p class="section-lead zh">在 4 个商业 LLM 与 3 个金融基准（TAT-QA、ConvFinQA、FinQA）上的被试内实验，500 项推理任务。GateFix 把错误授权率从约 50% 降至 5% 以下 —— 这是结构性路由修复，不是模型能力提升。诊断能力是必要而非充分条件：只有结构性机制才能把它转化为安全行为。</p>
         </div>
         <div class="fnd-contrast">
@@ -422,7 +487,7 @@
             <div class="fnd-label en">Baseline · without governance</div>
             <div class="fnd-label zh">基线 · 无治理</div>
             <div class="fnd-value">~50%</div>
-            <p class="small en">False authorization rate on defective contexts</p>
+            <p class="small en">False authorization rate on defective contexts — the agent diagnosed the defect, then proceeded to act on it.</p>
             <p class="small zh">缺陷上下文上的错误授权率 —— LLM 代理虽已诊断到缺陷，却仍然继续执行</p>
           </div>
           <div class="fnd-gap">
@@ -453,6 +518,8 @@
             <h3>UNSW Advisor assistant</h3>
             <p class="small en">Applies bounded-domain query governance to course and programme advisory — scope constraints and context quality directly gate recommendation authorization, not just generation.</p>
             <p class="small zh">将有界领域查询治理应用于选课与项目咨询 —— 范围约束与上下文质量直接管控建议的授权决策，而不仅仅是内容生成。</p>
+            <p class="small en" style="margin-top:.65rem;color:var(--color-text-faint);font-style:italic;">Pedagogical prototype — illustrates domain transferability of the 4D-CQ governance pattern.</p>
+            <p class="small zh" style="margin-top:.65rem;color:var(--color-text-faint);font-style:italic;">教学型原型 —— 用以展示 4D-CQ 治理模式的跨领域可迁移性。</p>
             <div class="button-row" style="margin-top:1rem"><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://unsw-advisor.streamlit.app/">Open prototype</a></div>
           </article>
         </div>
@@ -463,8 +530,10 @@
       <div class="container">
         <h2 class="en">Research roadmap · next 18 months</h2>
         <h2 class="zh">研究路线图 · 未来 18 个月</h2>
-        <p class="section-lead en">This work is the first paper of a multi-paper programme on execution-layer governance for AI-enabled organizational systems.</p>
-        <p class="section-lead zh">这项研究是关于"AI 赋能组织系统执行层治理"系列论文的第一篇。接下来四条主线各自把框架向前推进一步。</p>
+        <p class="section-lead en">This is the first paper of a multi-paper programme on execution-layer governance for AI-enabled organizational systems.</p>
+        <p class="section-lead zh">这是"AI 赋能组织系统执行层治理"系列论文的第一篇。</p>
+        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-top:.75rem;">Paper 1 establishes the <strong>micro-mechanism</strong> — structural routing failure as the smallest unit of misgovernance. <strong>Stream 04 is where the programme is currently developing</strong>: a <strong>meso-architecture</strong> composing closed-loop authorization harnesses (continuous time) with commit points (discrete time). Streams 01–03 extend the micro-mechanism along behavioural, cross-domain, and theoretical axes. The roadmap is a working map of where the thinking is heading, not a fixed plan.</p>
+        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-top:.75rem;">Paper 1 确立<strong>微观机制</strong> —— 结构性路由失败作为最小治理失败单元。<strong>Stream 04 是当前正在展开的方向</strong>：一个<strong>中观架构</strong>，将闭环授权 harness（连续时间）与 commit point（离散时间）组合在一起。Streams 01–03 则沿行为、跨域、理论三条轴线延伸这一微观机制。此路线图是当前思考的工作版图，并非已定下的计划。</p>
         <div style="margin-top:2rem">
 
           <!-- Foundation: Paper 1 -->
@@ -496,7 +565,7 @@
           <!-- Streams 01 / 02 / 03 -->
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem">
             <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 01 · Behavioural</div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 01 · Behavioural grounding</div>
               <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Do governance signals restore human control — or shift automation bias upstream?</div>
               <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">治理信号恢复人类控制，还是把自动化偏差前移？</div>
               <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
@@ -505,7 +574,7 @@
               </div>
             </div>
             <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 02 · Cross-domain</div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 02 · Cross-domain robustness</div>
               <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Safety transfers. Accuracy is contingent. That asymmetry is the design principle.</div>
               <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">安全可迁移，准确率是条件依赖的 — 这个不对称本身是设计原则。</div>
               <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
@@ -514,9 +583,9 @@
               </div>
             </div>
             <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 03 · IS Theory</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Delegation theory named the fidelity gap. This paper closes it.</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">委托理论命名了保真度缺口。这篇论文关闭它。</div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 03 · Theory integration</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Delegation theory named the fidelity gap. This paper proposes a structural mechanism for closing it.</div>
+              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">委托理论命名了保真度缺口。本文提出一种结构性机制来弥合它。</div>
               <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
                 <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">Structural routing failure as delegation fidelity breakdown · MISQ / ISR</div>
                 <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">结构性路由失败作为委托保真度崩溃 · MISQ / ISR</div>
@@ -532,12 +601,12 @@
           <!-- Frontier: Stream 04 -->
           <div style="border:2px solid var(--color-primary);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));padding:1.3rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center">
             <div>
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem">Stream 04 · Commit-point infrastructure · In progress</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.65rem" class="en">Every AI safety system governs at the platform. Accountability sits with you. Commit points fix this.</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.65rem" class="zh">所有 AI 安全系统的治理权在平台。责任在你。Commit point 纠正这个错位。</div>
+              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem">Stream 04 · Continuous Governance Architecture · In progress</div>
+              <div style="font-size:var(--text-sm);font-weight:500;line-height:1.5;margin-bottom:.65rem" class="en">Reliable governance is a <strong>structural property of the action channel</strong>, not an event at decision moments. Current AI safety architectures govern at the <strong>platform layer</strong> (model providers, API guardrails); the deploying organization absorbs the residual — a mismatch between governance locus and accountability locus.</div>
+              <div style="font-size:var(--text-sm);font-weight:500;line-height:1.5;margin-bottom:.65rem" class="zh">可靠的治理是<strong>行动通道本身的结构属性</strong>，而非决策时刻的事件。当前 AI 安全架构治理停留在<strong>平台层</strong>（模型提供方、API 护栏）；部署方组织承担一切残余风险 —— 治理归属与问责归属在结构上错位。</div>
               <div style="border-top:1px solid color-mix(in srgb,var(--color-primary) 20%,var(--color-divider));padding-top:.6rem">
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="en">Commit points as IS design construct · restoring Weill &amp; Ross governance locus in the agent era. Not a safety feature — a governance architecture.</div>
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="zh">Commit point 作为 IS 设计构件 · 在 Agent 时代恢复 Weill &amp; Ross 的治理归属。不是安全功能，而是治理架构。</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="en">Continuous Governance Architecture composes <strong>closed-loop authorization harnesses</strong> (continuous-time self-correction, à la Paper 1) with <strong>commit points</strong> (discrete-time boundary attestation; <strong>Weill &amp; Ross, 2004</strong>). Requisite-variety reasoning (Ashby, 1956) makes both layers necessary: platform-layer guardrails cannot match the environmental variety of agentic action.</div>
+                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="zh">连续治理架构由两层组合而成：<strong>闭环授权 harness</strong>（连续时间的自校正，沿用 Paper 1）与 <strong>commit point</strong>（离散时间的边界证 attestation；<strong>Weill &amp; Ross, 2004</strong>）。按 requisite-variety 原理（Ashby, 1956），平台层护栏的控制变量无法匹配 agentic 行动的环境变量。</div>
               </div>
             </div>
             <div style="text-align:center;padding:.75rem 1rem;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);min-width:6rem">
@@ -557,14 +626,17 @@
         <h2 class="en">Why this moment. Why IS.</h2>
         <h2 class="zh">为什么是这个时刻，为什么是 IS</h2>
 
+        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.2rem;">The governance question this research engages — <em>when does AI capability translate into safe execution?</em> — is increasingly visible across both scholarly and industry conversations.</p>
+        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.2rem;">本研究所追问的治理问题 —— <em>AI 的能力何时才能转化为安全的执行？</em> —— 正在学术界与产业界的讨论中同时浮现。</p>
+
         <blockquote style="margin:2.5rem 0;padding:1.8rem 2.2rem;border-left:3px solid var(--color-primary);border-radius:0 var(--radius-lg) var(--radius-lg) 0;background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));position:relative;">
           <p class="en" style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.6;font-style:italic;color:var(--color-text);max-width:64ch;margin-bottom:1rem">"If you, like many of you, dedicate yourselves night and day to mastering these tools and combine that with your deep creativity, you will create things that are truly extraordinary."</p>
           <p class="zh" style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.6;font-style:italic;color:var(--color-text);max-width:64ch;margin-bottom:1rem">"如果像你们中的许多人那样日以继夜地钻研这些工具，并将其与深层的创造力结合，就能创造出更不可思议的作品。"</p>
           <cite style="font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);font-style:normal;">— Demis Hassabis, co-founder &amp; CEO, Google DeepMind</cite>
         </blockquote>
 
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis frames the coming decade as one of <em>human–AI symbiosis</em>: not AI replacing human judgment, but AI amplifying it — with humans providing the creativity, taste, and authorization that machines cannot supply from within. "AI Agents are precisely the path to that goal," he argued. The architecture that makes such symbiosis possible is not a model problem. It is a governance problem.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis 把未来十年定性为<em>人机共生</em>时代：不是 AI 取代人的判断，而是 AI 放大人的判断 — 由人提供创造力、品位与授权，这是机器无法从内部供给的。"AI Agent 正是通往这一目标的路径。" 而支撑这种共生的架构，不是模型问题，而是治理问题。</p>
+        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis frames the coming decade as <em>human–AI symbiosis</em> — AI amplifying human judgment, with humans providing the creativity, taste, and authorization machines cannot supply from within. The architecture that makes such symbiosis possible is not a model problem. It is a governance problem.</p>
+        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis 把未来十年定性为<em>人机共生</em>时代 —— AI 放大人的判断，由人提供创造力、品位与授权，这是机器无法从内部供给的。而支撑这种共生的架构，不是模型问题，而是治理问题。</p>
 
         <div style="margin:2.5rem 0">
           <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1.2rem" class="en">The AI development arc — where governance enters</div>
@@ -599,6 +671,8 @@
           <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:1rem" class="zh">为什么 IS 是解决这个问题的正确学科</div>
           <p class="small en">CS asks what AI can do; management asks how humans adapt; IS asks how organizational rules and technical capabilities get <em>structurally coupled</em> — and when that coupling fails. The diagnostic–authorization gap is precisely an IS failure mode: the right capability, the right rules, and the right intent, but not routed to meet. No other discipline holds both principal–agent governance theory and design science method to address that coupling directly.</p>
           <p class="small zh">计算机科学问 AI 能做什么；管理学问人类如何适应；IS 问的是组织规则与技术能力如何<em>结构性耦合</em> — 以及耦合何时失败。诊断–授权裂隙恰恰是 IS 式的失败：能力、规则、意图都在，却没有被路由到一起。没有任何其他学科同时拥有委托–代理治理理论与设计科学方法来直接处理这个问题。</p>
+          <p class="small en" style="margin-top:1rem;font-style:italic;">Over the next few years, I'm interested in whether <strong>execution-layer AI governance</strong> can stand as a coherent programme within IS — connecting agent-level mechanism design, organizational governance architecture, and behavioural evidence on how humans operate these gates in practice.</p>
+          <p class="small zh" style="margin-top:1rem;font-style:italic;">未来几年，我感兴趣的是：<strong>执行层 AI 治理（execution-layer AI governance）</strong>能否在 IS 内部站立为一条连贯的研究线 —— 把 agent 级机制设计、组织级治理架构、以及人类在这些"治理门"前实际行为的实证证据连成一体。</p>
         </div>
       </div>
     </section>
@@ -613,16 +687,16 @@
             <div style="font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;letter-spacing:.02em;margin-bottom:.55rem;color:var(--color-text);">Xirui (Sherry) Lian</div>
             <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
               <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 10%,transparent);color:var(--color-primary);">Researcher</span>
-              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);">Builder</span>
               <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning);">UNFCCC Initiator</span>
+              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);">Builder</span>
             </div>
           </div>
         </div>
         <article class="bio-card">
           <h2 class="en">About the researcher</h2>
           <h2 class="zh">关于研究者</h2>
-          <p class="en">Xirui (Sherry) Lian is a researcher at UNSW ISTM working at the intersection of <strong>IS governance theory, AI execution governance, and design science research</strong>. The path to this research began in climate governance: she co-launched ICECI at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and engaged as a practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Inside that decade of multi-stakeholder governance work she came to a single observation: governance fails not because principles are unknown, but because diagnostic awareness is structurally disconnected from authorization. Her current research transposes that lens to AI systems and shows the same pathology — at pipeline scale — inside agentic LLM workflows.</p>
-          <p class="zh">Xirui（Sherry）Lian 是 UNSW ISTM 的研究者，工作位于 <strong>IS 治理理论、AI 执行治理与设计科学研究</strong> 的交叉处。她进入这一研究的起点是气候治理：在 COP28 联合发起 ICECI —— 一个 UNFCCC 注册气候倡议，获中国气候变化特使解振华背书，并被联合国亚太经社会列为 ICT 赋能气候治理区域典范——并连续参与了六届联合国气候大会（COP24–COP29）。十年的多方治理实践让她得出一个观察：治理之所以失败，不是因为原则不被知晓，而是因为诊断认知在结构上与授权决策脱钩。她当前的研究把这一视角迁移到 AI 系统，证明同样的病理在 agentic LLM 管线中以更大尺度重演。</p>
+          <p class="en">Xirui (Sherry) Lian is a researcher at UNSW ISTM working at the intersection of <strong>IS governance theory, AI execution governance, and design science research</strong>. The path to this research began in climate governance: she co-launched ICECI at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and engaged as a practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Inside that decade of multi-stakeholder governance work she came to a single observation: governance fails not because principles are unknown, but because diagnostic awareness is structurally disconnected from authorization. Her current research transposes that lens to AI systems and identifies a <strong>structurally analogous failure mode</strong> — at pipeline scale — inside agentic LLM workflows.</p>
+          <p class="zh">Xirui（Sherry）Lian 是 UNSW ISTM 的研究者，工作位于 <strong>IS 治理理论、AI 执行治理与设计科学研究</strong> 的交叉处。她进入这一研究的起点是气候治理：在 COP28 联合发起 ICECI —— 一个 UNFCCC 注册气候倡议，获中国气候变化特使解振华背书，并被联合国亚太经社会列为 ICT 赋能气候治理区域典范——并连续参与了六届联合国气候大会（COP24–COP29）。十年的多方治理实践让她得出一个观察：治理之所以失败，不是因为原则不被知晓，而是因为诊断认知在结构上与授权决策脱钩。她当前的研究把这一视角迁移到 AI 系统，在 agentic LLM 管线中识别出<strong>结构上类似的失败模式</strong> —— 且以管线尺度发生。</p>
           <div class="meta-list">
             <div class="meta-item"><span>Email</span><span><a href="mailto:z5709117@ad.unsw.edu.au" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">z5709117@ad.unsw.edu.au</a></span></div>
             <div class="meta-item"><span>GitHub</span><span><a href="https://github.com/Sherry-py" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">github.com/Sherry-py</a></span></div>
@@ -639,8 +713,8 @@
       <div class="panel" style="max-width:700px">
         <h3 class="en">Research conversations &amp; visiting affiliation</h3>
         <h3 class="zh">研究对话与学术访问</h3>
-        <p class="small en">The diagnostic–authorization gap is a structural form of <em>judgment–action dissociation</em> — the proposed remedy is a piece of decision architecture. UNSW ISTM is the natural home for that combination, and the next stage of this programme is a natural fit for the group's expertise in governance and behavioural experiments.</p>
-        <p class="small zh">诊断–授权裂隙在行为运营语言里是一种结构性的<em>判断–行动分离</em>，拟议的对策是一种"决策架构"。UNSW ISTM 是这一组合的天然归处，这一项目的下一阶段与 ISTM 在治理与行为实验方面的研究专长高度契合。</p>
+        <p class="small en">The diagnostic–authorization gap is a structural form of <em>judgment–action dissociation</em>; the remedy is a piece of decision architecture. UNSW ISTM is the natural home for that combination — and the next stage of this programme fits the group's expertise in governance and behavioural experiments.</p>
+        <p class="small zh">诊断–授权裂隙在行为运营语言里是一种结构性的<em>判断–行动分离</em>；对策是一种决策架构。UNSW ISTM 是这一组合的天然归处 —— 项目下一阶段与 ISTM 在治理与行为实验方面的研究专长高度契合。</p>
         <div class="button-row">
           <a class="btn btn-primary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
           <a class="btn btn-secondary" href="mailto:z5709117@ad.unsw.edu.au?subject=Research%20conversation%20—%20execution-layer%20governance"><span class="en">Open a conversation</span><span class="zh">联系研究者</span></a>
