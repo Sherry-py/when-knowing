@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>When Knowing Is Not Enough</title>
-  <meta name="description" content="A bilingual research-node homepage prototype for governing AI before execution." />
+  <meta name="description" content="Building execution-layer governance for AI agents — GateFix, a pre-execution governance harness for LLM workflows." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -181,7 +181,7 @@
         </div>
         <div class="brand-copy">
           <div class="brand-title">When Knowing Is Not Enough</div>
-          <div class="brand-subtitle">Research node for execution-layer AI governance</div>
+          <div class="brand-subtitle">Building execution-layer governance for AI agents</div>
         </div>
       </div>
       <nav class="nav" aria-label="Primary">
@@ -211,8 +211,8 @@
           <p class="en">LLM agents accurately diagnose defective context — yet authorize execution anyway. I formalize this <strong>diagnostic–authorization gap</strong> as <strong>structural routing failure</strong>: a previously uncharacterized IS governance failure mode whose remedy is not a better model but an <strong>execution harness</strong> — GateFix, a pre-execution governance layer grounded in principal–agent theory. A within-subject experiment across 500 financial reasoning tasks and 4 frontier LLMs reveals the gap as a <strong>robust cross-model behavioral pattern</strong>, and GateFix delivers a <strong>~45 percentage-point reduction</strong> in false authorization on defective contexts (from ~50% to under 5% on capable models).</p>
           <p class="zh">LLM 代理能准确识别上下文缺陷 —— 却仍然继续授权执行。我把这种<strong>诊断–授权裂隙</strong>形式化为<strong>结构性路由失败</strong>：一种此前尚未被系统刻画的 IS 治理失败模式 —— 它的对策不是更好的模型，而是一个<strong>执行 harness</strong>：GateFix，一种基于委托–代理理论的执行前治理层。跨 500 项金融推理任务与 4 个前沿 LLM 的被试内实验揭示出这一裂隙是<strong>一种稳健的跨模型行为模式</strong>，GateFix 在缺陷上下文上把错误授权率<strong>下降约 45 个百分点</strong>（从约 50% 降至 5% 以下，在能力达标的模型上）。</p>
           <div class="button-row">
-            <a class="btn btn-primary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
-            <a class="btn btn-secondary" href="#about"><span class="en">About the researcher</span><span class="zh">关于研究者</span></a>
+            <a class="btn btn-primary" href="https://unsw-advisor.streamlit.app/" target="_blank" rel="noopener"><span class="en">Try the prototype</span><span class="zh">试用原型</span></a>
+            <a class="btn btn-secondary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read the working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
           </div>
           <div class="lang-toggle" aria-label="Language toggle">
             <button class="active" data-lang="en">EN</button>
@@ -686,17 +686,19 @@
           <div style="margin-top:.9rem;text-align:center;">
             <div style="font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;letter-spacing:.02em;margin-bottom:.55rem;color:var(--color-text);">Xirui (Sherry) Lian</div>
             <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
-              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 10%,transparent);color:var(--color-primary);">Researcher</span>
+              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 10%,transparent);color:var(--color-primary);">Builder</span>
               <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning);">UNFCCC Initiator</span>
-              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);">Builder</span>
+              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);">Researcher</span>
             </div>
           </div>
         </div>
         <article class="bio-card">
-          <h2 class="en">About the researcher</h2>
-          <h2 class="zh">关于研究者</h2>
-          <p class="en">Xirui (Sherry) Lian is a researcher at UNSW ISTM working at the intersection of <strong>IS governance theory, AI execution governance, and design science research</strong>. The path to this research began in climate governance: she co-launched ICECI at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and engaged as a practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Inside that decade of multi-stakeholder governance work she came to a single observation: governance fails not because principles are unknown, but because diagnostic awareness is structurally disconnected from authorization. Her current research transposes that lens to AI systems and identifies a <strong>structurally analogous failure mode</strong> — at pipeline scale — inside agentic LLM workflows.</p>
-          <p class="zh">Xirui（Sherry）Lian 是 UNSW ISTM 的研究者，工作位于 <strong>IS 治理理论、AI 执行治理与设计科学研究</strong> 的交叉处。她进入这一研究的起点是气候治理：在 COP28 联合发起 ICECI —— 一个 UNFCCC 注册气候倡议，获中国气候变化特使解振华背书，并被联合国亚太经社会列为 ICT 赋能气候治理区域典范——并连续参与了六届联合国气候大会（COP24–COP29）。十年的多方治理实践让她得出一个观察：治理之所以失败，不是因为原则不被知晓，而是因为诊断认知在结构上与授权决策脱钩。她当前的研究把这一视角迁移到 AI 系统，在 agentic LLM 管线中识别出<strong>结构上类似的失败模式</strong> —— 且以管线尺度发生。</p>
+          <h2 class="en">About</h2>
+          <h2 class="zh">关于</h2>
+          <p class="en">Xirui (Sherry) Lian builds <strong>execution-layer governance infrastructure</strong> for AI agents. Currently developing <strong>GateFix</strong> — a pre-execution governance harness grounded in nine years of climate-governance building. Previously co-launched <strong>ICECI</strong> at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and built <strong>Lvdoya</strong>, a carbon-behavior platform deployed across 15 Chinese cities with 2.3M+ behavioral interactions. Practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Affiliated with UNSW ISTM; working paper under review at <em>Information &amp; Management</em>.</p>
+          <p class="en" style="margin-top:1rem;">A decade of multi-stakeholder governance work produced a single observation: governance fails not because principles are unknown, but because diagnostic awareness is structurally disconnected from authorization. GateFix transposes that lens into agentic LLM workflows.</p>
+          <p class="zh">连希蕊（Sherry Lian）从事 AI agent <strong>执行层治理基础设施</strong>的搭建。当前正在开发 <strong>GateFix</strong> —— 一个建立在九年气候治理实战之上的执行前治理 harness。此前在 COP28 联合发起 <strong>ICECI</strong>（UNFCCC 注册倡议，获中国气候变化特使解振华背书，被联合国亚太经社会列为 ICT 赋能气候治理区域典范），并搭建 <strong>Lvdoya</strong> —— 部署于中国 15 座城市、累计 230 万+ 行为交互的碳行为平台。连续六届联合国气候大会（COP24–COP29）实操代表。隶属 UNSW ISTM；工作论文在 <em>Information &amp; Management</em> 审稿中。</p>
+          <p class="zh" style="margin-top:1rem;">十年的多方治理实践给出一个观察：治理之所以失败，不是因为原则不被知晓，而是因为诊断认知在结构上与授权决策脱钩。GateFix 把这一视角迁移到 agentic LLM 管线。</p>
           <div class="meta-list">
             <div class="meta-item"><span>Email</span><span><a href="mailto:z5709117@ad.unsw.edu.au" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">z5709117@ad.unsw.edu.au</a></span></div>
             <div class="meta-item"><span>GitHub</span><span><a href="https://github.com/Sherry-py" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">github.com/Sherry-py</a></span></div>
