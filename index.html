@@ -205,12 +205,12 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow en">Under review · <em>Information &amp; Management</em> · UNSW ISTM</div>
-          <div class="eyebrow zh">审稿中 · <em>Information &amp; Management</em> · UNSW ISTM</div>
-          <h1 class="en">The agent knows the context is broken. It acts anyway.</h1>
-          <h1 class="zh">代理知道上下文有问题。它仍然继续执行。</h1>
-          <p class="en">LLM agents accurately diagnose defective context — yet authorize execution anyway. I formalize this <strong>diagnostic–authorization gap</strong> as <strong>structural routing failure</strong>: a previously uncharacterized IS governance failure mode whose remedy is not a better model but an <strong>execution harness</strong> — GateFix, a pre-execution governance layer grounded in principal–agent theory. A within-subject experiment across 500 financial reasoning tasks and 4 frontier LLMs reveals the gap as a <strong>robust cross-model behavioral pattern</strong>, and GateFix delivers a <strong>~45 percentage-point reduction</strong> in false authorization on defective contexts (from ~50% to under 5% on capable models).</p>
-          <p class="zh">LLM 代理能准确识别上下文缺陷 —— 却仍然继续授权执行。我把这种<strong>诊断–授权裂隙</strong>形式化为<strong>结构性路由失败</strong>：一种此前尚未被系统刻画的 IS 治理失败模式 —— 它的对策不是更好的模型，而是一个<strong>执行 harness</strong>：GateFix，一种基于委托–代理理论的执行前治理层。跨 500 项金融推理任务与 4 个前沿 LLM 的被试内实验揭示出这一裂隙是<strong>一种稳健的跨模型行为模式</strong>，GateFix 在缺陷上下文上把错误授权率<strong>下降约 45 个百分点</strong>（从约 50% 降至 5% 以下，在能力达标的模型上）。</p>
+          <div class="eyebrow en">Continuous Governance Architecture · UNSW ISTM</div>
+          <div class="eyebrow zh">连续治理架构 · UNSW ISTM</div>
+          <h1 class="en">Does the precondition for this action hold?</h1>
+          <h1 class="zh">这个动作的前提成立吗？</h1>
+          <p class="en">I design <strong>cognitive scaffolding for agentic AI systems</strong> — structural validation continuously, commit-point attestation at boundaries. A research programme spanning from <strong>v1 (GateFix</strong>, under review at <em>Information &amp; Management</em>) to its 10-year version: <strong>Proof-Carrying Action</strong>, a formal framework in which every action that changes world state carries its own proof of precondition.</p>
+          <p class="zh">我设计<strong>面向 agentic AI 系统的认知支架</strong> —— 持续的结构性验证，加上边界处的 commit-point 证明。一个研究纲领：从 <strong>v1（GateFix</strong>，在投 <em>Information &amp; Management</em>）到 10 年版本的形式框架 —— <strong>Proof-Carrying Action</strong>：让每个改变世界状态的动作都携带自己前提的证明。</p>
           <div class="button-row">
             <a class="btn btn-primary" href="https://unsw-advisor.streamlit.app/" target="_blank" rel="noopener"><span class="en">Try the prototype</span><span class="zh">试用原型</span></a>
             <a class="btn btn-secondary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read the working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
@@ -273,76 +273,12 @@
       </div>
     </section>
 
-    <section id="business-layer" class="scroll-story">
-      <div class="wide scroll-story-grid">
-        <div class="story-copy">
-          <div class="eyebrow en">Business-layer emergence</div>
-          <div class="eyebrow zh">业务层问题如何出现</div>
-          <h2 class="en">The problem becomes dangerous when a simple judgment enters a workflow</h2>
-          <h2 class="zh">当一个简单判断进入工作流，这个问题就变得危险了</h2>
-          <p class="section-lead en">Missing figures, conflicting sources, or noisy context are not hard to identify in principle. The organizational problem begins when an LLM is embedded as an execution agent and the pipeline still allows action after the defect is noticed.</p>
-          <p class="section-lead zh">从原则上说，缺失数字、来源冲突或噪声上下文并不难识别。真正的组织问题出现在：LLM 被嵌入工作流充当执行代理之后，即使缺陷已被发现，管线仍然允许它继续行动。</p>
-          <div class="story-steps">
-            <div class="story-step active">
-              <div class="step-tag">01</div>
-              <div>
-                <strong class="en">A normal task arrives</strong>
-                <strong class="zh">一个正常任务到达</strong>
-                <p class="small en">Generate a report, check compliance, summarize a filing, calculate growth.</p>
-                <p class="small zh">生成报告、检查合规、总结文件、计算增长率。</p>
-              </div>
-            </div>
-            <div class="story-step">
-              <div class="step-tag">02</div>
-              <div>
-                <strong class="en">The context is defective</strong>
-                <strong class="zh">上下文存在缺陷</strong>
-                <p class="small en">A key quantity is absent, two sources disagree, or noisy context surrounds the task.</p>
-                <p class="small zh">关键数字缺失、两个来源冲突，或任务被噪声上下文包围。</p>
-              </div>
-            </div>
-            <div class="story-step">
-              <div class="step-tag">03</div>
-              <div>
-                <strong class="en">The model notices the defect</strong>
-                <strong class="zh">模型识别到缺陷</strong>
-                <p class="small en">If asked directly, the agent can identify the defect precisely.</p>
-                <p class="small zh">如果被直接询问，代理往往能够指出哪里有问题。</p>
-              </div>
-            </div>
-            <div class="story-step">
-              <div class="step-tag">04</div>
-              <div>
-                <strong class="en">Execution still proceeds</strong>
-                <strong class="zh">执行却仍然继续</strong>
-                <p class="small en">Because the diagnostic signal is not structurally routed into authorization.</p>
-                <p class="small zh">因为诊断信号并没有被结构性地接入授权决策。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="story-visual">
-          <div class="lab-pane source-window scroll-console">
-            <div class="source-head">
-              <div class="source-title en">workflow execution trace</div>
-              <div class="source-title zh">工作流执行轨迹</div>
-              <div class="source-title" id="traceScene">scene 01 / 04</div>
-            </div>
-            <div class="source-body">
-              <div class="trace-row" data-trace="0"><span class="trace-index">01</span><span class="en">task: compute revenue growth</span><span class="zh">任务：计算营收增长率</span></div>
-              <div class="trace-row" data-trace="1"><span class="trace-index">02</span><span class="en">context: primary source missing 2018 figure</span><span class="zh">上下文：主要来源缺失 2018 数字</span></div>
-              <div class="trace-row" data-trace="2"><span class="trace-index">03</span><span class="en">diagnostic query: defect detected</span><span class="zh">诊断查询：检测到缺陷</span></div>
-              <div class="trace-row" data-trace="3"><span class="trace-index">04</span><span class="en">authorization path: still proceeds</span><span class="zh">授权路径：仍然继续执行</span></div>
-              <div class="trace-row" data-trace="4"><span class="trace-index">05</span><span class="en">downstream: report output enters workflow</span><span class="zh">下游：报告输出进入工作流</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <section id="research">
       <div class="container">
-        <h2 class="en">The GateFix mechanism</h2>
-        <h2 class="zh">GateFix 的工作机制</h2>
+        <div class="eyebrow en">v1 instantiation</div>
+        <div class="eyebrow zh">v1 实例</div>
+        <h2 class="en">GateFix</h2>
+        <h2 class="zh">GateFix 机制</h2>
 
         <figure style="margin:var(--space-8) auto var(--space-12);max-width:920px;padding:0;">
           <svg viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figTitle figDesc" style="display:block;width:100%;height:auto;font-family:'IBM Plex Mono','SFMono-Regular',monospace;">
@@ -401,11 +337,8 @@
           </figcaption>
         </figure>
 
-        <p class="section-lead en">Four dimensions. Two are critical — failure blocks execution outright. Two are non-critical — failure requests clarification. Together they produce one of three verdicts.</p>
-        <p class="section-lead zh">四个维度。两个关键维度失败则直接阻止执行，两个非关键维度失败则请求澄清。组合产生三种授权裁决之一。</p>
-
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:var(--space-8);">These four dimensions are derived from <strong>Wang &amp; Strong's (1996) contextual data quality subset</strong>, specialized for the moment of <em>action authorization</em> — that is, made action-relative rather than retrospective. Critical dimensions capture properties whose failure makes execution <em>structurally invalid</em>; non-critical dimensions capture properties whose failure makes execution <em>unreliable but recoverable</em>.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:var(--space-8);">这四个维度由 <strong>Wang &amp; Strong (1996) 提出的语境化数据质量子集</strong>派生而来，针对<em>行动授权</em>这一时刻进行专门化 —— 即从事后回顾转为面向行动。关键维度刻画的是其失败将使执行<em>在结构上无效</em>的属性；非关键维度刻画的则是失败会让执行<em>不可靠但可恢复</em>的属性。</p>
+        <p class="section-lead en">A 4D-CQ check + deterministic authorization rule. Two critical dimensions block on failure; two non-critical request clarification.</p>
+        <p class="section-lead zh">4D-CQ 检查 + 确定性裁决规则。两个关键维度失败时阻止；两个非关键维度失败时请求澄清。</p>
 
         <div class="dim-group dim-group-critical">
           <div class="dim-group-label en">Critical — failure → REFUSE</div>
@@ -415,15 +348,11 @@
               <div class="mini">Relevance</div>
               <h3 class="en">Is this context for the right task?</h3>
               <h3 class="zh">上下文是否对应正确的任务？</h3>
-              <p class="small en">The context must address the actual task — not a related but misaligned one.</p>
-              <p class="small zh">上下文必须对应当前任务，而非相关但错位的任务。</p>
             </article>
             <article class="feature-card">
               <div class="mini">Coverage</div>
               <h3 class="en">Are all required facts present?</h3>
               <h3 class="zh">所需的关键信息是否齐备？</h3>
-              <p class="small en">All facts or quantities necessary to complete the task must be present and verifiable.</p>
-              <p class="small zh">完成任务所需的所有事实或数量必须存在且可验证。</p>
             </article>
           </div>
         </div>
@@ -436,15 +365,11 @@
               <div class="mini">Ordering</div>
               <h3 class="en">Is the information sequence coherent?</h3>
               <h3 class="zh">信息顺序是否连贯？</h3>
-              <p class="small en">Information must be presented in a sequence coherent enough to support valid reasoning and execution.</p>
-              <p class="small zh">信息必须以足够连贯的顺序呈现，以支持有效推理与执行。</p>
             </article>
             <article class="feature-card">
               <div class="mini">Robustness</div>
               <h3 class="en">Is the context stable against noise?</h3>
               <h3 class="zh">上下文是否能抵抗噪声？</h3>
-              <p class="small en">The context must remain stable under distraction, noise, or adversarial contamination.</p>
-              <p class="small zh">上下文在干扰、噪声或对抗性污染下必须保持稳定。</p>
             </article>
           </div>
         </div>
@@ -478,10 +403,12 @@
     <section id="demo">
       <div class="wide demo-shell">
         <div>
-          <h2 class="en">What the research found</h2>
-          <h2 class="zh">研究发现了什么</h2>
-          <p class="section-lead en">Within-subject experiment across 4 commercial LLMs and 3 financial benchmarks (TAT-QA, ConvFinQA, FinQA), 500 reasoning tasks. The diagnostic–authorization gap appears as a <strong>stable behavioral pattern across all models</strong> — robust to architecture, training corpus, and benchmark. GateFix reduces false authorization on defective contexts from ~50% to under 5% — a structural routing fix, not a model improvement. Diagnostic capability is necessary but not sufficient: only structure converts it into safe behaviour, with <strong>task abstraction (per Construal Level Theory) moderating intervention strength</strong>.</p>
-          <p class="section-lead zh">在 4 个商业 LLM 与 3 个金融基准（TAT-QA、ConvFinQA、FinQA）上的被试内实验，500 项推理任务。诊断–授权裂隙作为<strong>跨所有模型的稳定行为模式</strong>出现 —— 对架构、训练语料、基准均稳健。GateFix 把错误授权率从约 50% 降至 5% 以下 —— 这是结构性路由修复，不是模型能力提升。诊断能力是必要而非充分条件：只有结构性机制才能把它转化为安全行为；<strong>任务抽象水平（基于构念水平理论 / Construal Level Theory）调节干预强度</strong>。</p>
+          <div class="eyebrow en">v1 empirical validation</div>
+          <div class="eyebrow zh">v1 实证验证</div>
+          <h2 class="en">Findings</h2>
+          <h2 class="zh">实验结果</h2>
+          <p class="section-lead en">Within-subject experiment, 4 frontier LLMs × 500 reasoning tasks across FinQA, TAT-QA, ConvFinQA. The diagnostic–authorization gap is a stable cross-model pattern. Scaffolding closes it for models above a diagnostic-capability floor — structure converting capability into reliability.</p>
+          <p class="section-lead zh">被试内实验，4 个前沿 LLM × 500 项推理任务，跨 FinQA、TAT-QA、ConvFinQA。诊断–授权裂隙是跨模型的稳定行为。在诊断能力达标的模型上，scaffolding 把能力转化为可靠性。</p>
         </div>
         <div class="fnd-contrast">
           <div class="fnd-col fnd-low">
@@ -534,156 +461,89 @@
         <h2 class="en">The Question Ladder</h2>
         <h2 class="zh">发问的演进阶梯</h2>
 
-        <p class="section-lead en">A research programme's core isn't an answer — it's a question that keeps generating new questions. This page records where the question came from, and the axes along which it sharpens into a decade of work.</p>
-        <p class="section-lead zh">研究纲领的核心不是答案，是一个可持续追问的问题。本页记录这个问题的来路与去处 —— 它从哪个实证观察中长出来，又能沿哪些轴持续精进。</p>
+        <p class="section-lead en">The question I am sustaining:</p>
+        <p class="section-lead zh">我在追问的：</p>
 
-        <blockquote style="margin:2.5rem 0;padding:1.8rem 2.2rem;border-left:4px solid var(--color-primary);border-radius:0 var(--radius-lg) var(--radius-lg) 0;background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));">
-          <p class="en" style="font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text);margin-bottom:1rem">Does the precondition for this action hold?</p>
-          <p class="zh" style="font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text);margin-bottom:1rem">这个动作的前提成立吗？</p>
-          <cite class="small" style="font-style:normal;color:var(--color-text-muted);font-family:var(--font-mono);font-size:12px;letter-spacing:.04em">
-            <span class="en">v1 form of the research nucleus. Distinct from the prevalent "is this action allowed?" (permission frame) — this is the <em>cognitive-precondition</em> frame, currently an open conceptual space.</span>
-            <span class="zh">v1 形态。区别于全球同行的"这个动作被允许吗"（权限视角）—— 此处是<em>认知前提视角</em>，目前是空白区。</span>
-          </cite>
+        <blockquote style="margin:1.5rem 0 3rem;padding:1.8rem 2.2rem;border-left:4px solid var(--color-primary);border-radius:0 var(--radius-lg) var(--radius-lg) 0;background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));">
+          <p class="en" style="font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text);margin:0">Does the precondition for this action hold?</p>
+          <p class="zh" style="font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text);margin:0">这个动作的前提成立吗？</p>
         </blockquote>
 
-        <div style="margin-top:3rem">
-          <div class="eyebrow en" style="margin-bottom:1.5rem">The ladder</div>
-          <div class="eyebrow zh" style="margin-bottom:1.5rem">阶梯</div>
+        <div style="display:grid;gap:.7rem">
 
-          <div style="display:grid;gap:.85rem">
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-text-muted);min-width:2.5rem">v0</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">The model knows. Why does it still act?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">模型知道，为什么还做？</div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">empirical</span>
-                <span class="zh">实证</span>
-              </span>
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v0</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">The model knows. Why does it still act?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">模型知道，为什么还做？</div>
             </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid color-mix(in srgb,var(--color-primary) 30%,var(--color-border));border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 4%,var(--color-surface))">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-primary);min-width:2.5rem">v1</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600;margin-bottom:.25rem">Does the precondition for this action hold?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600;margin-bottom:.25rem">这个动作的前提成立吗？</div>
-                <div class="small" style="color:var(--color-text-muted);margin-top:.35rem">
-                  <span class="en">GateFix · 4D-CQ · diagnostic–authorization gap (Paper 1)</span>
-                  <span class="zh">GateFix · 4D-CQ · 诊断–授权裂隙（Paper 1）</span>
-                </div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">mechanism</span>
-                <span class="zh">机制化</span>
-              </span>
-            </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-text-muted);min-width:2.5rem">v2</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">Who must adjudicate "holds" for it to count?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">前提由谁裁定才算数？</div>
-                <div class="small" style="color:var(--color-text-muted);margin-top:.35rem">
-                  <span class="en">Sensor ≠ judge. Optimal allocation among model / structure / human is undecided.</span>
-                  <span class="zh">传感器 ≠ 法官。模型 / 结构 / 人三方裁定权的最优分配未决。</span>
-                </div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">adjudication · S01</span>
-                <span class="zh">裁定权 · S01</span>
-              </span>
-            </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-text-muted);min-width:2.5rem">v2′</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">What is the minimum sufficient condition set for "holds"?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">"成立"的最小充分条件集是什么？</div>
-                <div class="small" style="color:var(--color-text-muted);margin-top:.35rem">
-                  <span class="en">4D-CQ's Critical / Non-critical split is a falsifiable design proposition. Does the boundary hold outside finance?</span>
-                  <span class="zh">4D-CQ 的关键 / 非关键二分是可证伪的设计命题。金融之外这条边界还成立吗？</span>
-                </div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">standards · S02</span>
-                <span class="zh">标准 · S02</span>
-              </span>
-            </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-text-muted);min-width:2.5rem">v3</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">If it held at check-time, does it still hold at execute-time?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">检查时成立的前提，执行时还成立吗？</div>
-                <div class="small" style="color:var(--color-text-muted);margin-top:.35rem">
-                  <span class="en">Mirror in systems security: TOCTOU (time-of-check to time-of-use). Context drift, stale memory, concurrent agents — preconditions have shelf lives. This is the theoretical root of "continuous" in Continuous Governance Architecture.</span>
-                  <span class="zh">系统安全的现成镜像：TOCTOU（time-of-check to time-of-use）。Context 漂移、跨会话陈旧、多 agent 并发 —— 前提有有效期。CGA 中"连续"二字的理论根据。</span>
-                </div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">time · S04 continuous</span>
-                <span class="zh">时间 · S04 连续</span>
-              </span>
-            </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-text-muted);min-width:2.5rem">v3′</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">Is "holds" transitive across delegation chains?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">前提的成立性可传递吗？</div>
-                <div class="small" style="color:var(--color-text-muted);margin-top:.35rem">
-                  <span class="en">Composability of preconditions — the natural extension of principal-agent theory to multi-agent settings.</span>
-                  <span class="zh">委托链越长，前提证明链条如何不衰减？—— 委托-代理理论在 multi-agent 上的自然延伸。</span>
-                </div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">delegation</span>
-                <span class="zh">委托</span>
-              </span>
-            </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-text-muted);min-width:2.5rem">v4</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">When is verifying a precondition cheaper than its expected failure cost?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);margin-bottom:.25rem">验证前提的成本，何时低于前提失效的期望损失？</div>
-                <div class="small" style="color:var(--color-text-muted);margin-top:.35rem">
-                  <span class="en">Ashby's requisite variety gives the direction — gates must match risk-surface variety, not task-step count. Gate placement as a computable design theory.</span>
-                  <span class="zh">Ashby requisite variety 给方向 —— 门的变量必须匹配风险界面的变量，而非匹配任务步数。Gate placement 作为可计算的设计理论。</span>
-                </div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
-                <span class="en">economics</span>
-                <span class="zh">经济</span>
-              </span>
-            </div>
-
-            <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:flex-start;padding:1.4rem 1.5rem;border:2px solid var(--color-primary);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 6%,var(--color-surface))">
-              <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;letter-spacing:.05em;color:var(--color-primary);min-width:2.5rem;margin-top:.3rem">v5</span>
-              <div>
-                <div class="en" style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:.4rem;color:var(--color-primary);line-height:1.3">How can an action structurally carry its own proof of precondition?</div>
-                <div class="zh" style="font-family:var(--font-display);font-size:var(--text-lg);font-weight:600;margin-bottom:.4rem;color:var(--color-primary);line-height:1.3">行动如何在结构上以"前提成立的证明"为前置条件？</div>
-                <div class="small en" style="color:var(--color-text);margin-top:.5rem;line-height:1.55">Academic mirror: Necula (1997), <em>Proof-Carrying Code</em> — code carries its own safety proof; the verifier checks the proof without trusting the producer. Analog: <strong>Proof-Carrying Action</strong> — every action that changes world state must carry a proof that its preconditions are licensed by evidence. The gate (verifier) checks the proof; it does not trust the producer (agent). If this line succeeds, execution-layer governance moves from engineering pattern to formally verifiable framework. <strong>The 10-year version of the research nucleus.</strong></div>
-                <div class="small zh" style="color:var(--color-text);margin-top:.5rem;line-height:1.55">学术镜像：Necula (1997)《Proof-Carrying Code》—— 代码携带自身安全证明，验证者只检查证明而无需信任生产者。对应物：<strong>Proof-Carrying Action</strong> —— 每个改变世界状态的动作必须携带"前提被证据许可"的证明。验证者（gate）不信任生产者（agent），只检查证明。若此线走通，执行层治理从工程模式上升为可验证的形式框架。<strong>研究内核的十年版本。</strong></div>
-              </div>
-              <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;margin-top:.3rem">
-                <span class="en">formal · 10-yr</span>
-                <span class="zh">形式化 · 十年</span>
-              </span>
-            </div>
-
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">empirical</span>
           </div>
-        </div>
 
-        <div class="rule-bar" style="margin-top:2.5rem;background:var(--color-surface-2);border:1px solid var(--color-border)">
-          <p class="small en" style="margin:0">Each rung is downward-compatible: if v5's formal framework holds, v0's empirical phenomenon becomes a special case — "an action proceeded without carrying its proof."</p>
-          <p class="small zh" style="margin:0">每一级都向下兼容：若 v5 的形式框架成立，v0 的实证现象只是"动作未携带证明却被执行"的特例。</p>
-        </div>
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid color-mix(in srgb,var(--color-primary) 30%,var(--color-border));border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 4%,var(--color-surface))">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-primary);min-width:2.5rem">v1</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600">Does the precondition for this action hold?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600">这个动作的前提成立吗？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">mechanism · Paper 1</span>
+          </div>
 
-        <p class="small en" style="text-align:center;margin-top:2.5rem;font-style:italic;color:var(--color-text-muted)">Research taste isn't picking the right answer — it's picking a question that keeps generating new questions.</p>
-        <p class="small zh" style="text-align:center;margin-top:2.5rem;font-style:italic;color:var(--color-text-muted)">品味不是选对答案，是选一个能持续长出新问题的问题。</p>
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v2</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">Who must adjudicate "holds" for it to count?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">前提由谁裁定才算数？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">adjudication · S01</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v2′</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">What is the minimum sufficient condition set?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">"成立"的最小充分条件集是什么？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">standards · S02</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v3</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">If it held at check-time, does it still hold at execute-time?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">检查时成立的前提，执行时还成立吗？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">time · TOCTOU · S04</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v3′</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">Is "holds" transitive across delegation chains?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">前提的成立性可传递吗？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">delegation</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v4</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">When is verifying a precondition cheaper than its expected failure cost?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">验证前提的成本，何时低于失效的期望损失？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">economics</span>
+          </div>
+
+          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:2px solid var(--color-primary);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 6%,var(--color-surface))">
+            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-primary);min-width:2.5rem">v5</span>
+            <div>
+              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600;color:var(--color-primary)">How can an action structurally carry its own proof of precondition?</div>
+              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600;color:var(--color-primary)">行动如何在结构上以"前提的证明"为前置条件？</div>
+            </div>
+            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;text-align:right">Proof-Carrying Action<br><span style="font-weight:400;color:var(--color-text-muted)">Necula 1997 · 10-yr</span></span>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -691,10 +551,8 @@
       <div class="container">
         <h2 class="en">Research roadmap · next 18 months</h2>
         <h2 class="zh">研究路线图 · 未来 18 个月</h2>
-        <p class="section-lead en">This is the first paper of a multi-paper programme on execution-layer governance for AI-enabled organizational systems.</p>
-        <p class="section-lead zh">这是"AI 赋能组织系统执行层治理"系列论文的第一篇。</p>
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-top:.75rem;">Paper 1 establishes the <strong>micro-mechanism</strong> — structural routing failure as the smallest unit of misgovernance. <strong>Stream 04 is where the programme is currently developing</strong>: a <strong>meso-architecture</strong> composing closed-loop authorization harnesses (continuous time) with commit points (discrete time). Streams 01–03 extend the micro-mechanism along behavioural, cross-domain, and theoretical axes. <em>Each Stream below is an axis of the Question Ladder above.</em> The roadmap is a working map of where the thinking is heading, not a fixed plan.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-top:.75rem;">Paper 1 确立<strong>微观机制</strong> —— 结构性路由失败作为最小治理失败单元。<strong>Stream 04 是当前正在展开的方向</strong>：一个<strong>中观架构</strong>，将闭环授权 harness（连续时间）与 commit point（离散时间）组合在一起。Streams 01–03 则沿行为、跨域、理论三条轴线延伸这一微观机制。<em>下方每个 Stream 都是上方"发问阶梯"中的一条轴。</em>此路线图是当前思考的工作版图，并非已定下的计划。</p>
+        <p class="section-lead en">Each Stream is an axis of the Question Ladder above. Stream 04 (Continuous Governance Architecture) is the current development frontier.</p>
+        <p class="section-lead zh">每条 Stream 是上方"发问阶梯"中的一条轴。Stream 04（连续治理架构）是当前的开发前沿。</p>
         <div style="margin-top:2rem">
 
           <!-- Foundation: Paper 1 -->
@@ -782,62 +640,16 @@
 
     <section id="perspective">
       <div class="container">
-        <div class="eyebrow en">Researcher's perspective</div>
-        <div class="eyebrow zh">研究者视角</div>
-        <h2 class="en">Why this moment. Why IS.</h2>
-        <h2 class="zh">为什么是这个时刻，为什么是 IS</h2>
+        <div class="eyebrow en">Position</div>
+        <div class="eyebrow zh">立场</div>
+        <h2 class="en">Cybernetics, re-instantiated.</h2>
+        <h2 class="zh">控制论的再具身</h2>
 
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.2rem;">The governance question this research engages — <em>when does AI capability translate into safe execution?</em> — is increasingly visible across both scholarly and industry conversations.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.2rem;">本研究所追问的治理问题 —— <em>AI 的能力何时才能转化为安全的执行？</em> —— 正在学术界与产业界的讨论中同时浮现。</p>
+        <p class="small en" style="color:var(--color-text);max-width:64ch;margin-top:1.2rem;line-height:1.65;">The problem of the agent era is not new in form — it is the problem Wiener (1948) identified at the birth of cybernetics: <strong>perception decoupled from action</strong>. What changes is the sensor. In classical control systems the sensor is external to the controlled object. In agentic systems the sensor is the agent's own diagnostic self-report. This is the formally novel piece, and the reason a two-layer architecture — closed-loop harness with commit-point attestation — is required.</p>
+        <p class="small zh" style="color:var(--color-text);max-width:64ch;margin-top:1.2rem;line-height:1.65;">Agent 时代的问题在形式上并不新 —— 它正是 Wiener (1948) 在控制论诞生时指认的：<strong>感知与行动的解耦</strong>。变化在于传感器。经典控制系统中，传感器外在于被控对象；agentic 系统中，传感器就是 agent 自己的诊断自报。这是形式上真正新的部分，也是为什么需要双层架构 —— 闭环 harness 加 commit-point 证明。</p>
 
-        <blockquote style="margin:2.5rem 0;padding:1.8rem 2.2rem;border-left:3px solid var(--color-primary);border-radius:0 var(--radius-lg) var(--radius-lg) 0;background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));position:relative;">
-          <p class="en" style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.6;font-style:italic;color:var(--color-text);max-width:64ch;margin-bottom:1rem">"If you, like many of you, dedicate yourselves night and day to mastering these tools and combine that with your deep creativity, you will create things that are truly extraordinary."</p>
-          <p class="zh" style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.6;font-style:italic;color:var(--color-text);max-width:64ch;margin-bottom:1rem">"如果像你们中的许多人那样日以继夜地钻研这些工具，并将其与深层的创造力结合，就能创造出更不可思议的作品。"</p>
-          <cite style="font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);font-style:normal;">— Demis Hassabis, co-founder &amp; CEO, Google DeepMind</cite>
-        </blockquote>
-
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis frames the coming decade as <em>human–AI symbiosis</em> — AI amplifying human judgment, with humans providing the creativity, taste, and authorization machines cannot supply from within. The architecture that makes such symbiosis possible is not a model problem. It is a governance problem.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Hassabis 把未来十年定性为<em>人机共生</em>时代 —— AI 放大人的判断，由人提供创造力、品位与授权，这是机器无法从内部供给的。而支撑这种共生的架构，不是模型问题，而是治理问题。</p>
-
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">The governance problem of the agent era is not new in form. It is the problem Wiener (1948) identified at the birth of cybernetics — perception decoupled from action — instantiated now at the LLM execution layer. What changes is the sensor: in classical control systems the sensor is external to the controlled object; in agentic systems the sensor is the agent's own diagnostic self-report. This is the formally novel piece, and the reason a two-layer architecture (closed-loop harness + commit points) is required.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-bottom:2.5rem;">Agent 时代的治理问题在形式上并不新。它正是 Wiener (1948) 在控制论诞生时指认的问题 —— 感知与行动的解耦 —— 只是在 LLM 执行层重新具身。变化在于"传感器"：在经典控制系统中传感器外在于被控对象；在 agentic 系统中传感器就是 agent 自己的诊断自报。这是形式上真正新的部分，也是为什么需要双层架构（闭环 harness + commit point）。</p>
-
-        <div style="margin:2.5rem 0">
-          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1.2rem" class="en">The AI development arc — where governance enters</div>
-          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:1.2rem" class="zh">AI 发展弧线 — 治理在哪里介入</div>
-          <div class="proto-grid">
-            <article class="proto-card" style="border-top:2px solid var(--color-border)">
-              <div class="label">2016 · AlphaGo</div>
-              <h3 style="font-size:var(--text-sm)" class="en">Perception era</h3>
-              <h3 style="font-size:var(--text-sm)" class="zh">感知时代</h3>
-              <p class="small en">AI surpasses human intuition in bounded domains. Capability proven. Every consequential action is still executed by humans. The governance question does not yet exist.</p>
-              <p class="small zh">AI 在有界领域超越人类直觉，能力得到验证。但每一个后果性行动仍由人类执行，治理问题尚未出现。</p>
-            </article>
-            <article class="proto-card" style="border-top:2px solid color-mix(in srgb,var(--color-warning) 55%,transparent)">
-              <div class="label">2022 · ChatGPT</div>
-              <h3 style="font-size:var(--text-sm)" class="en">Language era</h3>
-              <h3 style="font-size:var(--text-sm)" class="zh">语言时代</h3>
-              <p class="small en">AI can articulate, advise, draft. The knowing–doing gap still belongs to humans. AI recommends; humans authorize and act. Governance is informal — a human is always in the loop.</p>
-              <p class="small zh">AI 能够表达、建议、起草。知与行的裂隙仍属于人类。AI 推荐；人类授权并行动。治理是非正式的 — 人类始终在回路中。</p>
-            </article>
-            <article class="proto-card" style="border-top:2px solid var(--color-primary)">
-              <div class="label">2024–now · Agents</div>
-              <h3 style="font-size:var(--text-sm)" class="en">Agent era &larr; we are here</h3>
-              <h3 style="font-size:var(--text-sm)" class="zh">Agent 时代 &larr; 我们在这里</h3>
-              <p class="small en">AI acts. The knowing–doing gap closes — but authorization is now the critical uncoupled variable. Governance failures become execution failures in production systems at scale.</p>
-              <p class="small zh">AI 开始行动。知与行之间的裂隙弥合 — 但授权成为关键的未耦合变量。治理失败直接变为生产系统中的执行失败，且以规模发生。</p>
-            </article>
-          </div>
-        </div>
-
-        <div class="rule-bar" style="margin-top:2rem">
-          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:1rem" class="en">Why IS is the right discipline for this problem</div>
-          <div style="font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:1rem" class="zh">为什么 IS 是解决这个问题的正确学科</div>
-          <p class="small en">CS asks what AI can do; management asks how humans adapt; IS asks how organizational rules and technical capabilities get <em>structurally coupled</em> — and when that coupling fails. The diagnostic–authorization gap is precisely an IS failure mode: the right capability, the right rules, and the right intent, but not routed to meet. No other discipline holds both principal–agent governance theory and design science method to address that coupling directly.</p>
-          <p class="small zh">计算机科学问 AI 能做什么；管理学问人类如何适应；IS 问的是组织规则与技术能力如何<em>结构性耦合</em> — 以及耦合何时失败。诊断–授权裂隙恰恰是 IS 式的失败：能力、规则、意图都在，却没有被路由到一起。没有任何其他学科同时拥有委托–代理治理理论与设计科学方法来直接处理这个问题。</p>
-          <p class="small en" style="margin-top:1rem;font-style:italic;">Over the next few years, I'm interested in whether <strong>execution-layer AI governance</strong> can stand as a coherent programme within IS — connecting agent-level mechanism design, organizational governance architecture, and behavioural evidence on how humans operate these gates in practice.</p>
-          <p class="small zh" style="margin-top:1rem;font-style:italic;">未来几年，我感兴趣的是：<strong>执行层 AI 治理（execution-layer AI governance）</strong>能否在 IS 内部站立为一条连贯的研究线 —— 把 agent 级机制设计、组织级治理架构、以及人类在这些"治理门"前实际行为的实证证据连成一体。</p>
-        </div>
+        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.5rem;">UNSW ISTM is the natural home for this work: it sits where principal-agent theory and design science meet behavioural experiments on how humans actually operate these gates.</p>
+        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.5rem;">UNSW ISTM 是这个研究的天然归处 —— 委托代理理论、设计科学，与"人类如何实际操作这些 gate"的行为实验在这里交汇。</p>
       </div>
     </section>
 
