@@ -221,54 +221,88 @@
             <button data-lang="zh">中文</button>
           </div>
         </div>
-        <aside class="hero-card hero-console" aria-label="System paths overview">
+        <aside class="hero-card hero-console" aria-label="Cross-border data transfer scenario">
           <div class="console-topbar">
             <div class="console-dots"><span></span><span></span><span></span></div>
             <div class="console-title">governance-composition.lab</div>
+          </div>
+          <div style="padding:1rem 1rem 0;">
+            <div class="eyebrow en" style="margin-bottom:.5rem;">Real-world scenario · Cross-border data</div>
+            <div class="eyebrow zh" style="margin-bottom:.5rem;">现实场景 · 跨境数据</div>
           </div>
           <div class="console-block">
             <div class="console-label en">Incoming request</div>
             <div class="console-label zh">收到任务</div>
             <div style="margin-top:.35rem;padding:.65rem .85rem;background:var(--color-surface-2);border-radius:var(--radius-md);border:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text);">
-              <span class="en">"Generate the Q3 board revenue summary"</span>
-              <span class="zh">"生成第三季度董事会营收摘要"</span>
+              <span class="en">A German user files an account appeal. To verify identity, the support agent prepares to send the user's personal data to a risk-control service in mainland China — a cross-border transfer from the EEA to a third country.</span>
+              <span class="zh">一位德国用户发起账户申诉，客服 Agent 为核验身份，准备把用户个人数据发往中国境内的风控服务 —— 一次从 EEA 到第三国的跨境传输。</span>
             </div>
           </div>
           <div class="console-block" style="background:color-mix(in srgb,var(--color-error) 4%,transparent)">
-            <div class="console-label" style="color:var(--color-error)"><span class="en">Problem found</span><span class="zh">发现问题</span></div>
+            <div class="console-label" style="color:var(--color-error)"><span class="en">Real-world cost</span><span class="zh">真实代价</span></div>
             <div style="margin-top:.35rem;padding:.65rem .85rem;background:color-mix(in srgb,var(--color-error) 6%,var(--color-surface));border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-error) 20%,var(--color-border));font-family:var(--font-mono);font-size:12px;">
-              <span class="en">Q3 actual revenue figure — not in context</span>
-              <span class="zh">Q3 实际营收数字 — 上下文中未找到</span>
+              <span class="en">TikTok fined €530M for EU→China transfers — Irish DPC, 2025</span>
+              <span class="zh">TikTok 因欧盟→中国传输被罚 €530M —— 爱尔兰 DPC，2025</span>
             </div>
             <div style="margin-top:.45rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;color:var(--color-text-faint);line-height:1.5;">
-              <span class="en">Representative case from the 500-task experiment — a simple context defect entering a real workflow.</span>
-              <span class="zh">来自 500 项任务实验中的代表性案例 —— 一个简单的上下文缺陷如何进入真实工作流。</span>
+              <span class="en">Once a transfer is sent, the violation has already occurred — it cannot be undone.</span>
+              <span class="zh">传输一旦发出，违规已经发生 —— 不可撤回。</span>
             </div>
           </div>
           <div style="padding:.6rem 1rem;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);text-align:center;">
-            <span class="en">The AI knows. Does it stop?</span>
-            <span class="zh">AI 已知晓此问题 — 它会停下来吗？</span>
+            <span class="en">Does the transfer go out — or does the gate stop it first?</span>
+            <span class="zh">传输会发出，还是先被门拦下？</span>
           </div>
           <div class="console-split">
             <div class="console-panel risk">
               <div class="console-label en">Without governance</div>
               <div class="console-label zh">无治理</div>
               <div class="console-line" style="margin-top:.5rem;flex-direction:column;gap:.3rem;align-items:flex-start;">
-                <span class="v en">Proceeds anyway</span>
-                <span class="v zh">仍然继续执行</span>
-                <span class="v en" style="color:var(--color-error);font-size:11px;">Wrong data enters the report</span>
-                <span class="v zh" style="color:var(--color-error);font-size:11px;">错误数据进入报告</span>
+                <span class="v en">Transfer sent</span>
+                <span class="v zh">传输已发出</span>
+                <span class="v en" style="color:var(--color-error);font-size:11px;">Violation occurred, irreversible</span>
+                <span class="v zh" style="color:var(--color-error);font-size:11px;">违规已发生，不可撤回</span>
               </div>
             </div>
             <div class="console-panel safe">
               <div class="console-label en">With GateFix</div>
               <div class="console-label zh">有 GateFix</div>
               <div class="console-line" style="margin-top:.5rem;flex-direction:column;gap:.3rem;align-items:flex-start;">
-                <span class="v">REFUSE</span>
-                <span class="v en" style="color:var(--color-success);font-size:11px;">Asks for missing data first</span>
-                <span class="v zh" style="color:var(--color-success);font-size:11px;">先要求补充缺失数据</span>
+                <span class="v">ESCALATE</span>
+                <span class="v en" style="color:var(--color-success);font-size:11px;">Evidence checked before the call: destination adequacy, SCC, TIA, cross-border consent</span>
+                <span class="v zh" style="color:var(--color-success);font-size:11px;">调用前查验证据：目的地是否充分性国家、SCC、TIA、跨境同意</span>
+                <span class="v en" style="color:var(--color-success);font-size:11px;">Coverage insufficient → routed to DPO/legal for sign-off, transfer paused</span>
+                <span class="v zh" style="color:var(--color-success);font-size:11px;">覆盖度不足 → 升级至 DPO/法务终审，传输暂停</span>
               </div>
             </div>
+          </div>
+          <div style="margin:0 1rem;padding:.75rem .85rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px dashed var(--color-border);font-family:var(--font-mono);font-size:10px;line-height:1.6;color:var(--color-text-faint);">
+            <span class="en">Legal basis and cost are real — the TikTok €530M ruling and GDPR Chapter V are current law. The support-agent scenario is a plausible reconstruction grounded in that ruling's legal logic, not any company's actual internal system.</span>
+            <span class="zh">法理与代价真实 —— TikTok €530M 判例、GDPR 第五章为现行法规。客服 Agent 场景为基于该判例法理的合理重建，非任何公司真实内部系统。</span>
+          </div>
+          <div style="padding:.9rem 1rem 0;">
+            <div class="console-label en">Real engine output — not a mockup</div>
+            <div class="console-label zh">真实引擎输出 —— 非页面模拟</div>
+          </div>
+          <div class="source-window" style="margin:.5rem 1rem 0;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);">
+            <div class="source-head">
+              <span class="source-title">$ python engine.py run --case=cross_border_transfer</span>
+            </div>
+            <div class="source-body">
+              <div class="source-snippet flag" style="font-family:var(--font-mono);font-size:11px;line-height:1.75;white-space:pre-wrap;color:var(--color-text);">R=0.15  C=0.20  O=0.40  Ro=1.00  →  Q=0.438  route=ESCALATE
+说明: 目的地充分性认定=无；SCC缺失/TIA缺失/用户明确同意缺失 —— 需 DPO/法务核实合法传输依据后终审
+→ 升级给人：客服 Agent（Support Agent）→ DPO / 法务 终审</div>
+            </div>
+          </div>
+          <div style="padding:.9rem 1rem 1rem;text-align:center;">
+            <a href="https://github.com/Sherry-py/gatefix-engine/blob/main/preconditions/cross_border_transfer.py" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--color-primary);">
+              <span class="en">View real source &amp; regression test on GitHub →</span>
+              <span class="zh">查看真实源码与回归测试 →</span>
+            </a>
+          </div>
+          <div style="padding:.6rem 1rem 1rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;color:var(--color-text-faint);line-height:1.5;text-align:center;border-top:1px solid var(--color-divider);">
+            <span class="en">Swap the rule library and this same chain of judgment runs a different industry — the 4D-CQ gate itself doesn't change.</span>
+            <span class="zh">这条判定链换一个行业只需替换规则库 —— 4D-CQ 四态门本身不变。</span>
           </div>
         </aside>
       </div>
@@ -410,6 +444,32 @@
           <h2 class="zh">实验结果</h2>
           <p class="section-lead en">Within-subject experiment, 4 frontier LLMs × 500 reasoning tasks across FinQA, TAT-QA, ConvFinQA. The diagnostic–authorization gap is a stable cross-model pattern. Scaffolding closes it for models above a diagnostic-capability floor — structure converting capability into reliability.</p>
           <p class="section-lead zh">被试内实验，4 个前沿 LLM × 500 项推理任务，跨 FinQA、TAT-QA、ConvFinQA。诊断–授权裂隙是跨模型的稳定行为。在诊断能力达标的模型上，scaffolding 把能力转化为可靠性。</p>
+        </div>
+        <div class="panel" style="margin:1.5rem 0 2rem;padding:1.2rem 1.4rem;">
+          <div class="console-label en">Representative case · 500-task experiment</div>
+          <div class="console-label zh">代表性案例 · 500 项任务实验</div>
+          <div style="margin:.6rem 0 1rem;padding:.65rem .85rem;background:var(--color-surface-2);border-radius:var(--radius-md);border:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text);">
+            <span class="en">"Generate the Q3 board revenue summary" — the Q3 actual revenue figure is not in context.</span>
+            <span class="zh">"生成第三季度董事会营收摘要" —— Q3 实际营收数字不在上下文中。</span>
+          </div>
+          <div class="console-split" style="padding:0;">
+            <div class="console-panel risk">
+              <div class="console-label en">Without governance</div>
+              <div class="console-label zh">无治理</div>
+              <div class="small" style="margin-top:.5rem;color:var(--color-error)">
+                <span class="en">Proceeds anyway — wrong data enters the report</span>
+                <span class="zh">仍然继续执行 —— 错误数据进入报告</span>
+              </div>
+            </div>
+            <div class="console-panel safe">
+              <div class="console-label en">With GateFix</div>
+              <div class="console-label zh">有 GateFix</div>
+              <div class="small" style="margin-top:.5rem;color:var(--color-success)">
+                <span class="en">REFUSE — asks for the missing data first</span>
+                <span class="zh">REFUSE —— 先要求补充缺失数据</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="fnd-contrast">
           <div class="fnd-col fnd-low">
