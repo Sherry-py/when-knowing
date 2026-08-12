@@ -19,6 +19,7 @@
       --text-xs:clamp(.75rem,.7rem + .25vw,.875rem); --text-sm:clamp(.875rem,.8rem + .35vw,1rem); --text-base:clamp(1rem,.95rem + .25vw,1.08rem); --text-lg:clamp(1.1rem,1rem + .75vw,1.35rem); --text-xl:clamp(1.45rem,1.2rem + 1.25vw,2rem); --text-2xl:clamp(2rem,1.2rem + 2.5vw,3rem); --text-hero:clamp(2.6rem,1rem + 5.5vw,4.4rem);
       --font-display:'Instrument Serif', Georgia, serif; --font-body:'Inter','Helvetica Neue',Arial,sans-serif; --font-mono:'IBM Plex Mono','SFMono-Regular',monospace;
       --content-default:1140px;
+      --color-human: color-mix(in srgb, var(--color-error) 55%, var(--color-primary) 45%);
     }
     [data-theme="dark"] {
       --color-bg:#121210; --color-surface:#171715; --color-surface-2:#1d1d1a; --color-surface-offset:#23231f;
@@ -134,9 +135,82 @@
     .site-footer{border-top:1px solid var(--color-divider)}
     .site-footer-inner{padding:1.4rem 0 3rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.5rem}
 
+    /* live demo: lease-termination gate walkthrough */
+    .lease-stage{padding:0;overflow:hidden}
+    .lease-stage__head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem;padding:1rem 1.5rem;border-bottom:1px solid var(--color-divider)}
+    .lease-stage__who{font-family:var(--font-mono);font-size:.82rem;font-weight:700}
+    .lease-stage__who span{color:var(--color-primary);font-weight:600}
+    .lease-stage__status{font-family:var(--font-mono);font-size:.78rem;color:var(--color-text-muted)}
+    .lease-track{padding:1.25rem 1.5rem .25rem}
+    .lease-step{display:flex;gap:.9rem;align-items:flex-start;padding:.65rem 0;opacity:.32;transform:translateY(4px);transition:opacity .35s ease,transform .35s ease}
+    .lease-step.on{opacity:1;transform:none}
+    .lease-step .dot{position:relative;flex:none;width:1rem;height:1rem;margin-top:.15rem;border:2px solid var(--color-border);border-radius:50%;background:var(--color-surface);transition:all .3s ease}
+    .lease-step.active .dot{border-color:var(--color-primary);box-shadow:0 0 0 4px color-mix(in srgb,var(--color-primary) 14%,transparent)}
+    .lease-step.commit.active .dot{border-color:var(--color-error);box-shadow:0 0 0 4px color-mix(in srgb,var(--color-error) 16%,transparent)}
+    .lease-step.done .dot{background:var(--color-success);border-color:var(--color-success)}
+    .lease-step.done .dot::after{content:"✓";position:absolute;inset:0;display:grid;place-items:center;font-size:.6rem;color:#fff}
+    .lease-step .label{font-size:var(--text-sm);font-weight:600}
+    .lease-step.commit .label{color:var(--color-error)}
+    .lease-step .sub{font-size:.8rem;color:var(--color-text-muted);margin-top:.15rem}
+    .commit-badge{display:inline-block;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--color-error);border-radius:999px;padding:.15rem .55rem;margin-left:.5rem;vertical-align:middle}
+
+    .gate-panel{margin:0 1.5rem 1.25rem;max-height:0;opacity:0;overflow:hidden;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface-2);transition:max-height .5s ease,opacity .4s ease,padding .4s ease}
+    .gate-panel.show{max-height:900px;opacity:1;padding:1.15rem 1.25rem}
+    .gate-panel__title{font-family:var(--font-mono);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.5rem}
+    .gate-checks{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.9rem 0 1.1rem}
+    .gate-check{display:flex;gap:.55rem;align-items:center;padding:.55rem .7rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);font-size:.82rem}
+    .gate-check .mk{flex:none;width:1.1rem;height:1.1rem;border-radius:50%;display:grid;place-items:center;font-size:.65rem;color:#fff}
+    .gate-check.ok .mk{background:var(--color-success)}
+    .gate-check.bad .mk{background:var(--color-error)}
+    .gate-check .cq{color:var(--color-text-muted);font-size:.75rem}
+    .ck-text{display:none}
+    .gate-check[data-variant="bad"] .ck-text[data-variant="bad"]{display:inline}
+    .gate-check[data-variant="ok"] .ck-text[data-variant="ok"]{display:inline}
+
+    .gate-states{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem}
+    .gate-state{cursor:pointer;text-align:left;font:inherit;border:1px solid var(--color-border);border-left-width:3px;border-radius:var(--radius-sm);background:var(--color-surface);padding:.65rem .7rem;transition:.15s ease}
+    .gate-state:hover{transform:translateY(-1px)}
+    .gate-state .st-name{font-family:var(--font-mono);font-size:.75rem;font-weight:700;letter-spacing:.03em}
+    .gate-state .st-desc{font-size:.72rem;color:var(--color-text-muted);margin-top:.25rem;line-height:1.35}
+    .gate-state[data-s="pass"]{border-left-color:var(--color-success)}
+    .gate-state[data-s="repair"]{border-left-color:var(--color-warning)}
+    .gate-state[data-s="escalate"]{border-left-color:var(--color-error)}
+    .gate-state[data-s="human"]{border-left-color:var(--color-human)}
+    .gate-state.sel{background:var(--color-surface)}
+    .gate-state[data-s="pass"] .st-name{color:var(--color-success)}
+    .gate-state[data-s="repair"] .st-name{color:var(--color-warning)}
+    .gate-state[data-s="escalate"] .st-name{color:var(--color-error)}
+    .gate-state[data-s="human"] .st-name{color:var(--color-human)}
+
+    .gate-outcome{display:none;margin:0 1.5rem 1.25rem;padding:.1rem 0 .1rem 1rem;border-left:3px solid var(--color-border)}
+    .gate-outcome.show{display:block;animation:fadeIn .3s ease}
+    .gate-outcome[data-s="pass"]{border-left-color:var(--color-success)}
+    .gate-outcome[data-s="repair"]{border-left-color:var(--color-warning)}
+    .gate-outcome[data-s="escalate"]{border-left-color:var(--color-error)}
+    .gate-outcome[data-s="human"]{border-left-color:var(--color-human)}
+    .gate-outcome .oc-head{font-weight:700;font-size:var(--text-sm);margin-bottom:.3rem}
+    .gate-outcome[data-s="pass"] .oc-head{color:var(--color-success)}
+    .gate-outcome[data-s="repair"] .oc-head{color:var(--color-warning)}
+    .gate-outcome[data-s="escalate"] .oc-head{color:var(--color-error)}
+    .gate-outcome[data-s="human"] .oc-head{color:var(--color-human)}
+    .gate-outcome .oc-body{font-size:.85rem;color:var(--color-text-muted);line-height:1.6}
+    .gate-outcome .oc-body b{color:var(--color-text)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+    .lease-controls{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;padding:1rem 1.5rem;border-top:1px solid var(--color-divider)}
+    .lease-controls .hint{font-size:.78rem;color:var(--color-text-muted);margin-left:auto}
+    .hint-msg{display:none}
+    .lease-controls .hint[data-state="idle"] .hint-msg[data-for="idle"],
+    .lease-controls .hint[data-state="running"] .hint-msg[data-for="running"],
+    .lease-controls .hint[data-state="commit"] .hint-msg[data-for="commit"],
+    .lease-controls .hint[data-state="chosen"] .hint-msg[data-for="chosen"]{display:inline}
+    .lease-stage__status .status-msg{display:none}
+    .lease-stage__status[data-state="idle"] .status-msg[data-for="idle"],
+    .lease-stage__status[data-state="running"] .status-msg[data-for="running"],
+    .lease-stage__status[data-state="commit"] .status-msg[data-for="commit"]{display:inline}
+
     @media (max-width: 1040px){
-      .item-grid,.about-grid,.compare-row{grid-template-columns:1fr}
-      .item-grid[style*="repeat(3"]{grid-template-columns:1fr}
+      .item-grid,.about-grid,.compare-row{grid-template-columns:1fr!important}
     }
     @media (max-width: 700px){
       .nav-links{display:none}
@@ -146,6 +220,9 @@
       .ladder-row{grid-template-columns:1fr;gap:.35rem}
       .ladder-row .category{text-align:left}
       .about-grid{gap:1.5rem}
+      .gate-checks,.gate-states{grid-template-columns:1fr}
+      .lease-controls{flex-direction:column;align-items:stretch}
+      .lease-controls .hint{margin-left:0}
     }
     @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto;transition:none !important;animation:none !important}}
   </style>
@@ -169,6 +246,7 @@
       <nav class="nav" aria-label="Primary">
         <div class="nav-links">
           <a href="#research">Mechanism</a>
+          <a href="#live-demo"><span class="en">Demo</span><span class="zh">演示</span></a>
           <a href="#demo">Findings</a>
           <a href="#prototypes">Prototypes</a>
           <a href="#question-ladder">Question</a>
@@ -252,7 +330,7 @@
           <p class="zh">我设计<strong>面向 agentic AI 系统的认知支架</strong> —— 持续的结构性验证，加上边界处的 commit-point 证明。一个研究纲领：从 <strong>v1（GateFix</strong>，在投 <em>Information &amp; Management</em>）到 10 年版本的形式框架 —— <strong>Proof-Carrying Action</strong>：让每个改变世界状态的动作都携带自己前提的证明。</p>
         </div>
         <div class="button-row">
-          <a class="btn btn-primary" href="https://unsw-advisor.streamlit.app/" target="_blank" rel="noopener"><span class="en">Try the prototype</span><span class="zh">试用原型</span></a>
+          <a class="btn btn-primary" href="#live-demo"><span class="en">See it in action</span><span class="zh">看它如何运作</span></a>
           <a class="btn btn-secondary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read the working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
           <a class="btn btn-secondary" href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener"><span class="en">View reference implementation (GitHub)</span><span class="zh">查看参考实现 (GitHub)</span></a>
         </div>
@@ -433,6 +511,249 @@
             <p class="small en" style="margin-top:.3rem">Execution blocked</p>
             <p class="small zh" style="margin-top:.3rem">执行被阻止</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="live-demo">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow en">See it run · Sydney lease termination</div>
+          <div class="eyebrow zh">交互演示 · 悉尼退租案例</div>
+          <h2 class="en">The checkpoint before an agent commits</h2>
+          <h2 class="zh">Agent 动手之前的那道关卡</h2>
+          <p class="section-lead en" style="margin-top:1rem">Today's AI agents don't just answer questions — they act: send emails, move money, delete files, ship packages. The problem is some actions can't be undone once they happen. GateFix is the check that runs right before the agent pulls the trigger: is it qualified to do this, right now? Has it actually thought it through?</p>
+          <p class="section-lead zh" style="margin-top:1rem">今天的 AI agent 不只是回答问题，它能自己动手做事——发邮件、转账、删文件、把东西寄出去。问题是：有些动作一旦做了就收不回来。GateFix 是在 agent 真正扣扳机的那一刻之前的一道检查：它现在够不够格做这件事？想清楚了吗？</p>
+        </div>
+
+        <p class="small en" style="margin-bottom:1rem"><strong>Demo scenario:</strong> an AI agent handling a remote lease termination → the commit point is mailing the keys.</p>
+        <p class="small zh" style="margin-bottom:1rem"><strong>演示场景：</strong>AI 帮你办理远程退租 → commit point 是把钥匙寄出去。</p>
+
+        <div class="lease-stage example-panel">
+          <div class="lease-stage__head">
+            <div class="lease-stage__who">
+              <span class="en">🤖 Lease-termination agent <span>· gated loop running</span></span>
+              <span class="zh">🤖 退租 Agent <span>· gated loop 运行中</span></span>
+            </div>
+            <div class="lease-stage__status" id="statusPill" data-state="idle">
+              <span class="status-msg en" data-for="idle">Idle</span>
+              <span class="status-msg zh" data-for="idle">待命</span>
+              <span class="status-msg en" data-for="running">Running…</span>
+              <span class="status-msg zh" data-for="running">执行中…</span>
+              <span class="status-msg en" data-for="commit">⛔ held at commit point</span>
+              <span class="status-msg zh" data-for="commit">⛔ commit point — 已拦下</span>
+            </div>
+          </div>
+
+          <div class="lease-track" id="leaseTrack">
+            <div class="lease-step" data-i="0">
+              <div class="dot"></div>
+              <div>
+                <div class="label en">Read the lease-termination task</div>
+                <div class="label zh">读取退租任务</div>
+                <div class="sub en">Sydney apartment · move-out 6/30 · bond A$2,400</div>
+                <div class="sub zh">悉尼公寓 · 退租日 6/30 · 押金 A$2,400</div>
+              </div>
+            </div>
+            <div class="lease-step" data-i="1">
+              <div class="dot"></div>
+              <div>
+                <div class="label en">Check the move-out checklist</div>
+                <div class="label zh">核对退租清单</div>
+                <div class="sub en">Utilities stopped · furniture cleared · room photographed on file</div>
+                <div class="sub zh">水电已停 · 家具已清 · 房间已拍照存档</div>
+              </div>
+            </div>
+            <div class="lease-step" data-i="2">
+              <div class="dot"></div>
+              <div>
+                <div class="label en">Coordinate logistics (Eva / courier)</div>
+                <div class="label zh">协调物流（Eva / 快递）</div>
+                <div class="sub en">Shipping label generated · recipient = agency office</div>
+                <div class="sub zh">生成寄件单 · 收件人 = 中介办公室</div>
+              </div>
+            </div>
+            <div class="lease-step commit" data-i="3">
+              <div class="dot"></div>
+              <div>
+                <div class="label en">Mail the keys<span class="commit-badge">irreversible</span></div>
+                <div class="label zh">寄出钥匙<span class="commit-badge">不可逆</span></div>
+                <div class="sub en">Once shipped: no more access to the unit, no undo, bond may be withheld</div>
+                <div class="sub zh">一旦寄出：进不去房子，退不了货，押金可能扣</div>
+              </div>
+            </div>
+            <div class="lease-step" data-i="4">
+              <div class="dot"></div>
+              <div>
+                <div class="label en">Confirm bond refund</div>
+                <div class="label zh">确认押金退回</div>
+                <div class="sub en">Agency confirmation received → task complete</div>
+                <div class="sub zh">收到中介确认 → 任务完成</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="gate-panel" id="gatePanel">
+            <div class="gate-panel__title en">◇ GateFix authorization check</div>
+            <div class="gate-panel__title zh">◇ GateFix 授权检查</div>
+            <p class="small en">This action is about to become irreversible. Don't ship yet. Check whether the preconditions (4D-CQ) for this action are satisfied:</p>
+            <p class="small zh">动作即将不可逆。先别寄。检查执行这个动作的前置条件（4D-CQ）是否满足：</p>
+
+            <div class="gate-checks">
+              <div class="gate-check ok">
+                <div class="mk">✓</div>
+                <div><span class="en">Bond-refund terms confirmed <span class="cq">· Relevance</span></span><span class="zh">押金退回条款已确认 <span class="cq">· Relevance</span></span></div>
+              </div>
+              <div class="gate-check ok">
+                <div class="mk">✓</div>
+                <div><span class="en">Recipient address verified <span class="cq">· Coverage</span></span><span class="zh">收件地址核对无误 <span class="cq">· Coverage</span></span></div>
+              </div>
+              <div class="gate-check bad" id="chkOrder" data-variant="bad">
+                <div class="mk">!</div>
+                <div>
+                  <span class="ck-text en" data-variant="bad">Move-out inspection receipt not yet returned <span class="cq">· Ordering</span></span>
+                  <span class="ck-text zh" data-variant="bad">房况验收尚未回执 <span class="cq">· Ordering</span></span>
+                  <span class="ck-text en" data-variant="ok">Move-out inspection receipt returned <span class="cq">· Ordering</span></span>
+                  <span class="ck-text zh" data-variant="ok">房况验收已回执 <span class="cq">· Ordering</span></span>
+                </div>
+              </div>
+              <div class="gate-check ok">
+                <div class="mk">✓</div>
+                <div><span class="en">Shipment still inside the recall window <span class="cq">· Robustness</span></span><span class="zh">寄件单可撤回窗口内 <span class="cq">· Robustness</span></span></div>
+              </div>
+            </div>
+
+            <p class="small en">Conditions aren't all met → the gate won't pass automatically. Click a disposition to see the outcome:</p>
+            <p class="small zh">条件没全满足 → 门不会直接放行。点一种处置方式，看结果：</p>
+
+            <div class="gate-states" id="gateStates" style="margin-top:.9rem">
+              <button class="gate-state" data-s="pass" type="button">
+                <div class="st-name">PASS</div>
+                <div class="st-desc en">All conditions met — pass, execute</div>
+                <div class="st-desc zh">条件都满足，放行执行</div>
+              </button>
+              <button class="gate-state" data-s="repair" type="button">
+                <div class="st-name">AUTO_REPAIR</div>
+                <div class="st-desc en">Missing evidence is fetchable — repair, then pass</div>
+                <div class="st-desc zh">缺的能自动补，补齐再放行</div>
+              </button>
+              <button class="gate-state" data-s="escalate" type="button">
+                <div class="st-name">ESCALATE</div>
+                <div class="st-desc en">Can't repair — escalate for confirmation / extra verification</div>
+                <div class="st-desc zh">补不了，升级追问 / 加验证</div>
+              </button>
+              <button class="gate-state" data-s="human" type="button">
+                <div class="st-name">BYPASS_TO_HUMAN</div>
+                <div class="st-desc en">Risk too high — hand the decision back to a human</div>
+                <div class="st-desc zh">风险太高，交回人来决定</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="gate-outcome" id="ocPass" data-s="pass">
+            <div class="oc-head en">✓ PASS — cleared to execute</div>
+            <div class="oc-head zh">✓ PASS — 放行执行</div>
+            <div class="oc-body en">All four preconditions are satisfied. The gate passes, and the agent mails the keys. This is the ideal case: enough context, a safe action.<br><span style="opacity:.7">Reality usually isn't this clean — which is why the other three routes exist.</span></div>
+            <div class="oc-body zh">四项前置条件全部满足。门放行，agent 寄出钥匙。这是理想情况：上下文足够，动作安全。<br><span style="opacity:.7">现实里往往不是——所以才需要下面三种。</span></div>
+          </div>
+          <div class="gate-outcome" id="ocRepair" data-s="repair">
+            <div class="oc-head en">⟳ AUTO_REPAIR — repaired, then passed</div>
+            <div class="oc-head zh">⟳ AUTO_REPAIR — 自动补齐后放行</div>
+            <div class="oc-body en">The missing piece is the move-out inspection receipt — and the agent can fetch it itself: it pulls the inspection status from the agency's system first, then returns to the commit point once confirmed.<br><b>No human needed, but the action never happens on incomplete information.</b></div>
+            <div class="oc-body zh">缺的是「房况验收回执」，而这个 agent 能自己拿：它先向中介系统拉取验收状态，确认通过后，再回到 commit point 放行。<br><b>人不用介入，但动作没有在信息不全时发生。</b></div>
+          </div>
+          <div class="gate-outcome" id="ocEscalate" data-s="escalate">
+            <div class="oc-head en">↑ ESCALATE — escalated for verification</div>
+            <div class="oc-head zh">↑ ESCALATE — 升级追问 / 加验证</div>
+            <div class="oc-body en">The inspection status can't be fetched, and there's no automatic fix. The agent doesn't ship — instead it escalates: one more confirmation from the landlord, or a second verification step, before execution is back on the table.<br><b>Better to ask one more question than ship the wrong thing once.</b></div>
+            <div class="oc-body zh">验收状态拉不到，自动补不了。agent 不寄，转而升级处理：追加一步向房东确认、或要求二次验证，把缺口补上再谈执行。<br><b>宁可多问一步，不可寄错一次。</b></div>
+          </div>
+          <div class="gate-outcome" id="ocHuman" data-s="human">
+            <div class="oc-head en">⤴ BYPASS_TO_HUMAN — handed back to a human</div>
+            <div class="oc-head zh">⤴ BYPASS_TO_HUMAN — 交回人来决定</div>
+            <div class="oc-body en">The bond is large and the inspection is disputed — the risk exceeds what the agent should decide alone. It stops and hands the decision back to you, with everything it has already verified attached.<br><b>Some calls are yours to make — the agent won't press an irreversible button on your behalf.</b></div>
+            <div class="oc-body zh">押金金额高、且验收有争议——风险超过 agent 该自主承担的阈值。它停下并把决定权交回给你，附上已核对的信息。<br><b>该人来拍板的，agent 不替你按下不可逆的按钮。</b></div>
+          </div>
+
+          <div class="lease-controls">
+            <button class="btn btn-primary" id="playBtn" type="button">
+              <span class="en">▶ Play</span><span class="zh">▶ 播放</span>
+            </button>
+            <button class="btn btn-secondary" id="resetBtn" type="button">
+              <span class="en">Reset</span><span class="zh">重置</span>
+            </button>
+            <div class="hint" id="hintText" data-state="idle">
+              <span class="hint-msg en" data-for="idle">Click play — watch the agent get stopped right before the irreversible action</span>
+              <span class="hint-msg zh" data-for="idle">点播放，看 agent 走到不可逆动作前被拦下</span>
+              <span class="hint-msg en" data-for="running">Running…</span>
+              <span class="hint-msg zh" data-for="running">执行中…</span>
+              <span class="hint-msg en" data-for="commit">The irreversible action has been stopped. Pick a disposition ↓</span>
+              <span class="hint-msg zh" data-for="commit">不可逆动作被拦住了。选一种处置方式 ↓</span>
+              <span class="hint-msg en" data-for="chosen">Try a different disposition to compare outcomes · or replay</span>
+              <span class="hint-msg zh" data-for="chosen">换一种处置方式，对比结果 · 或重播</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:3.5rem">
+          <div class="eyebrow en">Same gate · different industries</div>
+          <div class="eyebrow zh">同一道门 · 不同赛道</div>
+          <h2 class="en" style="font-size:var(--text-xl)">Lease termination is just one example. Who else needs this gate?</h2>
+          <h2 class="zh" style="font-size:var(--text-xl)">退租只是一个例子。谁需要这道门？</h2>
+          <p class="section-lead en" style="margin-top:1rem">Anywhere an AI agent takes an irreversible action, the same commit-point problem shows up. Change the industry and the gate doesn't change — only the moment it pulls the trigger does.</p>
+          <p class="section-lead zh" style="margin-top:1rem">凡是 AI agent 会做不可逆动作的地方，都存在同一个 commit point 问题。换个赛道，门不变，只是那个扣扳机的瞬间不一样。</p>
+        </div>
+
+        <div class="item-grid" style="grid-template-columns:repeat(2,1fr)">
+          <article class="item-card">
+            <span class="mini">🦾 <span class="en">Embodied AI / robotics</span><span class="zh">具身智能 / 机器人</span></span>
+            <p class="small en" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> the arm commits to a grasp / applies force — break it or grab wrong, and there's no physical undo.</p>
+            <p class="small zh" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> 机械臂落下抓取 / 施力——砸坏了、抓错了，物理上收不回。</p>
+            <p class="small en" style="margin-top:.5rem">Is the target pose accurate enough? Are the force parameters within a safe range? Is anyone nearby?</p>
+            <p class="small zh" style="margin-top:.5rem">目标位姿够准吗？力控参数在安全区吗？周围有没有人？</p>
+            <p class="small en" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">Who needs this — robotics hardware, force-control, and data-agent companies: however strong the perception stack, the authorization layer at the moment of contact is usually thin.</p>
+            <p class="small zh" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">谁需要你——做机器人本体、力控融合、Data Agent 的公司，感知再强，落下去那一刻的授权层他们做得很薄。</p>
+          </article>
+
+          <article class="item-card">
+            <span class="mini">🌐 <span class="en">Data · cross-border transfer</span><span class="zh">数据 · 跨境传输</span></span>
+            <p class="small en" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> user data leaves for another jurisdiction — once sent, there's no compliance undo.</p>
+            <p class="small zh" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> 把用户数据传出到某个地区——发出去，合规上就收不回。</p>
+            <p class="small en" style="margin-top:.5rem">Is this data cleared to leave? Is the destination compliant? Is the consent chain complete?</p>
+            <p class="small zh" style="margin-top:.5rem">这批数据允许出境吗？目的地合规吗？授权链完整吗？</p>
+            <p class="small en" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">Who needs this — companies expanding overseas, data-compliance and privacy teams (the same category of scenario as TikTok's €530M fine from the Irish DPC).</p>
+            <p class="small zh" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">谁需要你——出海企业、数据合规 / 隐私团队（对标 TikTok 被爱尔兰 DPC 罚 €530M 的那类跨境场景）。</p>
+          </article>
+
+          <article class="item-card">
+            <span class="mini">🗄️ <span class="en">Data · production writes</span><span class="zh">数据 · 写入生产库</span></span>
+            <p class="small en" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> a write or delete lands on the production database — an unrecoverable write.</p>
+            <p class="small zh" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> 对生产数据库执行写入 / 删除——不可撤回的写操作。</p>
+            <p class="small en" style="margin-top:.5rem">Has the blast radius been checked? Is there a rollback window? Should this change even be automatic?</p>
+            <p class="small zh" style="margin-top:.5rem">影响范围核对了吗？有回滚窗口吗？这是该自动做的改动吗？</p>
+            <p class="small en" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">Who needs this — data-agent, pipeline, and ops-automation teams: agents are trusted to read, not yet to write unsupervised.</p>
+            <p class="small zh" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">谁需要你——做 data agent、数据管道、自动化运维的团队，agent 敢查，但不敢放手让它写。</p>
+          </article>
+
+          <article class="item-card">
+            <span class="mini">💳 <span class="en">Trade / payment execution</span><span class="zh">交易 / 支付执行</span></span>
+            <p class="small en" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> the agent places an order / sends a transfer — once the money moves, it's gone.</p>
+            <p class="small zh" style="margin-top:.6rem"><strong style="color:var(--color-error)">Commit point —</strong> agent 下单 / 转账——钱出去了，收不回。</p>
+            <p class="small en" style="margin-top:.5rem">Is the amount, counterparty, and timing right? Only pull the trigger once the picture is complete.</p>
+            <p class="small zh" style="margin-top:.5rem">金额、对手方、时机对吗？信息全了才该扣扳机。</p>
+            <p class="small en" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">Who needs this — agentic-commerce and financial-agent teams (complementary to payment rails like Cloudflare x402 or Stripe MPP — GateFix covers the "should this execute" layer, not the payment layer itself).</p>
+            <p class="small zh" style="margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--color-divider)">谁需要你——agentic commerce、金融 agent 团队（与 Cloudflare x402、Stripe MPP 那类支付层互补，你补的是"该不该执行"这一层）。</p>
+          </article>
+        </div>
+
+        <p class="small en" style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--color-divider);text-align:center;max-width:56rem;margin-inline:auto">Notice all four cards share the same structure: irreversible action → one authorization check → four-state disposition. GateFix isn't tied to any one industry — it's the layer every agent needs at its commit point.</p>
+        <p class="small zh" style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--color-divider);text-align:center;max-width:56rem;margin-inline:auto">注意四张卡片的结构完全一样：不可逆动作 → 一道授权检查 → 四态处置。GateFix 不绑定某个赛道——它是每个 agent 在 commit point 都需要的那一层。</p>
+
+        <div class="quote-block" style="margin-top:2.5rem">
+          <p class="en" style="font-size:var(--text-lg)">Most people are working on making agents smarter — better diagnosis. GateFix works on the layer in between: execution authorization. Same action — pass it when context is sufficient, repair, escalate, or hand it to a human when it isn't. This doesn't limit what the agent can do; it gives it a brake on irreversible actions, so it can actually be trusted to act on its own.</p>
+          <p class="zh" style="font-size:var(--text-lg)">大多数人在让 agent 更聪明（诊断得更准）；GateFix 做的是中间那层——执行授权：同一个动作，上下文够就放行，不够就修复、上报或转人工。不是限制 agent 的能力，是让它在不可逆的动作上有一道刹车，从而能真正放手去干。</p>
+          <p class="small en" style="margin-top:.75rem;color:var(--color-text-faint)">Mechanism: work backward from the irreversible commit point to its preconditions → four-state disposition (PASS / AUTO_REPAIR / ESCALATE / BYPASS_TO_HUMAN).</p>
+          <p class="small zh" style="margin-top:.75rem;color:var(--color-text-faint)">机制：从不可逆的 commit point 反向推导前置条件 → 四态处置（PASS / AUTO_REPAIR / ESCALATE / BYPASS_TO_HUMAN）。</p>
         </div>
       </div>
     </section>
@@ -736,6 +1057,117 @@
     }
     updateThemeIcon();
     themeToggle.addEventListener('click', ()=>{ theme = theme === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', theme); updateThemeIcon(); });
+
+    (function(){
+      var leaseSteps = Array.prototype.slice.call(document.querySelectorAll('#leaseTrack .lease-step'));
+      var gatePanel = document.getElementById('gatePanel');
+      var statusPill = document.getElementById('statusPill');
+      var hintText = document.getElementById('hintText');
+      var playBtn = document.getElementById('playBtn');
+      var resetBtn = document.getElementById('resetBtn');
+      var stateBtns = Array.prototype.slice.call(document.querySelectorAll('#gateStates .gate-state'));
+      var chkOrder = document.getElementById('chkOrder');
+      var outcomes = Array.prototype.slice.call(document.querySelectorAll('.gate-outcome'));
+      if(!playBtn || !leaseSteps.length) return;
+
+      var timers = [];
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+
+      function resetLease(){
+        clearTimers();
+        leaseSteps.forEach(function(s){ s.classList.remove('on','active','done'); });
+        gatePanel.classList.remove('show');
+        outcomes.forEach(function(o){ o.classList.remove('show'); });
+        stateBtns.forEach(function(b){ b.classList.remove('sel'); });
+        statusPill.setAttribute('data-state','idle');
+        hintText.setAttribute('data-state','idle');
+        chkOrder.setAttribute('data-variant','bad');
+        chkOrder.classList.remove('ok'); chkOrder.classList.add('bad');
+        chkOrder.querySelector('.mk').textContent = '!';
+        playBtn.disabled = false;
+      }
+
+      function revealStep(i, cb){
+        var s = leaseSteps[i];
+        s.classList.add('on','active');
+        statusPill.setAttribute('data-state','running');
+        var hold = reduce ? 250 : 900;
+        if(i < 3){
+          timers.push(setTimeout(function(){
+            s.classList.remove('active');
+            s.classList.add('done');
+            cb();
+          }, hold));
+        } else {
+          statusPill.setAttribute('data-state','commit');
+          hintText.setAttribute('data-state','commit');
+          timers.push(setTimeout(function(){
+            gatePanel.classList.add('show');
+            gatePanel.scrollIntoView({block:'center'});
+          }, reduce ? 100 : 450));
+          cb(true);
+        }
+      }
+
+      function playLease(){
+        resetLease();
+        playBtn.disabled = true;
+        var i = 0;
+        function next(stopped){
+          if(stopped) return;
+          if(i >= 3) return;
+          i++;
+          timers.push(setTimeout(function(){ revealStep(i, next); }, reduce ? 260 : 250));
+        }
+        revealStep(0, next);
+      }
+
+      stateBtns.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var s = btn.getAttribute('data-s');
+          stateBtns.forEach(function(b){ b.classList.remove('sel'); });
+          btn.classList.add('sel');
+
+          if(s === 'pass'){
+            chkOrder.setAttribute('data-variant','ok');
+            chkOrder.classList.remove('bad'); chkOrder.classList.add('ok');
+            chkOrder.querySelector('.mk').textContent = '✓';
+          } else {
+            chkOrder.setAttribute('data-variant','bad');
+            chkOrder.classList.remove('ok'); chkOrder.classList.add('bad');
+            chkOrder.querySelector('.mk').textContent = '!';
+          }
+
+          var commitStep = leaseSteps[3];
+          if(s === 'pass' || s === 'repair'){
+            commitStep.classList.remove('active'); commitStep.classList.add('done');
+            leaseSteps[4].classList.add('on');
+          } else {
+            commitStep.classList.remove('done'); commitStep.classList.add('active');
+            leaseSteps[4].classList.remove('on');
+          }
+
+          var activeOutcome = null;
+          outcomes.forEach(function(o){
+            var match = o.getAttribute('data-s') === s;
+            o.classList.toggle('show', match);
+            if(match) activeOutcome = o;
+          });
+          hintText.setAttribute('data-state','chosen');
+          playBtn.disabled = false;
+
+          if(activeOutcome){
+            timers.push(setTimeout(function(){ activeOutcome.scrollIntoView({block:'center'}); }, reduce ? 60 : 200));
+          }
+        });
+      });
+
+      playBtn.addEventListener('click', playLease);
+      resetBtn.addEventListener('click', resetLease);
+      resetLease();
+    })();
   </script>
 </body>
 </html>
