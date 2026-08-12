@@ -14,159 +14,141 @@
       --color-bg:#f5f4ef; --color-surface:#fbfaf7; --color-surface-2:#f1efe9; --color-surface-offset:#ebe8e1;
       --color-border:#d9d5cc; --color-divider:#e1ddd4; --color-text:#181715; --color-text-muted:#68655d; --color-text-faint:#9c998f;
       --color-primary:#0f5f62; --color-primary-hover:#0a4749; --color-primary-highlight:#dce9e6; --color-success:#3e7c34; --color-warning:#9b5521; --color-error:#96326c;
-      --shadow-sm:0 1px 2px rgba(24,23,21,.05); --shadow-md:0 14px 34px rgba(24,23,21,.07); --shadow-lg:0 24px 64px rgba(24,23,21,.1);
-      --radius-sm:.3rem; --radius-md:.65rem; --radius-lg:1rem; --radius-xl:1.25rem; --radius-full:999px;
-      --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.25rem; --space-6:1.5rem; --space-8:2rem; --space-10:2.5rem; --space-12:3rem; --space-16:4rem; --space-20:5rem;
-      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem); --text-sm:clamp(.875rem,.8rem + .35vw,1rem); --text-base:clamp(1rem,.95rem + .25vw,1.08rem); --text-lg:clamp(1.1rem,1rem + .75vw,1.35rem); --text-xl:clamp(1.45rem,1.2rem + 1.25vw,2rem); --text-2xl:clamp(2rem,1.2rem + 2.5vw,3rem); --text-hero:clamp(2.7rem,.5rem + 7vw,5.3rem);
+      --radius-sm:.3rem; --radius-md:.65rem; --radius-lg:1rem; --radius-full:999px;
+      --space-4:1rem; --space-6:1.5rem; --space-8:2rem;
+      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem); --text-sm:clamp(.875rem,.8rem + .35vw,1rem); --text-base:clamp(1rem,.95rem + .25vw,1.08rem); --text-lg:clamp(1.1rem,1rem + .75vw,1.35rem); --text-xl:clamp(1.45rem,1.2rem + 1.25vw,2rem); --text-2xl:clamp(2rem,1.2rem + 2.5vw,3rem); --text-hero:clamp(2.6rem,1rem + 5.5vw,4.4rem);
       --font-display:'Instrument Serif', Georgia, serif; --font-body:'Inter','Helvetica Neue',Arial,sans-serif; --font-mono:'IBM Plex Mono','SFMono-Regular',monospace;
-      --content-default:1140px; --content-wide:1320px;
+      --content-default:1140px;
     }
     [data-theme="dark"] {
       --color-bg:#121210; --color-surface:#171715; --color-surface-2:#1d1d1a; --color-surface-offset:#23231f;
       --color-border:#34332f; --color-divider:#2a2925; --color-text:#ece9e2; --color-text-muted:#aaa69d; --color-text-faint:#77746c;
       --color-primary:#68a5a6; --color-primary-hover:#4b8d8f; --color-primary-highlight:#213133; --color-success:#83c56a; --color-warning:#d39866; --color-error:#d772ad;
-      --shadow-sm:0 1px 2px rgba(0,0,0,.18); --shadow-md:0 14px 34px rgba(0,0,0,.28); --shadow-lg:0 24px 64px rgba(0,0,0,.4);
     }
     *,:before,:after{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;background:
-      radial-gradient(circle at top right, color-mix(in srgb, var(--color-primary) 6%, transparent), transparent 28%),
-      linear-gradient(180deg, var(--color-bg), var(--color-bg));color:var(--color-text);letter-spacing:-.01em}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.7;background:var(--color-bg);color:var(--color-text);letter-spacing:-.01em}
     img,svg{display:block;max-width:100%}
     a{color:inherit;text-decoration:none}
     button{font:inherit;color:inherit;cursor:pointer}
     .container{width:100%;max-width:var(--content-default);margin-inline:auto;padding-inline:2rem}
-    .wide{width:100%;max-width:var(--content-wide);margin-inline:auto;padding-inline:2rem}
     .skip-link{position:absolute;left:-9999px;top:auto}
     .skip-link:focus{left:1rem;top:1rem;background:var(--color-primary);color:white;padding:.75rem 1rem;border-radius:var(--radius-md);z-index:999}
+
     .site-header{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:color-mix(in srgb, var(--color-bg) 88%, transparent);border-bottom:1px solid var(--color-divider)}
     .header-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:.9rem 0}
     .brand{display:flex;align-items:center;gap:.85rem;min-width:0}
-    .brand-mark{width:2.4rem;height:2.4rem;border-radius:.85rem;border:1px solid var(--color-border);background:var(--color-surface);display:grid;place-items:center;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-    .brand-mark:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 55%)}
-    .brand-mark svg{width:1.2rem;height:1.2rem;position:relative}
+    .brand-mark{width:2.4rem;height:2.4rem;border-radius:.85rem;border:1px solid var(--color-border);background:var(--color-surface);display:grid;place-items:center;flex:none}
+    .brand-mark svg{width:1.2rem;height:1.2rem}
     .brand-copy{min-width:0}
-    .brand-title{font-size:var(--text-sm);font-weight:600;letter-spacing:.01em}
+    .brand-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;letter-spacing:.01em}
     .brand-subtitle{font-size:var(--text-xs);color:var(--color-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-mono)}
-    .nav{display:flex;align-items:center;gap:1rem}.nav-links{display:flex;gap:1rem;flex-wrap:wrap}
-    .nav a{font-size:var(--text-sm);color:var(--color-text-muted)} .nav a:hover{color:var(--color-text)}
-    .theme-toggle{width:2.6rem;height:2.6rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface)}
-    .hero{padding:clamp(3rem,8vw,7rem) 0 2.5rem}
-    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12);align-items:start}
-    .eyebrow{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-primary);font-weight:700;margin-bottom:var(--space-4);font-family:var(--font-mono)}
-    h1,h2,h3{margin:0;line-height:1.04}
-    h1{font-family:var(--font-display);font-size:var(--text-hero);max-width:12ch;letter-spacing:-.04em}
-    h2{font-family:var(--font-display);font-size:var(--text-2xl);letter-spacing:-.03em;margin-bottom:var(--space-4)}
-    h3{font-size:var(--text-lg);margin-bottom:var(--space-3)}
-    p{margin:0;max-width:70ch}
-    .hero-copy p{font-size:var(--text-lg);color:var(--color-text-muted);margin-top:var(--space-4);max-width:44rem}
-    .button-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:var(--space-8)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;border-radius:var(--radius-md);padding:.95rem 1.15rem;border:1px solid transparent;font-size:var(--text-sm);font-weight:600;min-height:44px;transition:.18s ease}
-    .btn-primary{background:var(--color-primary);color:#fff}.btn-primary:hover{background:var(--color-primary-hover)}
-    .btn-secondary{background:var(--color-surface);border-color:var(--color-border)}
-    .btn-secondary:hover{border-color:var(--color-primary);color:var(--color-primary)}
-    .hero-card,.question-card,.feature-card,.proto-card,.bio-card,.stat-card,.panel,.demo-col{background:color-mix(in srgb, var(--color-surface) 92%, transparent);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-    .hero-card:before,.panel:before,.demo-col:before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb, var(--color-primary) 35%, transparent),transparent)}
-    .hero-card{padding:var(--space-8);box-shadow:var(--shadow-md)}
-    .path-head{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6)}
-    .path-pill,.status,.label,.mini{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-    .path-pill{padding:.45rem .8rem;border-radius:var(--radius-full)}
-    .pill-risk{background:rgba(161,53,68,.12);color:#922d39}.pill-safe{background:var(--color-primary-highlight);color:var(--color-primary)}
-    .arrow{height:1px;background:var(--color-divider)}
-    .path-list{display:grid;gap:.75rem}
-    .path-item{display:flex;gap:.75rem;align-items:flex-start;padding:.9rem 1rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px solid color-mix(in srgb, var(--color-text) 8%, transparent);transition:.18s ease}
-    .path-item .dot{width:.62rem;height:.62rem;border-radius:50%;margin-top:.48rem;background:var(--color-text-faint);box-shadow:0 0 0 4px color-mix(in srgb, var(--color-text) 4%, transparent)}
-    .path-item.active{border-color:var(--color-primary);background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface-2));transform:translateY(-1px)}
-    .path-item.active .dot{background:var(--color-primary);box-shadow:0 0 0 4px color-mix(in srgb, var(--color-primary) 12%, transparent)}
-    .qs-strip{padding:1.5rem 0 0}.question-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-    .question-card{padding:1.2rem;cursor:pointer;transition:.18s ease}.question-card:hover,.proto-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-    .question-card.active{border-color:var(--color-primary);background:color-mix(in srgb, var(--color-primary) 8%, var(--color-surface))}
-    .question-card strong{display:block;color:var(--color-primary);margin-bottom:.6rem;font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-    section{padding:clamp(3rem,8vw,6rem) 0}.section-lead{color:var(--color-text-muted);margin-bottom:var(--space-8);max-width:54rem}
-    .demo-shell{display:grid;gap:1.4rem}.demo-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-    .case-tabs{display:flex;flex-wrap:wrap;gap:.65rem}.case-tab{padding:.75rem 1rem;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);min-height:44px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-    .case-tab.active{background:var(--color-primary);color:#fff;border-color:var(--color-primary)}
-    .demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.demo-col{padding:1.15rem 1.15rem 1.25rem}.result-box{margin-top:1rem;padding:1rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px dashed var(--color-border)}
-    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.feature-card,.proto-card,.bio-card,.panel,.stat-card{padding:1.15rem}
-    .feature-card .mini{color:var(--color-primary);margin-bottom:.65rem}.rule-bar{margin-top:1rem;padding:1rem 1.2rem;background:var(--color-surface-offset);border:1px solid var(--color-border);border-radius:var(--radius-lg)}
-    .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
-    .stat-card .value{font-size:var(--text-xl);font-family:var(--font-display);color:var(--color-primary);margin-bottom:.35rem}.proto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-    .proto-card .label{color:var(--color-text-muted);margin-bottom:.7rem}.bio-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:1rem}
-    .portrait{aspect-ratio:3/4;border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-md);overflow:hidden;background:var(--color-surface-offset)}.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 18%;display:block}
-    .meta-list{display:grid;gap:.75rem;margin-top:1rem}.meta-item{display:flex;justify-content:space-between;gap:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--color-divider);font-size:var(--text-sm)}
-    .footer-panel{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem}footer{padding:0 0 4rem}.small{font-size:var(--text-sm);color:var(--color-text-muted)}
-    .lang-toggle{display:inline-flex;gap:.35rem;margin-top:1rem;padding:.3rem;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md)}
-    .lang-toggle button{border:none;padding:.55rem .8rem;border-radius:calc(var(--radius-md) - .18rem);background:transparent;min-height:40px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase}
-    .lang-toggle button.active{background:var(--color-primary);color:white}
-    ul#contextList{font-size:var(--text-sm);color:var(--color-text-muted)}
-    
-    .hero-console{padding:0;background:linear-gradient(180deg,color-mix(in srgb,var(--color-surface) 88%, transparent),var(--color-surface-2));}
-    .console-topbar{display:flex;align-items:center;gap:.8rem;padding:.9rem 1rem;border-bottom:1px solid var(--color-divider);background:color-mix(in srgb,var(--color-surface) 95%, transparent)}
-    .console-dots{display:flex;gap:.35rem}.console-dots span{width:.55rem;height:.55rem;border-radius:50%;background:var(--color-text-faint);opacity:.55}
-    .console-title{font-family:var(--font-mono);font-size:12px;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:.08em}
-    .console-block{padding:1rem;display:grid;gap:.65rem;border-bottom:1px solid var(--color-divider)}
-    .console-line{display:flex;justify-content:space-between;gap:1rem;align-items:center;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding:.7rem .85rem;border:1px solid color-mix(in srgb,var(--color-text) 9%, transparent);background:var(--color-surface-2);border-radius:var(--radius-md)}
-    .console-line .k{color:var(--color-text-muted)} .console-line .v{color:var(--color-text)}
-    .console-grid{padding:1rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem;border-bottom:1px solid var(--color-divider)}
-    .console-metric{display:flex;justify-content:space-between;align-items:center;padding:.8rem .9rem;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
-    .state{padding:.28rem .5rem;border-radius:999px}.state.ok{background:color-mix(in srgb,var(--color-success) 14%, transparent);color:var(--color-success)}.state.fail{background:color-mix(in srgb,var(--color-error) 14%, transparent);color:var(--color-error)}
-    .console-split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:1rem}
-    .console-panel{padding:1rem;border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent);background:var(--color-surface)}
-    .console-panel.risk{background:color-mix(in srgb,var(--color-warning) 4%, var(--color-surface))}
-    .console-panel.safe{background:color-mix(in srgb,var(--color-primary) 4%, var(--color-surface))}
-    .console-label{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-bottom:.75rem}
-    .demo-stage{display:grid;grid-template-columns:1.02fr .98fr;gap:1rem}
-    .lab-pane{padding:1.15rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-    .lab-pane:before{content:'';position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--color-primary) 35%, transparent),transparent)}
-    .source-window{padding:0;overflow:hidden}
-    .source-head{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1rem;border-bottom:1px solid var(--color-divider);background:var(--color-surface-2)}
-    .source-title{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)}
-    .source-body{padding:1rem;display:grid;gap:.75rem}
-    .source-snippet{padding:.9rem 1rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent)}
-    .source-snippet.flag{border-color:color-mix(in srgb,var(--color-error) 28%, var(--color-border));background:color-mix(in srgb,var(--color-error) 4%, var(--color-surface-2))}
-    .decision-stack{display:grid;gap:.75rem}
-    .verdict-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .75rem;border-radius:999px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-    .verdict-refuse{background:color-mix(in srgb,var(--color-error) 12%, transparent);color:var(--color-error)}
-    .verdict-clarify{background:color-mix(in srgb,var(--color-warning) 14%, transparent);color:var(--color-warning)}
-    .verdict-pass{background:color-mix(in srgb,var(--color-success) 14%, transparent);color:var(--color-success)}
+    .nav{display:flex;align-items:center;gap:1rem}
+    .nav-links{display:flex;gap:1.1rem;flex-wrap:wrap}
+    .nav a{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted)}
+    .nav a:hover{color:var(--color-primary)}
+    .theme-toggle{width:2.6rem;height:2.6rem;border-radius:var(--radius-full);border:1px solid var(--color-border);background:var(--color-surface);flex:none}
 
-    .scroll-story{position:relative}
-    .scroll-story-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:1.2rem;align-items:start}
-    .story-copy{position:sticky;top:5.5rem;align-self:start}
-    .story-steps{display:grid;gap:.85rem}
-    .story-step{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 1.05rem;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);opacity:.68;transform:translateY(10px);transition:.3s ease}
-    .story-step.active{opacity:1;transform:none;border-color:var(--color-primary);background:color-mix(in srgb,var(--color-primary) 6%, var(--color-surface))}
-    .step-tag{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary);padding:.35rem .45rem;border-radius:.45rem;background:var(--color-primary-highlight);min-width:2.2rem;text-align:center}
-    .story-visual{min-height:120vh;display:grid;align-items:start}
-    .scroll-console{position:sticky;top:5.5rem}
-    .trace-row{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;padding:.8rem .9rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px solid color-mix(in srgb,var(--color-text) 8%, transparent);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
-    .trace-row.highlight{border-color:color-mix(in srgb,var(--color-error) 32%, var(--color-border));background:color-mix(in srgb,var(--color-error) 4%, var(--color-surface-2))}
-    .trace-index{color:var(--color-text-muted)}
-    .trace-row{transition:opacity .35s ease,border-color .35s ease,background .35s ease}
-    .trace-row.dim{opacity:.18}
-    .trace-row.trace-current{border-color:color-mix(in srgb,var(--color-primary) 45%,var(--color-border));background:color-mix(in srgb,var(--color-primary) 7%,var(--color-surface-2))}
-    .dim-group{margin-bottom:var(--space-8)}
-    .dim-group-label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .85rem;border-radius:var(--radius-full);display:inline-block;margin-bottom:var(--space-4)}
+    section[id]{scroll-margin-top:6rem}
+    main > section + section{border-top:1px solid var(--color-divider)}
+    section{padding:clamp(3rem,8vw,5.5rem) 0}
+
+    .eyebrow{font-family:var(--font-mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--color-primary);font-weight:700;margin:0 0 var(--space-4)}
+    .section-head{margin-bottom:2rem}
+    h1,h2,h3{margin:0;line-height:1.06;font-family:var(--font-display);font-weight:600}
+    h1{font-size:var(--text-hero);max-width:18ch;letter-spacing:-.02em}
+    h2{font-size:var(--text-2xl);letter-spacing:-.02em}
+    h3{font-size:1.4rem;font-weight:600}
+    p{margin:0;max-width:70ch}
+    .small{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .mini{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--color-text-muted);display:inline-block}
+
+    .hero-copy{margin-top:1.4rem;max-width:44rem}
+    .hero-copy p{font-size:var(--text-lg);color:var(--color-text-muted)}
+    .button-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:var(--space-8)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;border-radius:999px;padding:.85rem 1.2rem;border:1px solid var(--color-border);font-size:.92rem;font-weight:700;min-height:44px;transition:.18s ease}
+    .btn-primary{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+    .btn-primary:hover{background:var(--color-primary-hover);border-color:var(--color-primary-hover)}
+    .btn-secondary{background:transparent}
+    .btn-secondary:hover{border-color:var(--color-primary);color:var(--color-primary)}
+    .lang-toggle{display:inline-flex;gap:.35rem;margin-top:1.5rem;padding:.3rem;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md)}
+    .lang-toggle button{border:none;padding:.5rem .8rem;border-radius:calc(var(--radius-md) - .18rem);background:transparent;min-height:38px;font-family:var(--font-mono);font-size:12px;text-transform:uppercase}
+    .lang-toggle button.active{background:var(--color-primary);color:white}
+
+    .example-panel{margin-top:2.75rem;padding:1.75rem 2rem;border:1px solid var(--color-border);border-radius:var(--radius-md)}
+    .compare-row{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--color-divider)}
+    .compare-col p{margin-top:.5rem}
+    .code-block{margin-top:.85rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface-2);overflow:hidden}
+    .code-block__cmd{padding:.6rem .9rem;font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);border-bottom:1px solid var(--color-divider)}
+    .code-block pre{margin:0;padding:.9rem;font-family:var(--font-mono);font-size:12px;line-height:1.75;white-space:pre-wrap;color:var(--color-text);overflow-x:auto}
+    .text-link{color:var(--color-primary);font-weight:700;text-decoration:underline;text-underline-offset:.22em}
+
+    .section-lead{color:var(--color-text-muted);margin-bottom:var(--space-8);max-width:54rem}
+    .statement{max-width:44rem}
+    .statement p{margin-top:1.2rem}
+    .statement p:first-child{margin-top:0}
+    .statement .lede{color:var(--color-text);font-size:1.08rem}
+    .statement p:not(.lede){color:var(--color-text-muted)}
+
+    .item-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+    .item-card{padding-top:1rem;border-top:1px solid var(--color-border)}
+    .item-card > .mini{margin-bottom:.7rem;color:var(--color-primary)}
+    .item-card h3{font-size:1.35rem;margin-bottom:.5rem}
+    .item-card .stream-title{font-size:var(--text-sm);font-weight:600;line-height:1.4;margin:.7rem 0}
+    .value{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1;margin:.4rem 0}
+
+    .dim-group{margin-top:2rem}
+    .dim-group:first-of-type{margin-top:0}
+    .dim-group-label{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border-radius:999px;margin-bottom:1rem}
     .dim-group-critical .dim-group-label{background:color-mix(in srgb,var(--color-error) 10%,transparent);color:var(--color-error)}
     .dim-group-noncritical .dim-group-label{background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning)}
-    .dim-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-    .rule-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:var(--space-6)}
-    .rule-item{display:flex;align-items:center;gap:.85rem;padding:1rem 1.1rem;border-radius:var(--radius-lg);background:var(--color-surface-2);border:1px solid var(--color-border)}
-    .fnd-contrast{display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:stretch;margin:var(--space-6) 0}
-    .fnd-col{padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--color-border)}
-    .fnd-high{background:color-mix(in srgb,var(--color-success) 5%,var(--color-surface));border-color:color-mix(in srgb,var(--color-success) 22%,var(--color-border))}
-    .fnd-low{background:color-mix(in srgb,var(--color-error) 5%,var(--color-surface));border-color:color-mix(in srgb,var(--color-error) 22%,var(--color-border))}
-    .fnd-label{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
-    .fnd-high .fnd-label{color:var(--color-success)}.fnd-low .fnd-label{color:var(--color-error)}
-    .fnd-value{font-family:var(--font-display);font-size:var(--text-2xl);margin-bottom:.4rem}
-    .fnd-high .fnd-value{color:var(--color-success)}.fnd-low .fnd-value{color:var(--color-error)}
-    .fnd-gap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;padding:0 .5rem}
-    .fnd-gap-value{font-family:var(--font-display);font-size:var(--text-xl);color:var(--color-text)}
-    .fnd-gap-label{font-family:var(--font-mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-muted);text-align:center}
-@media (max-width: 1040px){.hero-grid,.bio-grid,.footer-panel,.demo-grid,.demo-lab-grid,.demo-stage,.console-split,.console-grid,.scroll-story-grid{grid-template-columns:1fr}.grid-4,.proto-grid,.three-col,.stat-row{grid-template-columns:repeat(2,1fr)}.question-grid{grid-template-columns:1fr}.hero-card{order:-1}.dim-pair,.fnd-contrast,.rule-flow{grid-template-columns:1fr}}
-    @media (max-width: 700px){.nav-links{display:none}.grid-4,.proto-grid,.three-col,.stat-row{grid-template-columns:1fr}.container,.wide{padding-inline:1.25rem}.hero{padding-top:2rem}.hero-card,.demo-col,.panel,.feature-card,.proto-card,.bio-card,.stat-card{padding:1rem}h1{max-width:11ch}}
+
+    .verdict-badge{display:inline-flex;align-items:center;padding:.4rem .7rem;border-radius:999px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+    .verdict-refuse{background:color-mix(in srgb,var(--color-error) 12%,transparent);color:var(--color-error)}
+    .verdict-clarify{background:color-mix(in srgb,var(--color-warning) 14%,transparent);color:var(--color-warning)}
+    .verdict-pass{background:color-mix(in srgb,var(--color-success) 14%,transparent);color:var(--color-success)}
+
+    .quote-block{margin:1.75rem 0 2.75rem;padding:0 0 0 1.4rem;border-left:2px solid var(--color-border)}
+    .quote-block p{font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text)}
+    .ladder{margin-top:1rem}
+    .ladder-row{display:grid;grid-template-columns:3rem 1fr auto;gap:1.2rem;align-items:center;padding:1rem 0;border-top:1px solid var(--color-divider)}
+    .ladder-row:last-child{border-bottom:1px solid var(--color-divider)}
+    .ladder-row .tag{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted)}
+    .ladder-row .title{font-family:var(--font-display);font-size:var(--text-base)}
+    .ladder-row .category{font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;text-align:right;white-space:nowrap;line-height:1.5}
+    .ladder-row.current{border-top-color:var(--color-primary)}
+    .ladder-row.current .tag,.ladder-row.current .category{color:var(--color-primary)}
+    .ladder-row.current .title{font-weight:600;color:var(--color-primary)}
+
+    .about-grid{display:grid;grid-template-columns:14rem minmax(0,1fr);gap:2.5rem;align-items:start}
+    .portrait-frame{overflow:hidden;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface-offset)}
+    .portrait-frame img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 18%}
+    .tag-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.9rem;justify-content:center}
+    .tag-list span{display:inline-flex;align-items:center;padding:.3rem .8rem;border-radius:999px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+    .meta-stack{display:grid;gap:.9rem;margin-top:1.5rem}
+    .meta-block{padding-top:.85rem;border-top:1px solid var(--color-divider)}
+    .meta-block:first-child{padding-top:0;border-top:0}
+    .meta-block .dt{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.3rem}
+    .meta-block .dd{font-size:var(--text-sm)}
+
+    .site-footer{border-top:1px solid var(--color-divider)}
+    .site-footer-inner{padding:1.4rem 0 3rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.5rem}
+
+    @media (max-width: 1040px){
+      .item-grid,.about-grid,.compare-row{grid-template-columns:1fr}
+      .item-grid[style*="repeat(3"]{grid-template-columns:1fr}
+    }
+    @media (max-width: 700px){
+      .nav-links{display:none}
+      .container{padding-inline:1.25rem}
+      h1{max-width:14ch}
+      .example-panel{padding:1.25rem 1.4rem}
+      .ladder-row{grid-template-columns:1fr;gap:.35rem}
+      .ladder-row .category{text-align:left}
+      .about-grid{gap:1.5rem}
+    }
     @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto;transition:none !important;animation:none !important}}
-</style>
+  </style>
 </head>
 <body class="lang en">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -202,120 +184,83 @@
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="container hero-grid">
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="eyebrow en">Continuous Governance Architecture · UNSW ISTM</div>
+        <div class="eyebrow zh">连续治理架构 · UNSW ISTM</div>
+        <h1 class="en">Does the precondition for this action hold?</h1>
+        <h1 class="zh">这个动作的前提成立吗？</h1>
         <div class="hero-copy">
-          <div class="eyebrow en">Continuous Governance Architecture · UNSW ISTM</div>
-          <div class="eyebrow zh">连续治理架构 · UNSW ISTM</div>
-          <h1 class="en">Does the precondition for this action hold?</h1>
-          <h1 class="zh">这个动作的前提成立吗？</h1>
           <p class="en">I design <strong>cognitive scaffolding for agentic AI systems</strong> — structural validation continuously, commit-point attestation at boundaries. A research programme spanning from <strong>v1 (GateFix</strong>, under review at <em>Information &amp; Management</em>) to its 10-year version: <strong>Proof-Carrying Action</strong>, a formal framework in which every action that changes world state carries its own proof of precondition.</p>
           <p class="zh">我设计<strong>面向 agentic AI 系统的认知支架</strong> —— 持续的结构性验证，加上边界处的 commit-point 证明。一个研究纲领：从 <strong>v1（GateFix</strong>，在投 <em>Information &amp; Management</em>）到 10 年版本的形式框架 —— <strong>Proof-Carrying Action</strong>：让每个改变世界状态的动作都携带自己前提的证明。</p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="https://unsw-advisor.streamlit.app/" target="_blank" rel="noopener"><span class="en">Try the prototype</span><span class="zh">试用原型</span></a>
-            <a class="btn btn-secondary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read the working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
-            <a class="btn btn-secondary" href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener"><span class="en">View reference implementation (GitHub)</span><span class="zh">查看参考实现 (GitHub)</span></a>
-          </div>
-          <div class="lang-toggle" aria-label="Language toggle">
-            <button class="active" data-lang="en">EN</button>
-            <button data-lang="zh">中文</button>
-          </div>
         </div>
-        <aside class="hero-card hero-console" aria-label="Cross-border data transfer scenario">
-          <div class="console-topbar">
-            <div class="console-dots"><span></span><span></span><span></span></div>
-            <div class="console-title">governance-composition.lab</div>
-          </div>
-          <div style="padding:1rem 1rem 0;">
-            <div class="eyebrow en" style="margin-bottom:.5rem;">Real-world scenario · Cross-border data</div>
-            <div class="eyebrow zh" style="margin-bottom:.5rem;">现实场景 · 跨境数据</div>
-          </div>
-          <div class="console-block">
-            <div class="console-label en">Incoming request</div>
-            <div class="console-label zh">收到任务</div>
-            <div style="margin-top:.35rem;padding:.65rem .85rem;background:var(--color-surface-2);border-radius:var(--radius-md);border:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text);">
-              <span class="en">A German user files an account appeal. To verify identity, the support agent prepares to send the user's personal data to a risk-control service in mainland China — a cross-border transfer from the EEA to a third country.</span>
-              <span class="zh">一位德国用户发起账户申诉，客服 Agent 为核验身份，准备把用户个人数据发往中国境内的风控服务 —— 一次从 EEA 到第三国的跨境传输。</span>
+        <div class="button-row">
+          <a class="btn btn-primary" href="https://unsw-advisor.streamlit.app/" target="_blank" rel="noopener"><span class="en">Try the prototype</span><span class="zh">试用原型</span></a>
+          <a class="btn btn-secondary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read the working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
+          <a class="btn btn-secondary" href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener"><span class="en">View reference implementation (GitHub)</span><span class="zh">查看参考实现 (GitHub)</span></a>
+        </div>
+        <div class="lang-toggle" aria-label="Language toggle">
+          <button class="active" data-lang="en">EN</button>
+          <button data-lang="zh">中文</button>
+        </div>
+
+        <div class="example-panel" aria-label="Cross-border data transfer scenario">
+          <p class="eyebrow en" style="margin-bottom:.9rem">Real-world scenario · Cross-border data</p>
+          <p class="eyebrow zh" style="margin-bottom:.9rem">现实场景 · 跨境数据</p>
+          <p class="en">A German user files an account appeal. To verify identity, the support agent prepares to send the user's personal data to a risk-control service in mainland China — a cross-border transfer from the EEA to a third country.</p>
+          <p class="zh">一位德国用户发起账户申诉，客服 Agent 为核验身份，准备把用户个人数据发往中国境内的风控服务 —— 一次从 EEA 到第三国的跨境传输。</p>
+          <p class="small en" style="margin-top:1rem"><strong style="color:var(--color-error)">TikTok fined €530M</strong> for EU→China transfers — Irish DPC, 2025. Once a transfer is sent, the violation has already occurred — it cannot be undone.</p>
+          <p class="small zh" style="margin-top:1rem"><strong style="color:var(--color-error)">TikTok 被罚 €530M</strong>（欧盟→中国传输）—— 爱尔兰 DPC，2025。传输一旦发出，违规已经发生 —— 不可撤回。</p>
+
+          <p class="en" style="margin-top:1.5rem;font-weight:600">Does the transfer go out — or does the gate stop it first?</p>
+          <p class="zh" style="margin-top:1.5rem;font-weight:600">传输会发出，还是先被门拦下？</p>
+
+          <div class="compare-row">
+            <div class="compare-col">
+              <span class="mini en" style="color:var(--color-error)">Without governance</span>
+              <span class="mini zh" style="color:var(--color-error)">无治理</span>
+              <p class="small en">Transfer sent. Violation occurred — irreversible.</p>
+              <p class="small zh">传输已发出。违规已发生 —— 不可撤回。</p>
+            </div>
+            <div class="compare-col">
+              <span class="mini en" style="color:var(--color-primary)">With GateFix</span>
+              <span class="mini zh" style="color:var(--color-primary)">有 GateFix</span>
+              <p class="small en">ESCALATE — evidence checked before the call: destination adequacy, SCC, TIA, cross-border consent. Coverage insufficient → routed to DPO/legal for sign-off, transfer paused.</p>
+              <p class="small zh">ESCALATE —— 调用前查验证据：目的地是否充分性国家、SCC、TIA、跨境同意。覆盖度不足 → 升级至 DPO/法务终审，传输暂停。</p>
             </div>
           </div>
-          <div class="console-block" style="background:color-mix(in srgb,var(--color-error) 4%,transparent)">
-            <div class="console-label" style="color:var(--color-error)"><span class="en">Real-world cost</span><span class="zh">真实代价</span></div>
-            <div style="margin-top:.35rem;padding:.65rem .85rem;background:color-mix(in srgb,var(--color-error) 6%,var(--color-surface));border-radius:var(--radius-md);border:1px solid color-mix(in srgb,var(--color-error) 20%,var(--color-border));font-family:var(--font-mono);font-size:12px;">
-              <span class="en">TikTok fined €530M for EU→China transfers — Irish DPC, 2025</span>
-              <span class="zh">TikTok 因欧盟→中国传输被罚 €530M —— 爱尔兰 DPC，2025</span>
-            </div>
-            <div style="margin-top:.45rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;color:var(--color-text-faint);line-height:1.5;">
-              <span class="en">Once a transfer is sent, the violation has already occurred — it cannot be undone.</span>
-              <span class="zh">传输一旦发出，违规已经发生 —— 不可撤回。</span>
-            </div>
-          </div>
-          <div style="padding:.6rem 1rem;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);text-align:center;">
-            <span class="en">Does the transfer go out — or does the gate stop it first?</span>
-            <span class="zh">传输会发出，还是先被门拦下？</span>
-          </div>
-          <div class="console-split">
-            <div class="console-panel risk">
-              <div class="console-label en">Without governance</div>
-              <div class="console-label zh">无治理</div>
-              <div class="console-line" style="margin-top:.5rem;flex-direction:column;gap:.3rem;align-items:flex-start;">
-                <span class="v en">Transfer sent</span>
-                <span class="v zh">传输已发出</span>
-                <span class="v en" style="color:var(--color-error);font-size:11px;">Violation occurred, irreversible</span>
-                <span class="v zh" style="color:var(--color-error);font-size:11px;">违规已发生，不可撤回</span>
-              </div>
-            </div>
-            <div class="console-panel safe">
-              <div class="console-label en">With GateFix</div>
-              <div class="console-label zh">有 GateFix</div>
-              <div class="console-line" style="margin-top:.5rem;flex-direction:column;gap:.3rem;align-items:flex-start;">
-                <span class="v">ESCALATE</span>
-                <span class="v en" style="color:var(--color-success);font-size:11px;">Evidence checked before the call: destination adequacy, SCC, TIA, cross-border consent</span>
-                <span class="v zh" style="color:var(--color-success);font-size:11px;">调用前查验证据：目的地是否充分性国家、SCC、TIA、跨境同意</span>
-                <span class="v en" style="color:var(--color-success);font-size:11px;">Coverage insufficient → routed to DPO/legal for sign-off, transfer paused</span>
-                <span class="v zh" style="color:var(--color-success);font-size:11px;">覆盖度不足 → 升级至 DPO/法务终审，传输暂停</span>
-              </div>
-            </div>
-          </div>
-          <div style="margin:0 1rem;padding:.75rem .85rem;border-radius:var(--radius-md);background:var(--color-surface-2);border:1px dashed var(--color-border);font-family:var(--font-mono);font-size:10px;line-height:1.6;color:var(--color-text-faint);">
-            <span class="en">Legal basis and cost are real — the TikTok €530M ruling and GDPR Chapter V are current law. The support-agent scenario is a plausible reconstruction grounded in that ruling's legal logic, not any company's actual internal system.</span>
-            <span class="zh">法理与代价真实 —— TikTok €530M 判例、GDPR 第五章为现行法规。客服 Agent 场景为基于该判例法理的合理重建，非任何公司真实内部系统。</span>
-          </div>
-          <div style="padding:.9rem 1rem 0;">
-            <div class="console-label en">Real engine output — not a mockup</div>
-            <div class="console-label zh">真实引擎输出 —— 非页面模拟</div>
-          </div>
-          <div class="source-window" style="margin:.5rem 1rem 0;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-surface);">
-            <div class="source-head">
-              <span class="source-title">$ python engine.py run --case=cross_border_transfer</span>
-            </div>
-            <div class="source-body">
-              <div class="source-snippet flag" style="font-family:var(--font-mono);font-size:11px;line-height:1.75;white-space:pre-wrap;color:var(--color-text);">R=0.15  C=0.20  O=0.40  Ro=1.00  →  Q=0.438  route=ESCALATE
+
+          <p class="small en" style="margin-top:1.2rem;color:var(--color-text-faint);font-style:italic">Legal basis and cost are real — the TikTok €530M ruling and GDPR Chapter V are current law. The support-agent scenario is a plausible reconstruction grounded in that ruling's legal logic, not any company's actual internal system.</p>
+          <p class="small zh" style="margin-top:1.2rem;color:var(--color-text-faint);font-style:italic">法理与代价真实 —— TikTok €530M 判例、GDPR 第五章为现行法规。客服 Agent 场景为基于该判例法理的合理重建，非任何公司真实内部系统。</p>
+
+          <p class="mini en" style="margin-top:1.6rem">Real engine output — not a mockup</p>
+          <p class="mini zh" style="margin-top:1.6rem">真实引擎输出 —— 非页面模拟</p>
+          <div class="code-block">
+            <div class="code-block__cmd">$ python engine.py run --case=cross_border_transfer</div>
+            <pre>R=0.15  C=0.20  O=0.40  Ro=1.00  →  Q=0.438  route=ESCALATE
 说明: 目的地充分性认定=无；SCC缺失/TIA缺失/用户明确同意缺失 —— 需 DPO/法务核实合法传输依据后终审
-→ 升级给人：客服 Agent（Support Agent）→ DPO / 法务 终审</div>
-            </div>
+→ 升级给人：客服 Agent（Support Agent）→ DPO / 法务 终审</pre>
           </div>
-          <div style="padding:.9rem 1rem 1rem;text-align:center;">
-            <a href="https://github.com/Sherry-py/gatefix-engine/blob/main/preconditions/cross_border_transfer.py" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--color-primary);">
-              <span class="en">View real source &amp; regression test on GitHub →</span>
-              <span class="zh">查看真实源码与回归测试 →</span>
-            </a>
-          </div>
-          <div style="padding:.6rem 1rem 1rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;color:var(--color-text-faint);line-height:1.5;text-align:center;border-top:1px solid var(--color-divider);">
-            <span class="en">Swap the rule library and this same chain of judgment runs a different industry — the 4D-CQ gate itself doesn't change.</span>
-            <span class="zh">这条判定链换一个行业只需替换规则库 —— 4D-CQ 四态门本身不变。</span>
-          </div>
-        </aside>
+          <p style="margin-top:1rem">
+            <a class="text-link en" href="https://github.com/Sherry-py/gatefix-engine/blob/main/preconditions/cross_border_transfer.py" target="_blank" rel="noopener">View real source &amp; regression test on GitHub →</a>
+            <a class="text-link zh" href="https://github.com/Sherry-py/gatefix-engine/blob/main/preconditions/cross_border_transfer.py" target="_blank" rel="noopener">查看真实源码与回归测试 →</a>
+          </p>
+          <p class="small en" style="margin-top:1rem;color:var(--color-text-faint)">Swap the rule library and this same chain of judgment runs a different industry — the 4D-CQ gate itself doesn't change.</p>
+          <p class="small zh" style="margin-top:1rem;color:var(--color-text-faint)">这条判定链换一个行业只需替换规则库 —— 4D-CQ 四态门本身不变。</p>
+        </div>
       </div>
     </section>
 
     <section id="research">
       <div class="container">
-        <div class="eyebrow en">v1 instantiation</div>
-        <div class="eyebrow zh">v1 实例</div>
-        <h2 class="en">GateFix</h2>
-        <h2 class="zh">GateFix 机制</h2>
+        <div class="section-head">
+          <div class="eyebrow en">v1 instantiation</div>
+          <div class="eyebrow zh">v1 实例</div>
+          <h2 class="en">GateFix</h2>
+          <h2 class="zh">GateFix 机制</h2>
+        </div>
 
-        <figure style="margin:var(--space-8) auto var(--space-12);max-width:920px;padding:0;">
+        <figure style="margin:0 auto var(--space-8);max-width:920px;padding:0;">
           <svg viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="figTitle figDesc" style="display:block;width:100%;height:auto;font-family:'IBM Plex Mono','SFMono-Regular',monospace;">
             <title id="figTitle">From claim to state transition</title>
             <desc id="figDesc">Two-panel comparison: an agent's claim without commit-point gating leaves world state undetermined; a claim routed through a commit point gate produces a verified state transition.</desc>
@@ -325,7 +270,6 @@
               <marker id="arrTeal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0f5f62"/></marker>
             </defs>
 
-            <!-- LEFT PANEL: claim without state transition -->
             <text x="225" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.6" fill="#9c998f">CLAIM WITHOUT STATE TRANSITION</text>
             <text x="225" y="50" text-anchor="middle" font-size="10" font-style="italic" fill="#9c998f">speech act only</text>
 
@@ -341,10 +285,8 @@
             <rect x="65" y="228" width="320" height="92" rx="4" fill="none" stroke="#9c998f" stroke-width="1.5" stroke-dasharray="6,5" opacity="0.55"/>
             <text x="225" y="287" text-anchor="middle" font-size="38" fill="#9c998f" opacity="0.5" font-weight="300">? ? ?</text>
 
-            <!-- DIVIDER -->
             <line x1="470" y1="70" x2="470" y2="350" stroke="#d9d5cc" stroke-width="1" stroke-dasharray="3,6"/>
 
-            <!-- RIGHT PANEL: claim licensed by evidence -->
             <text x="720" y="32" text-anchor="middle" font-size="11" font-weight="600" letter-spacing="1.6" fill="#0f5f62">CLAIM LICENSED BY EVIDENCE</text>
             <text x="720" y="50" text-anchor="middle" font-size="10" font-style="italic" fill="#0f5f62">state transition</text>
 
@@ -376,16 +318,16 @@
         <p class="section-lead zh">4D-CQ 检查 + 确定性裁决规则。两个关键维度失败时阻止；两个非关键维度失败时请求澄清。</p>
 
         <div class="dim-group dim-group-critical">
-          <div class="dim-group-label en">Critical — failure → REFUSE</div>
-          <div class="dim-group-label zh">关键维度 — 失败 → REFUSE</div>
-          <div class="dim-pair">
-            <article class="feature-card">
-              <div class="mini">Relevance</div>
+          <span class="dim-group-label en">Critical — failure → REFUSE</span>
+          <span class="dim-group-label zh">关键维度 — 失败 → REFUSE</span>
+          <div class="item-grid">
+            <article class="item-card">
+              <span class="mini">Relevance</span>
               <h3 class="en">Is this context for the right task?</h3>
               <h3 class="zh">上下文是否对应正确的任务？</h3>
             </article>
-            <article class="feature-card">
-              <div class="mini">Coverage</div>
+            <article class="item-card">
+              <span class="mini">Coverage</span>
               <h3 class="en">Are all required facts present?</h3>
               <h3 class="zh">所需的关键信息是否齐备？</h3>
             </article>
@@ -393,101 +335,97 @@
         </div>
 
         <div class="dim-group dim-group-noncritical">
-          <div class="dim-group-label en">Non-critical — failure → CLARIFY</div>
-          <div class="dim-group-label zh">非关键维度 — 失败 → CLARIFY</div>
-          <div class="dim-pair">
-            <article class="feature-card">
-              <div class="mini">Ordering</div>
+          <span class="dim-group-label en">Non-critical — failure → CLARIFY</span>
+          <span class="dim-group-label zh">非关键维度 — 失败 → CLARIFY</span>
+          <div class="item-grid">
+            <article class="item-card">
+              <span class="mini">Ordering</span>
               <h3 class="en">Is the information sequence coherent?</h3>
               <h3 class="zh">信息顺序是否连贯？</h3>
             </article>
-            <article class="feature-card">
-              <div class="mini">Robustness</div>
+            <article class="item-card">
+              <span class="mini">Robustness</span>
               <h3 class="en">Is the context stable against noise?</h3>
               <h3 class="zh">上下文是否能抵抗噪声？</h3>
             </article>
           </div>
         </div>
 
-        <div class="rule-flow">
-          <div class="rule-item">
+        <div class="item-grid" style="grid-template-columns:repeat(3,1fr);margin-top:2.5rem">
+          <div class="item-card">
             <span class="verdict-badge verdict-pass">PASS</span>
-            <div>
-              <div class="small" style="font-weight:600;margin-bottom:.2rem"><span class="en">All dimensions adequate</span><span class="zh">所有维度合格</span></div>
-              <div class="small" style="color:var(--color-text-muted)"><span class="en">Execution authorized</span><span class="zh">授权执行</span></div>
-            </div>
+            <p class="en" style="margin-top:.8rem;font-weight:600;font-size:var(--text-sm)">All dimensions adequate</p>
+            <p class="zh" style="margin-top:.8rem;font-weight:600;font-size:var(--text-sm)">所有维度合格</p>
+            <p class="small en" style="margin-top:.3rem">Execution authorized</p>
+            <p class="small zh" style="margin-top:.3rem">授权执行</p>
           </div>
-          <div class="rule-item">
+          <div class="item-card">
             <span class="verdict-badge verdict-clarify">CLARIFY</span>
-            <div>
-              <div class="small" style="font-weight:600;margin-bottom:.2rem"><span class="en">Non-critical dimension(s) fail</span><span class="zh">非关键维度失败</span></div>
-              <div class="small" style="color:var(--color-text-muted)"><span class="en">Clarification required first</span><span class="zh">先行澄清再决定</span></div>
-            </div>
+            <p class="en" style="margin-top:.8rem;font-weight:600;font-size:var(--text-sm)">Non-critical dimension(s) fail</p>
+            <p class="zh" style="margin-top:.8rem;font-weight:600;font-size:var(--text-sm)">非关键维度失败</p>
+            <p class="small en" style="margin-top:.3rem">Clarification required first</p>
+            <p class="small zh" style="margin-top:.3rem">先行澄清再决定</p>
           </div>
-          <div class="rule-item">
+          <div class="item-card">
             <span class="verdict-badge verdict-refuse">REFUSE</span>
-            <div>
-              <div class="small" style="font-weight:600;margin-bottom:.2rem"><span class="en">Any critical dimension fails</span><span class="zh">任一关键维度失败</span></div>
-              <div class="small" style="color:var(--color-text-muted)"><span class="en">Execution blocked</span><span class="zh">执行被阻止</span></div>
-            </div>
+            <p class="en" style="margin-top:.8rem;font-weight:600;font-size:var(--text-sm)">Any critical dimension fails</p>
+            <p class="zh" style="margin-top:.8rem;font-weight:600;font-size:var(--text-sm)">任一关键维度失败</p>
+            <p class="small en" style="margin-top:.3rem">Execution blocked</p>
+            <p class="small zh" style="margin-top:.3rem">执行被阻止</p>
           </div>
         </div>
       </div>
     </section>
 
     <section id="demo">
-      <div class="wide demo-shell">
-        <div>
+      <div class="container">
+        <div class="section-head">
           <div class="eyebrow en">v1 empirical validation</div>
           <div class="eyebrow zh">v1 实证验证</div>
           <h2 class="en">Findings</h2>
           <h2 class="zh">实验结果</h2>
-          <p class="section-lead en">Within-subject experiment, 4 frontier LLMs × 500 reasoning tasks across FinQA, TAT-QA, ConvFinQA. The diagnostic–authorization gap is a stable cross-model pattern. Scaffolding closes it for models above a diagnostic-capability floor — structure converting capability into reliability.</p>
-          <p class="section-lead zh">被试内实验，4 个前沿 LLM × 500 项推理任务，跨 FinQA、TAT-QA、ConvFinQA。诊断–授权裂隙是跨模型的稳定行为。在诊断能力达标的模型上，scaffolding 把能力转化为可靠性。</p>
+          <p class="section-lead en" style="margin-top:1rem">Within-subject experiment, 4 frontier LLMs × 500 reasoning tasks across FinQA, TAT-QA, ConvFinQA. The diagnostic–authorization gap is a stable cross-model pattern. Scaffolding closes it for models above a diagnostic-capability floor — structure converting capability into reliability.</p>
+          <p class="section-lead zh" style="margin-top:1rem">被试内实验，4 个前沿 LLM × 500 项推理任务，跨 FinQA、TAT-QA、ConvFinQA。诊断–授权裂隙是跨模型的稳定行为。在诊断能力达标的模型上，scaffolding 把能力转化为可靠性。</p>
         </div>
-        <div class="panel" style="margin:1.5rem 0 2rem;padding:1.2rem 1.4rem;">
-          <div class="console-label en">Representative case · 500-task experiment</div>
-          <div class="console-label zh">代表性案例 · 500 项任务实验</div>
-          <div style="margin:.6rem 0 1rem;padding:.65rem .85rem;background:var(--color-surface-2);border-radius:var(--radius-md);border:1px solid var(--color-border);font-family:var(--font-mono);font-size:12px;color:var(--color-text);">
-            <span class="en">"Generate the Q3 board revenue summary" — the Q3 actual revenue figure is not in context.</span>
-            <span class="zh">"生成第三季度董事会营收摘要" —— Q3 实际营收数字不在上下文中。</span>
-          </div>
-          <div class="console-split" style="padding:0;">
-            <div class="console-panel risk">
-              <div class="console-label en">Without governance</div>
-              <div class="console-label zh">无治理</div>
-              <div class="small" style="margin-top:.5rem;color:var(--color-error)">
-                <span class="en">Proceeds anyway — wrong data enters the report</span>
-                <span class="zh">仍然继续执行 —— 错误数据进入报告</span>
-              </div>
+
+        <div class="example-panel" style="margin-top:0">
+          <span class="mini en">Representative case · 500-task experiment</span>
+          <span class="mini zh">代表性案例 · 500 项任务实验</span>
+          <p class="en" style="margin-top:.8rem">&ldquo;Generate the Q3 board revenue summary&rdquo; — the Q3 actual revenue figure is not in context.</p>
+          <p class="zh" style="margin-top:.8rem">&ldquo;生成第三季度董事会营收摘要&rdquo; —— Q3 实际营收数字不在上下文中。</p>
+          <div class="compare-row">
+            <div class="compare-col">
+              <span class="mini en" style="color:var(--color-error)">Without governance</span>
+              <span class="mini zh" style="color:var(--color-error)">无治理</span>
+              <p class="small en">Proceeds anyway — wrong data enters the report</p>
+              <p class="small zh">仍然继续执行 —— 错误数据进入报告</p>
             </div>
-            <div class="console-panel safe">
-              <div class="console-label en">With GateFix</div>
-              <div class="console-label zh">有 GateFix</div>
-              <div class="small" style="margin-top:.5rem;color:var(--color-success)">
-                <span class="en">REFUSE — asks for the missing data first</span>
-                <span class="zh">REFUSE —— 先要求补充缺失数据</span>
-              </div>
+            <div class="compare-col">
+              <span class="mini en" style="color:var(--color-primary)">With GateFix</span>
+              <span class="mini zh" style="color:var(--color-primary)">有 GateFix</span>
+              <p class="small en">REFUSE — asks for the missing data first</p>
+              <p class="small zh">REFUSE —— 先要求补充缺失数据</p>
             </div>
           </div>
         </div>
-        <div class="fnd-contrast">
-          <div class="fnd-col fnd-low">
-            <div class="fnd-label en">Baseline · without governance</div>
-            <div class="fnd-label zh">基线 · 无治理</div>
-            <div class="fnd-value">~50%</div>
+
+        <div class="item-grid" style="grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;margin-top:2.5rem">
+          <div class="item-card" style="border-top-color:var(--color-error)">
+            <span class="mini en" style="color:var(--color-error)">Baseline · without governance</span>
+            <span class="mini zh" style="color:var(--color-error)">基线 · 无治理</span>
+            <div class="value" style="color:var(--color-error)">~50%</div>
             <p class="small en">False authorization rate on defective contexts — the agent diagnosed the defect, then proceeded to act on it.</p>
             <p class="small zh">缺陷上下文上的错误授权率 —— LLM 代理虽已诊断到缺陷，却仍然继续执行</p>
           </div>
-          <div class="fnd-gap">
-            <div class="fnd-gap-value">−45pp</div>
-            <div class="fnd-gap-label en">GateFix<br>effect</div>
-            <div class="fnd-gap-label zh">GateFix<br>干预效应</div>
+          <div style="text-align:center">
+            <div class="value">−45pp</div>
+            <div class="mini en">GateFix effect</div>
+            <div class="mini zh">GateFix 干预效应</div>
           </div>
-          <div class="fnd-col fnd-high">
-            <div class="fnd-label en">With GateFix · capable models</div>
-            <div class="fnd-label zh">启用 GateFix · 能力达标模型</div>
-            <div class="fnd-value">&lt;5%</div>
+          <div class="item-card" style="border-top-color:var(--color-primary)">
+            <span class="mini en" style="color:var(--color-primary)">With GateFix · capable models</span>
+            <span class="mini zh" style="color:var(--color-primary)">启用 GateFix · 能力达标模型</span>
+            <div class="value" style="color:var(--color-primary)">&lt;5%</div>
             <p class="small en">For models above a ~70% diagnostic-accuracy floor — capability matters, but governance structure converts it into safety</p>
             <p class="small zh">在诊断准确率达到约 70% 阈值的模型上 —— 能力重要，但只有治理结构能把它转化为安全</p>
           </div>
@@ -497,274 +435,282 @@
 
     <section id="prototypes">
       <div class="container">
-        <h2 class="en">Applied prototype</h2>
-        <h2 class="zh">应用原型</h2>
-        <p class="section-lead en">The same governance logic extended to a student-facing advisory context — same 4D-CQ constraints, different domain.</p>
-        <p class="section-lead zh">同一套治理逻辑从金融问答延伸至面向学生的选课咨询场景，检验领域范围化上下文质量约束能否跨任务类型清晰迁移。</p>
-        <div class="proto-grid" style="grid-template-columns:1fr;max-width:520px">
-          <article class="proto-card">
-            <div class="label">Applied prototype · Education domain</div>
-            <h3>UNSW Advisor assistant</h3>
-            <p class="small en">Applies bounded-domain query governance to course and programme advisory — scope constraints and context quality directly gate recommendation authorization, not just generation.</p>
-            <p class="small zh">将有界领域查询治理应用于选课与项目咨询 —— 范围约束与上下文质量直接管控建议的授权决策，而不仅仅是内容生成。</p>
-            <p class="small en" style="margin-top:.65rem;color:var(--color-text-faint);font-style:italic;">Pedagogical prototype — illustrates domain transferability of the 4D-CQ governance pattern.</p>
-            <p class="small zh" style="margin-top:.65rem;color:var(--color-text-faint);font-style:italic;">教学型原型 —— 用以展示 4D-CQ 治理模式的跨领域可迁移性。</p>
-            <div class="button-row" style="margin-top:1rem"><a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://unsw-advisor.streamlit.app/">Open prototype</a></div>
-          </article>
+        <div class="section-head">
+          <div class="eyebrow en">Applied</div>
+          <div class="eyebrow zh">应用</div>
+          <h2 class="en">Applied prototype</h2>
+          <h2 class="zh">应用原型</h2>
+          <p class="section-lead en" style="margin-top:1rem">The same governance logic extended to a student-facing advisory context — same 4D-CQ constraints, different domain.</p>
+          <p class="section-lead zh" style="margin-top:1rem">同一套治理逻辑从金融问答延伸至面向学生的选课咨询场景，检验领域范围化上下文质量约束能否跨任务类型清晰迁移。</p>
         </div>
+        <article class="item-card" style="max-width:34rem">
+          <span class="mini">Applied prototype · Education domain</span>
+          <h3 style="margin-top:.6rem;font-size:1.3rem">UNSW Advisor assistant</h3>
+          <p class="small en" style="margin-top:.5rem">Applies bounded-domain query governance to course and programme advisory — scope constraints and context quality directly gate recommendation authorization, not just generation.</p>
+          <p class="small zh" style="margin-top:.5rem">将有界领域查询治理应用于选课与项目咨询 —— 范围约束与上下文质量直接管控建议的授权决策，而不仅仅是内容生成。</p>
+          <p class="small en" style="margin-top:.65rem;color:var(--color-text-faint);font-style:italic">Pedagogical prototype — illustrates domain transferability of the 4D-CQ governance pattern.</p>
+          <p class="small zh" style="margin-top:.65rem;color:var(--color-text-faint);font-style:italic">教学型原型 —— 用以展示 4D-CQ 治理模式的跨领域可迁移性。</p>
+          <div class="button-row" style="margin-top:1.2rem">
+            <a class="btn btn-secondary" target="_blank" rel="noopener noreferrer" href="https://unsw-advisor.streamlit.app/">Open prototype</a>
+          </div>
+        </article>
       </div>
     </section>
 
     <section id="question-ladder">
       <div class="container">
-        <div class="eyebrow en">The research nucleus</div>
-        <div class="eyebrow zh">研究核心</div>
-        <h2 class="en">The Question Ladder</h2>
-        <h2 class="zh">发问的演进阶梯</h2>
+        <div class="section-head">
+          <div class="eyebrow en">The research nucleus</div>
+          <div class="eyebrow zh">研究核心</div>
+          <h2 class="en">The Question Ladder</h2>
+          <h2 class="zh">发问的演进阶梯</h2>
+        </div>
 
-        <p class="section-lead en">The question I am sustaining:</p>
-        <p class="section-lead zh">我在追问的：</p>
+        <p class="en">The question I am sustaining:</p>
+        <p class="zh">我在追问的：</p>
 
-        <blockquote style="margin:1.5rem 0 3rem;padding:1.8rem 2.2rem;border-left:4px solid var(--color-primary);border-radius:0 var(--radius-lg) var(--radius-lg) 0;background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));">
-          <p class="en" style="font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text);margin:0">Does the precondition for this action hold?</p>
-          <p class="zh" style="font-family:var(--font-display);font-size:var(--text-xl);line-height:1.3;color:var(--color-text);margin:0">这个动作的前提成立吗？</p>
-        </blockquote>
+        <div class="quote-block">
+          <p class="en">Does the precondition for this action hold?</p>
+          <p class="zh">这个动作的前提成立吗？</p>
+        </div>
 
-        <div style="display:grid;gap:.7rem">
-
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v0</span>
+        <div class="ladder">
+          <div class="ladder-row">
+            <span class="tag">v0</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">The model knows. Why does it still act?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">模型知道，为什么还做？</div>
+              <div class="title en">The model knows. Why does it still act?</div>
+              <div class="title zh">模型知道，为什么还做？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">empirical</span>
+            <span class="category">empirical</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid color-mix(in srgb,var(--color-primary) 30%,var(--color-border));border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 4%,var(--color-surface))">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-primary);min-width:2.5rem">v1</span>
+          <div class="ladder-row current">
+            <span class="tag">v1</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600">Does the precondition for this action hold?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600">这个动作的前提成立吗？</div>
+              <div class="title en">Does the precondition for this action hold?</div>
+              <div class="title zh">这个动作的前提成立吗？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">mechanism · Paper 1</span>
+            <span class="category">mechanism · Paper 1</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v2</span>
+          <div class="ladder-row">
+            <span class="tag">v2</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">Who must adjudicate "holds" for it to count?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">前提由谁裁定才算数？</div>
+              <div class="title en">Who must adjudicate "holds" for it to count?</div>
+              <div class="title zh">前提由谁裁定才算数？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">adjudication · S01</span>
+            <span class="category">adjudication · S01</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v2′</span>
+          <div class="ladder-row">
+            <span class="tag">v2′</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">What is the minimum sufficient condition set?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">"成立"的最小充分条件集是什么？</div>
+              <div class="title en">What is the minimum sufficient condition set?</div>
+              <div class="title zh">"成立"的最小充分条件集是什么？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">standards · S02</span>
+            <span class="category">standards · S02</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v3</span>
+          <div class="ladder-row">
+            <span class="tag">v3</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">If it held at check-time, does it still hold at execute-time?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">检查时成立的前提，执行时还成立吗？</div>
+              <div class="title en">If it held at check-time, does it still hold at execute-time?</div>
+              <div class="title zh">检查时成立的前提，执行时还成立吗？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">time · TOCTOU · S04</span>
+            <span class="category">time · TOCTOU · S04</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v3′</span>
+          <div class="ladder-row">
+            <span class="tag">v3′</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">Is "holds" transitive across delegation chains?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">前提的成立性可传递吗？</div>
+              <div class="title en">Is "holds" transitive across delegation chains?</div>
+              <div class="title zh">前提的成立性可传递吗？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">delegation</span>
+            <span class="category">delegation</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1rem 1.3rem;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-text-muted);min-width:2.5rem">v4</span>
+          <div class="ladder-row">
+            <span class="tag">v4</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base)">When is verifying a precondition cheaper than its expected failure cost?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base)">验证前提的成本，何时低于失效的期望损失？</div>
+              <div class="title en">When is verifying a precondition cheaper than its expected failure cost?</div>
+              <div class="title zh">验证前提的成本，何时低于失效的期望损失？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">economics</span>
+            <span class="category">economics</span>
           </div>
 
-          <div style="display:grid;grid-template-columns:auto 1fr auto;gap:1.2rem;align-items:center;padding:1.1rem 1.3rem;border:2px solid var(--color-primary);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 6%,var(--color-surface))">
-            <span style="font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--color-primary);min-width:2.5rem">v5</span>
+          <div class="ladder-row current" style="border-top:2px solid var(--color-primary)">
+            <span class="tag">v5</span>
             <div>
-              <div class="en" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600;color:var(--color-primary)">How can an action structurally carry its own proof of precondition?</div>
-              <div class="zh" style="font-family:var(--font-display);font-size:var(--text-base);font-weight:600;color:var(--color-primary)">行动如何在结构上以"前提的证明"为前置条件？</div>
+              <div class="title en">How can an action structurally carry its own proof of precondition?</div>
+              <div class="title zh">行动如何在结构上以"前提的证明"为前置条件？</div>
             </div>
-            <span class="small" style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;text-align:right">Proof-Carrying Action<br><span style="font-weight:400;color:var(--color-text-muted)">Necula 1997 → Anthropic 2026 · 10-yr</span></span>
+            <span class="category">Proof-Carrying Action<br><span style="font-weight:400;color:var(--color-text-muted);text-transform:none">Necula 1997 → Anthropic 2026 · 10-yr</span></span>
           </div>
-
         </div>
       </div>
     </section>
 
     <section id="roadmap">
       <div class="container">
-        <h2 class="en">Research roadmap · next 18 months</h2>
-        <h2 class="zh">研究路线图 · 未来 18 个月</h2>
-        <p class="section-lead en">Each Stream is an axis of the Question Ladder above. Stream 04 (Continuous Governance Architecture) is the current development frontier.</p>
-        <p class="section-lead zh">每条 Stream 是上方"发问阶梯"中的一条轴。Stream 04（连续治理架构）是当前的开发前沿。</p>
-        <div style="margin-top:2rem">
-
-          <!-- Foundation: Paper 1 -->
-          <div style="border:1px solid var(--color-border);border-top:3px solid var(--color-primary);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.3rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center">
-            <div>
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem" class="en">Paper 1 · Under review · Information &amp; Management</div>
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem" class="zh">论文一 · 审稿中 · Information &amp; Management</div>
-              <div style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.25;margin-bottom:.45rem" class="en">Structural routing failure — when AI knows but the signal never reaches authorization</div>
-              <div style="font-family:var(--font-display);font-size:var(--text-lg);line-height:1.25;margin-bottom:.45rem" class="zh">结构性路由失败 — AI 已知晓，但信号从未到达授权决策</div>
-              <p class="small en" style="color:var(--color-text-muted)">GateFix: a pre-execution governance harness. Within-subject experiment · 500 tasks · 4 frontier LLMs · 3 financial benchmarks.</p>
-              <p class="small zh" style="color:var(--color-text-muted)">GateFix：执行前治理 harness。被试内实验 · 500 项任务 · 4 个前沿 LLM · 3 个金融基准。</p>
-            </div>
-            <div style="text-align:center;padding:.75rem 1.25rem;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 8%,var(--color-surface-2));border:1px solid color-mix(in srgb,var(--color-primary) 18%,var(--color-border));min-width:7rem">
-              <div style="font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-primary);line-height:1">−45pp</div>
-              <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-top:.3rem" class="en">gap closed</div>
-              <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted);margin-top:.3rem" class="zh">缺口弥合</div>
-            </div>
-          </div>
-
-          <!-- Branch connector: Paper 1 → S01/S02/S03 -->
-          <div style="position:relative;height:2.8rem;margin:0">
-            <div style="position:absolute;left:50%;top:0;width:1px;height:50%;background:var(--color-border)"></div>
-            <div style="position:absolute;left:16.67%;right:16.67%;top:50%;height:1px;background:var(--color-border)"></div>
-            <div style="position:absolute;left:16.67%;top:50%;width:1px;height:50%;background:var(--color-border)"></div>
-            <div style="position:absolute;left:50%;top:50%;width:1px;height:50%;background:var(--color-border)"></div>
-            <div style="position:absolute;right:16.67%;top:50%;width:1px;height:50%;background:var(--color-border)"></div>
-          </div>
-
-          <!-- Streams 01 / 02 / 03 -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem">
-            <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 01 · Behavioural grounding</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Do governance signals restore human control — or shift automation bias upstream?</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">治理信号恢复人类控制，还是把自动化偏差前移？</div>
-              <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">First causal test of <em>human-in-command</em> at the execution layer</div>
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">执行层"人类指挥"模型的首个因果实验</div>
-              </div>
-            </div>
-            <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 02 · Cross-domain robustness</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Safety transfers. Accuracy is contingent. That asymmetry is the design principle.</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">安全可迁移，准确率是条件依赖的 — 这个不对称本身是设计原则。</div>
-              <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">Falsifiable scope conditions for execution governance</div>
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">执行治理的可证伪边界条件</div>
-              </div>
-            </div>
-            <div style="border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);padding:1.1rem 1.15rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:.65rem">Stream 03 · Theory integration</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="en">Delegation theory named the fidelity gap. This paper proposes a structural mechanism for closing it.</div>
-              <div style="font-size:var(--text-sm);font-weight:600;line-height:1.35;margin-bottom:.75rem" class="zh">委托理论命名了保真度缺口。本文提出一种结构性机制来弥合它。</div>
-              <div style="border-top:1px solid var(--color-divider);padding-top:.6rem">
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="en">Structural routing failure as delegation fidelity breakdown · MISQ / ISR</div>
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-text-muted);line-height:1.5" class="zh">结构性路由失败作为委托保真度崩溃 · MISQ / ISR</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Connector: streams → S04 -->
-          <div style="display:flex;justify-content:center;height:2rem;align-items:stretch">
-            <div style="width:1px;background:var(--color-primary)"></div>
-          </div>
-
-          <!-- Frontier: Stream 04 -->
-          <div style="border:2px solid var(--color-primary);border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 5%,var(--color-surface));padding:1.3rem 1.6rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center">
-            <div>
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.55rem">Stream 04 · Continuous Governance Architecture · A symbiotic architecture for human–LLM–methodology systems · In progress</div>
-              <div style="font-size:var(--text-sm);font-weight:500;line-height:1.5;margin-bottom:.65rem" class="en">Reliable governance is a <strong>structural property of the action channel</strong>, not an event at decision moments. Current AI safety architectures govern at the <strong>platform layer</strong> (model providers, API guardrails); the deploying organization absorbs the residual — a mismatch between governance locus and accountability locus.</div>
-              <div style="font-size:var(--text-sm);font-weight:500;line-height:1.5;margin-bottom:.65rem" class="zh">可靠的治理是<strong>行动通道本身的结构属性</strong>，而非决策时刻的事件。当前 AI 安全架构治理停留在<strong>平台层</strong>（模型提供方、API 护栏）；部署方组织承担一切残余风险 —— 治理归属与问责归属在结构上错位。</div>
-              <div style="border-top:1px solid color-mix(in srgb,var(--color-primary) 20%,var(--color-divider));padding-top:.6rem">
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="en">Continuous Governance Architecture composes <strong>closed-loop authorization harnesses</strong> (continuous-time self-correction, à la Paper 1) with <strong>commit points</strong> (discrete-time boundary attestation; <strong>Weill &amp; Ross, 2004</strong>). Requisite-variety reasoning (Ashby, 1956) makes both layers necessary: platform-layer guardrails cannot match the environmental variety of agentic action.</div>
-                <div style="font-family:var(--font-mono);font-size:11px;color:var(--color-primary);line-height:1.5" class="zh">连续治理架构由两层组合而成：<strong>闭环授权 harness</strong>（连续时间的自校正，沿用 Paper 1）与 <strong>commit point</strong>（离散时间的边界证 attestation；<strong>Weill &amp; Ross, 2004</strong>）。按 requisite-variety 原理（Ashby, 1956），平台层护栏的控制变量无法匹配 agentic 行动的环境变量。</div>
-              </div>
-            </div>
-            <div style="text-align:center;padding:.75rem 1rem;border-radius:var(--radius-lg);background:color-mix(in srgb,var(--color-primary) 10%,transparent);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);min-width:6rem">
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary)" class="en">In<br>progress</div>
-              <div style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary)" class="zh">进行中</div>
-            </div>
-          </div>
-
+        <div class="section-head">
+          <div class="eyebrow en">Next 18 months</div>
+          <div class="eyebrow zh">未来 18 个月</div>
+          <h2 class="en">Research roadmap</h2>
+          <h2 class="zh">研究路线图</h2>
+          <p class="section-lead en" style="margin-top:1rem">Each Stream is an axis of the Question Ladder above. Stream 04 (Continuous Governance Architecture) is the current development frontier.</p>
+          <p class="section-lead zh" style="margin-top:1rem">每条 Stream 是上方"发问阶梯"中的一条轴。Stream 04（连续治理架构）是当前的开发前沿。</p>
         </div>
+
+        <article class="item-card" style="border-top-color:var(--color-primary)">
+          <span class="mini">Paper 1 · Under review · Information &amp; Management</span>
+          <h3 class="en" style="margin-top:.6rem;font-size:1.4rem;line-height:1.25">Structural routing failure — when AI knows but the signal never reaches authorization</h3>
+          <h3 class="zh" style="margin-top:.6rem;font-size:1.4rem;line-height:1.25">结构性路由失败 — AI 已知晓，但信号从未到达授权决策</h3>
+          <p class="small en" style="margin-top:.6rem">GateFix: a pre-execution governance harness. Within-subject experiment · 500 tasks · 4 frontier LLMs · 3 financial benchmarks.</p>
+          <p class="small zh" style="margin-top:.6rem">GateFix：执行前治理 harness。被试内实验 · 500 项任务 · 4 个前沿 LLM · 3 个金融基准。</p>
+          <p style="margin-top:.9rem">
+            <span class="value" style="font-size:1.7rem;color:var(--color-primary);display:inline-block;margin:0">−45pp</span>
+            <span class="mini en" style="margin-left:.5rem">gap closed</span><span class="mini zh" style="margin-left:.5rem">缺口弥合</span>
+          </p>
+        </article>
+
+        <div class="item-grid" style="grid-template-columns:repeat(3,1fr);margin-top:1.75rem">
+          <article class="item-card">
+            <span class="mini">Stream 01 · Behavioural grounding</span>
+            <div class="stream-title en">Do governance signals restore human control — or shift automation bias upstream?</div>
+            <div class="stream-title zh">治理信号恢复人类控制，还是把自动化偏差前移？</div>
+            <p class="small en" style="padding-top:.6rem;border-top:1px solid var(--color-divider)">First causal test of <em>human-in-command</em> at the execution layer</p>
+            <p class="small zh" style="padding-top:.6rem;border-top:1px solid var(--color-divider)">执行层"人类指挥"模型的首个因果实验</p>
+          </article>
+          <article class="item-card">
+            <span class="mini">Stream 02 · Cross-domain robustness</span>
+            <div class="stream-title en">Safety transfers. Accuracy is contingent. That asymmetry is the design principle.</div>
+            <div class="stream-title zh">安全可迁移，准确率是条件依赖的 — 这个不对称本身是设计原则。</div>
+            <p class="small en" style="padding-top:.6rem;border-top:1px solid var(--color-divider)">Falsifiable scope conditions for execution governance</p>
+            <p class="small zh" style="padding-top:.6rem;border-top:1px solid var(--color-divider)">执行治理的可证伪边界条件</p>
+          </article>
+          <article class="item-card">
+            <span class="mini">Stream 03 · Theory integration</span>
+            <div class="stream-title en">Delegation theory named the fidelity gap. This paper proposes a structural mechanism for closing it.</div>
+            <div class="stream-title zh">委托理论命名了保真度缺口。本文提出一种结构性机制来弥合它。</div>
+            <p class="small en" style="padding-top:.6rem;border-top:1px solid var(--color-divider)">Structural routing failure as delegation fidelity breakdown · MISQ / ISR</p>
+            <p class="small zh" style="padding-top:.6rem;border-top:1px solid var(--color-divider)">结构性路由失败作为委托保真度崩溃 · MISQ / ISR</p>
+          </article>
+        </div>
+
+        <article class="item-card" style="border-top:2px solid var(--color-primary);margin-top:1.75rem">
+          <span class="mini" style="color:var(--color-primary)">Stream 04 · Continuous Governance Architecture · A symbiotic architecture for human–LLM–methodology systems · In progress</span>
+          <p class="small en" style="margin-top:.8rem;color:var(--color-text)">Reliable governance is a <strong>structural property of the action channel</strong>, not an event at decision moments. Current AI safety architectures govern at the <strong>platform layer</strong> (model providers, API guardrails); the deploying organization absorbs the residual — a mismatch between governance locus and accountability locus.</p>
+          <p class="small zh" style="margin-top:.8rem;color:var(--color-text)">可靠的治理是<strong>行动通道本身的结构属性</strong>，而非决策时刻的事件。当前 AI 安全架构治理停留在<strong>平台层</strong>（模型提供方、API 护栏）；部署方组织承担一切残余风险 —— 治理归属与问责归属在结构上错位。</p>
+          <p class="small en" style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--color-divider);color:var(--color-primary)">Continuous Governance Architecture composes <strong>closed-loop authorization harnesses</strong> (continuous-time self-correction, à la Paper 1) with <strong>commit points</strong> (discrete-time boundary attestation; <strong>Weill &amp; Ross, 2004</strong>). Requisite-variety reasoning (Ashby, 1956) makes both layers necessary: platform-layer guardrails cannot match the environmental variety of agentic action.</p>
+          <p class="small zh" style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--color-divider);color:var(--color-primary)">连续治理架构由两层组合而成：<strong>闭环授权 harness</strong>（连续时间的自校正，沿用 Paper 1）与 <strong>commit point</strong>（离散时间的边界证 attestation；<strong>Weill &amp; Ross, 2004</strong>）。按 requisite-variety 原理（Ashby, 1956），平台层护栏的控制变量无法匹配 agentic 行动的环境变量。</p>
+        </article>
       </div>
     </section>
 
     <section id="perspective">
       <div class="container">
-        <div class="eyebrow en">Position</div>
-        <div class="eyebrow zh">立场</div>
-        <h2 class="en">Cybernetics, re-instantiated.</h2>
-        <h2 class="zh">控制论的再具身</h2>
-
-        <p class="small en" style="color:var(--color-text);max-width:64ch;margin-top:1.2rem;line-height:1.65;">The problem of the agent era is not new in form — it is the problem Wiener (1948) identified at the birth of cybernetics: <strong>perception decoupled from action</strong>. What changes is the sensor. In classical control systems the sensor is external to the controlled object. In agentic systems the sensor is the agent's own diagnostic self-report. This is the formally novel piece, and the reason a two-layer architecture — closed-loop harness with commit-point attestation — is required.</p>
-        <p class="small zh" style="color:var(--color-text);max-width:64ch;margin-top:1.2rem;line-height:1.65;">Agent 时代的问题在形式上并不新 —— 它正是 Wiener (1948) 在控制论诞生时指认的：<strong>感知与行动的解耦</strong>。变化在于传感器。经典控制系统中，传感器外在于被控对象；agentic 系统中，传感器就是 agent 自己的诊断自报。这是形式上真正新的部分，也是为什么需要双层架构 —— 闭环 harness 加 commit-point 证明。</p>
-
-        <p class="small en" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.5rem;">UNSW ISTM is the natural home for this work: it sits where principal-agent theory and design science meet behavioural experiments on how humans actually operate these gates.</p>
-        <p class="small zh" style="color:var(--color-text-muted);max-width:64ch;margin-top:1.5rem;">UNSW ISTM 是这个研究的天然归处 —— 委托代理理论、设计科学，与"人类如何实际操作这些 gate"的行为实验在这里交汇。</p>
+        <div class="section-head">
+          <div class="eyebrow en">Position</div>
+          <div class="eyebrow zh">立场</div>
+          <h2 class="en">Cybernetics, re-instantiated.</h2>
+          <h2 class="zh">控制论的再具身</h2>
+        </div>
+        <div class="statement">
+          <p class="lede en">The problem of the agent era is not new in form — it is the problem Wiener (1948) identified at the birth of cybernetics: <strong>perception decoupled from action</strong>. What changes is the sensor. In classical control systems the sensor is external to the controlled object. In agentic systems the sensor is the agent's own diagnostic self-report. This is the formally novel piece, and the reason a two-layer architecture — closed-loop harness with commit-point attestation — is required.</p>
+          <p class="lede zh">Agent 时代的问题在形式上并不新 —— 它正是 Wiener (1948) 在控制论诞生时指认的：<strong>感知与行动的解耦</strong>。变化在于传感器。经典控制系统中，传感器外在于被控对象；agentic 系统中，传感器就是 agent 自己的诊断自报。这是形式上真正新的部分，也是为什么需要双层架构 —— 闭环 harness 加 commit-point 证明。</p>
+          <p class="en">UNSW ISTM is the natural home for this work: it sits where principal-agent theory and design science meet behavioural experiments on how humans actually operate these gates.</p>
+          <p class="zh">UNSW ISTM 是这个研究的天然归处 —— 委托代理理论、设计科学，与"人类如何实际操作这些 gate"的行为实验在这里交汇。</p>
+        </div>
       </div>
     </section>
 
     <section id="about">
-      <div class="container bio-grid">
-        <div class="bio-card">
-          <div class="portrait">
-            <img src="photo.png" alt="Xirui (Sherry) Lian" />
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow en">About</div>
+          <div class="eyebrow zh">关于</div>
+          <h2 class="en">About</h2>
+          <h2 class="zh">关于</h2>
+        </div>
+        <div class="about-grid">
+          <div>
+            <div class="portrait-frame">
+              <img src="photo.png" alt="Xirui (Sherry) Lian" />
+            </div>
+            <p style="margin-top:.9rem;text-align:center;font-family:var(--font-display);font-size:1.25rem;font-weight:700">Xirui (Sherry) Lian</p>
+            <div class="tag-list">
+              <span style="background:color-mix(in srgb,var(--color-primary) 10%,transparent);color:var(--color-primary)">Builder</span>
+              <span style="background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning)">UNFCCC Initiator</span>
+              <span style="background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success)">Researcher</span>
+            </div>
           </div>
-          <div style="margin-top:.9rem;text-align:center;">
-            <div style="font-family:var(--font-display);font-size:var(--text-sm);font-weight:700;letter-spacing:.02em;margin-bottom:.55rem;color:var(--color-text);">Xirui (Sherry) Lian</div>
-            <div style="display:flex;gap:.35rem;flex-wrap:wrap;justify-content:center;">
-              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 10%,transparent);color:var(--color-primary);">Builder</span>
-              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-warning) 12%,transparent);color:var(--color-warning);">UNFCCC Initiator</span>
-              <span style="font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-success) 12%,transparent);color:var(--color-success);">Researcher</span>
+          <div>
+            <p class="en">Xirui (Sherry) Lian designs <strong>cognitive scaffolding for agentic AI systems</strong> — structural methodology that complements LLM capability rather than constraining it. Currently developing <strong>GateFix</strong>, a structural mechanism that translates an LLM's diagnostic awareness into reliable execution behavior, grounded in nine years of climate-governance building. Previously co-launched <strong>ICECI</strong> at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and built <strong>Lvdoya</strong>, a carbon-behavior platform deployed across 15 Chinese cities with 2.3M+ behavioral interactions. Practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Affiliated with UNSW ISTM; working paper under review at <em>Information &amp; Management</em>.</p>
+            <p class="zh">连希蕊（Sherry Lian）设计<strong>面向 agentic AI 系统的认知支架</strong> —— 一种与 LLM 能力相辅相成而非加以限制的结构化方法论。当前正在开发 <strong>GateFix</strong> —— 一个把 LLM 诊断能力转化为可靠执行行为的结构性机制，建立在九年气候治理实战之上。此前在 COP28 联合发起 <strong>ICECI</strong>（UNFCCC 注册倡议，获中国气候变化特使解振华背书，被联合国亚太经社会列为 ICT 赋能气候治理区域典范），并搭建 <strong>Lvdoya</strong> —— 部署于中国 15 座城市、累计 230 万+ 行为交互的碳行为平台。连续六届联合国气候大会（COP24–COP29）实操代表。隶属 UNSW ISTM；工作论文在 <em>Information &amp; Management</em> 审稿中。</p>
+            <p class="en" style="margin-top:1rem">A decade of multi-stakeholder governance work produced a single methodological commitment: reliable system behavior is a structural property of the action channel, not an event at decision moments. GateFix instantiates this as cognitive scaffolding — structural support that complements an LLM's diagnostic capability. Continuous Governance Architecture generalizes it into a three-party symbiotic architecture (LLM + methodology + human).</p>
+            <p class="zh" style="margin-top:1rem">十年的多方治理实践得出一个方法论承诺：可靠的系统行为是行动通道本身的结构属性，而非决策时刻的事件。GateFix 把这一承诺落地为认知支架 —— 一种与 LLM 诊断能力相辅相成的结构性支撑。连续治理架构（Continuous Governance Architecture）则把它推广为 LLM + 方法论 + 人三方共生的架构。</p>
+
+            <div class="meta-stack">
+              <div class="meta-block">
+                <div class="dt">Email</div>
+                <div class="dd"><a class="text-link" href="mailto:z5709117@ad.unsw.edu.au">z5709117@ad.unsw.edu.au</a></div>
+              </div>
+              <div class="meta-block">
+                <div class="dt">GitHub</div>
+                <div class="dd"><a class="text-link" href="https://github.com/Sherry-py" target="_blank" rel="noopener noreferrer">github.com/Sherry-py</a></div>
+              </div>
+              <div class="meta-block">
+                <div class="dt en">Reference implementation</div>
+                <div class="dt zh">参考实现</div>
+                <div class="dd en"><a class="text-link" href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener noreferrer">gatefix-engine</a> — 4 deployment shapes (CLI / agent loop / MCP server / LangGraph StateGraph) · 118 tests + CI · validated on a real case</div>
+                <div class="dd zh"><a class="text-link" href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener noreferrer">gatefix-engine</a> — 4 种部署形态（CLI / agent loop / MCP server / LangGraph StateGraph）· 118 项测试 + CI · 真实案例验证</div>
+              </div>
+              <div class="meta-block">
+                <div class="dt en">Under review · <em>Information &amp; Management</em></div>
+                <div class="dt zh">审稿中 · <em>Information &amp; Management</em></div>
+                <div class="dd">When Knowing Is Not Enough: Designing Pre-Execution Governance for LLM Agents in Organizational Systems</div>
+              </div>
+              <div class="meta-block">
+                <div class="dt">ICECI</div>
+                <div class="dd en"><a class="text-link" href="https://climateaction.unfccc.int/Initiatives?id=Intelligent_Climate_and_Eco_Civilization_Initiative" target="_blank" rel="noopener noreferrer">UNFCCC Partner · NAZCA</a> · Climate Neutral Now · COP24–COP29 delegate · <a class="text-link" href="http://www.china.org.cn/world/2023-12/11/content_116871129.htm" target="_blank" rel="noopener noreferrer">China.org.cn</a> · <a class="text-link" href="https://www.youtube.com/watch?v=L7zFNjTkmK0&amp;t=30s" target="_blank" rel="noopener noreferrer">UNFCCC video</a> · <a class="text-link" href="https://www.unescap.org/node/38083" target="_blank" rel="noopener noreferrer">UN ESCAP</a></div>
+                <div class="dd zh"><a class="text-link" href="https://climateaction.unfccc.int/Initiatives?id=Intelligent_Climate_and_Eco_Civilization_Initiative" target="_blank" rel="noopener noreferrer">UNFCCC 合作伙伴 · NAZCA</a> · Climate Neutral Now · COP24–COP29 代表 · <a class="text-link" href="http://www.china.org.cn/world/2023-12/11/content_116871129.htm" target="_blank" rel="noopener noreferrer">China.org.cn 报道</a> · <a class="text-link" href="https://www.youtube.com/watch?v=L7zFNjTkmK0&amp;t=30s" target="_blank" rel="noopener noreferrer">UNFCCC 视频</a> · <a class="text-link" href="https://www.unescap.org/node/38083" target="_blank" rel="noopener noreferrer">UN ESCAP</a></div>
+              </div>
             </div>
           </div>
         </div>
-        <article class="bio-card">
-          <h2 class="en">About</h2>
-          <h2 class="zh">关于</h2>
-          <p class="en">Xirui (Sherry) Lian designs <strong>cognitive scaffolding for agentic AI systems</strong> — structural methodology that complements LLM capability rather than constraining it. Currently developing <strong>GateFix</strong>, a structural mechanism that translates an LLM's diagnostic awareness into reliable execution behavior, grounded in nine years of climate-governance building. Previously co-launched <strong>ICECI</strong> at COP28 — a UNFCCC-registered initiative endorsed by China's Special Envoy for Climate Change Xie Zhenhua and recognised by UN ESCAP as a regional model for ICT-enabled climate governance — and built <strong>Lvdoya</strong>, a carbon-behavior platform deployed across 15 Chinese cities with 2.3M+ behavioral interactions. Practitioner delegate at six consecutive UN climate conferences (COP24–COP29). Affiliated with UNSW ISTM; working paper under review at <em>Information &amp; Management</em>.</p>
-          <p class="en" style="margin-top:1rem;">A decade of multi-stakeholder governance work produced a single methodological commitment: reliable system behavior is a structural property of the action channel, not an event at decision moments. GateFix instantiates this as cognitive scaffolding — structural support that complements an LLM's diagnostic capability. Continuous Governance Architecture generalizes it into a three-party symbiotic architecture (LLM + methodology + human).</p>
-          <p class="zh">连希蕊（Sherry Lian）设计<strong>面向 agentic AI 系统的认知支架</strong> —— 一种与 LLM 能力相辅相成而非加以限制的结构化方法论。当前正在开发 <strong>GateFix</strong> —— 一个把 LLM 诊断能力转化为可靠执行行为的结构性机制，建立在九年气候治理实战之上。此前在 COP28 联合发起 <strong>ICECI</strong>（UNFCCC 注册倡议，获中国气候变化特使解振华背书，被联合国亚太经社会列为 ICT 赋能气候治理区域典范），并搭建 <strong>Lvdoya</strong> —— 部署于中国 15 座城市、累计 230 万+ 行为交互的碳行为平台。连续六届联合国气候大会（COP24–COP29）实操代表。隶属 UNSW ISTM；工作论文在 <em>Information &amp; Management</em> 审稿中。</p>
-          <p class="zh" style="margin-top:1rem;">十年的多方治理实践得出一个方法论承诺：可靠的系统行为是行动通道本身的结构属性，而非决策时刻的事件。GateFix 把这一承诺落地为认知支架 —— 一种与 LLM 诊断能力相辅相成的结构性支撑。连续治理架构（Continuous Governance Architecture）则把它推广为 LLM + 方法论 + 人三方共生的架构。</p>
-          <div class="meta-list">
-            <div class="meta-item"><span>Email</span><span><a href="mailto:z5709117@ad.unsw.edu.au" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">z5709117@ad.unsw.edu.au</a></span></div>
-            <div class="meta-item"><span>GitHub</span><span><a href="https://github.com/Sherry-py" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">github.com/Sherry-py</a></span></div>
-            <div class="meta-item"><span class="en">Reference implementation</span><span class="zh">参考实现</span><span class="en"><a href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">gatefix-engine</a> — 4 deployment shapes (CLI / agent loop / MCP server / LangGraph StateGraph) · 118 tests + CI · validated on a real case</span><span class="zh"><a href="https://github.com/Sherry-py/gatefix-engine" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">gatefix-engine</a> — 4 种部署形态（CLI / agent loop / MCP server / LangGraph StateGraph）· 118 项测试 + CI · 真实案例验证</span></div>
-            <div class="meta-item"><span class="en">Under review · <em>Information &amp; Management</em></span><span class="zh">审稿中 · <em>Information &amp; Management</em></span><span>When Knowing Is Not Enough: Designing Pre-Execution Governance for LLM Agents in Organizational Systems</span></div>
-            <div class="meta-item"><span>ICECI</span><span class="en"><a href="https://climateaction.unfccc.int/Initiatives?id=Intelligent_Climate_and_Eco_Civilization_Initiative" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC Partner · NAZCA</a> · Climate Neutral Now · COP24–COP29 delegate · <a href="http://www.china.org.cn/world/2023-12/11/content_116871129.htm" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">China.org.cn</a> · <a href="https://www.youtube.com/watch?v=L7zFNjTkmK0&amp;t=30s" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC video</a> · <a href="https://www.unescap.org/node/38083" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UN ESCAP</a></span><span class="zh"><a href="https://climateaction.unfccc.int/Initiatives?id=Intelligent_Climate_and_Eco_Civilization_Initiative" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC 合作伙伴 · NAZCA</a> · Climate Neutral Now · COP24–COP29 代表 · <a href="http://www.china.org.cn/world/2023-12/11/content_116871129.htm" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">China.org.cn 报道</a> · <a href="https://www.youtube.com/watch?v=L7zFNjTkmK0&amp;t=30s" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UNFCCC 视频</a> · <a href="https://www.unescap.org/node/38083" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;text-underline-offset:.25em;">UN ESCAP</a></span></div>
-          </div>
-        </article>
       </div>
     </section>
-  </main>
 
-  <footer id="collaborate">
-    <div class="container">
-      <div class="panel" style="max-width:700px">
-        <h3 class="en">Research conversations &amp; visiting affiliation</h3>
-        <h3 class="zh">研究对话与学术访问</h3>
-        <p class="small en">The diagnostic–authorization gap is a structural form of <em>judgment–action dissociation</em>; the remedy is a piece of decision architecture. UNSW ISTM is the natural home for that combination — and the next stage of this programme fits the group's expertise in governance and behavioural experiments.</p>
-        <p class="small zh">诊断–授权裂隙在行为运营语言里是一种结构性的<em>判断–行动分离</em>；对策是一种决策架构。UNSW ISTM 是这一组合的天然归处 —— 项目下一阶段与 ISTM 在治理与行为实验方面的研究专长高度契合。</p>
+    <section id="collaborate">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow en">Get in touch</div>
+          <div class="eyebrow zh">联系方式</div>
+          <h2 class="en">Research conversations &amp; visiting affiliation</h2>
+          <h2 class="zh">研究对话与学术访问</h2>
+        </div>
+        <div class="statement">
+          <p class="small en">The diagnostic–authorization gap is a structural form of <em>judgment–action dissociation</em>; the remedy is a piece of decision architecture. UNSW ISTM is the natural home for that combination — and the next stage of this programme fits the group's expertise in governance and behavioural experiments.</p>
+          <p class="small zh">诊断–授权裂隙在行为运营语言里是一种结构性的<em>判断–行动分离</em>；对策是一种决策架构。UNSW ISTM 是这一组合的天然归处 —— 项目下一阶段与 ISTM 在治理与行为实验方面的研究专长高度契合。</p>
+        </div>
         <div class="button-row">
           <a class="btn btn-primary" href="When_Knowing_Is_Not_Enough_working_paper.pdf" target="_blank" rel="noopener"><span class="en">Read working paper (PDF)</span><span class="zh">阅读工作论文 (PDF)</span></a>
           <a class="btn btn-secondary" href="mailto:z5709117@ad.unsw.edu.au?subject=Research%20conversation%20—%20execution-layer%20governance"><span class="en">Open a conversation</span><span class="zh">联系研究者</span></a>
         </div>
       </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer-inner">
+      <p class="small en">© 2026 Xirui (Sherry) Lian</p>
+      <p class="small zh">© 2026 连希蕊</p>
+      <p class="small en">Cognitive scaffolding for agentic AI systems — from GateFix to Continuous Governance Architecture.</p>
+      <p class="small zh">面向 agentic AI 系统的认知支架 —— 从 GateFix 到连续治理架构。</p>
     </div>
   </footer>
 
   <script>
-    // Lang toggle
     const langStyle = document.getElementById('lang-override');
     function applyLang(lang) {
       langStyle.textContent = lang === 'zh'
@@ -777,53 +723,6 @@
       btn.addEventListener('click', () => applyLang(btn.dataset.lang));
     });
 
-    // Question cards — static active state only
-    document.querySelectorAll('.question-card').forEach(card => {
-      card.addEventListener('click', () => {
-        document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
-        card.classList.add('active');
-      });
-    });
-
-    const storySteps = [...document.querySelectorAll('.story-step')];
-    const storyVisual = document.querySelector('.story-visual');
-
-    function updateTrace(stepIdx) {
-      const sceneEl = document.getElementById('traceScene');
-      if (sceneEl) sceneEl.textContent = 'scene ' + String(stepIdx + 1).padStart(2, '0') + ' / 04';
-      document.querySelectorAll('[data-trace]').forEach(row => {
-        const t = Number(row.dataset.trace);
-        const isDanger = stepIdx === 3 && t >= 3;
-        const isCurrent = !isDanger && t === stepIdx;
-        const isRevealed = stepIdx === 3 ? true : t <= stepIdx;
-        row.classList.toggle('dim', !isRevealed);
-        row.classList.toggle('trace-current', isCurrent);
-        row.classList.toggle('highlight', isDanger);
-      });
-    }
-
-    if(storyVisual && storySteps.length){
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            const idx = Number(entry.target.dataset.stepIndex || 0);
-            storySteps.forEach((step,i)=>step.classList.toggle('active', i===idx));
-            updateTrace(idx);
-          }
-        });
-      }, {threshold:.55});
-
-      const anchors = [];
-      storySteps.forEach((step, i)=>{
-        const anchor = document.createElement('div');
-        anchor.style.height = '28vh';
-        anchor.dataset.stepIndex = i;
-        storyVisual.appendChild(anchor);
-        observer.observe(anchor);
-        anchors.push(anchor);
-      });
-    }
-
     const themeToggle = document.querySelector('[data-theme-toggle]');
     let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
@@ -834,7 +733,6 @@
     }
     updateThemeIcon();
     themeToggle.addEventListener('click', ()=>{ theme = theme === 'dark' ? 'light' : 'dark'; document.documentElement.setAttribute('data-theme', theme); updateThemeIcon(); });
-    updateTrace(0);
   </script>
 </body>
 </html>
