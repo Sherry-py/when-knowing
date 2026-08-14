@@ -376,8 +376,8 @@
           <p class="mini zh" style="margin-top:1.6rem">真实引擎输出 —— 非页面模拟</p>
           <div class="code-block">
             <div class="code-block__cmd">$ python engine.py run --case=cross_border_transfer</div>
-            <pre>R=0.15  C=0.20  O=0.40  Ro=0.20  →  Q=0.237  route=ESCALATE
-说明: 目的地充分性认定=无；SCC缺失/TIA缺失/用户明确同意缺失；目的地政府调取风险未评估 —— 无充分性认定且替代性安全保障措施不全，需 DPO/法务核实合法传输依据后终审
+            <pre>R=0.15  C=0.20  O=0.40  Ro=1.00  →  Q=0.438  route=ESCALATE
+说明: 目的地充分性认定=无；SCC缺失/TIA缺失/用户明确同意缺失 —— 无充分性认定且替代性安全保障措施不全，需 DPO/法务核实合法传输依据后终审
 → 升级给人：客服 Agent（Support Agent）→ DPO / 法务（Data Protection Officer / Legal） 终审</pre>
           </div>
           <p style="margin-top:1rem">
@@ -749,6 +749,55 @@
 
         <p class="small en" style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--color-divider);text-align:center;max-width:56rem;margin-inline:auto">Notice all four cards share the same structure: irreversible action → one authorization check → four-state disposition. GateFix isn't tied to any one industry — it's the layer every agent needs at its commit point.</p>
         <p class="small zh" style="margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--color-divider);text-align:center;max-width:56rem;margin-inline:auto">注意四张卡片的结构完全一样：不可逆动作 → 一道授权检查 → 四态处置。GateFix 不绑定某个赛道——它是每个 agent 在 commit point 都需要的那一层。</p>
+
+        <p class="small en" style="margin-top:.6rem;text-align:center;max-width:56rem;margin-inline:auto;color:var(--color-text-faint);font-style:italic">The robotics card above is where this is headed — grasp/force commit points aren't coded yet. The panel below is where it already stands today: the closest coded, tested analog — a human operating automation equipment on an irreversible physical action.</p>
+        <p class="small zh" style="margin-top:.6rem;text-align:center;max-width:56rem;margin-inline:auto;color:var(--color-text-faint);font-style:italic">上面机械臂那张卡片是方向；下面这个面板是现在已经跑通的东西——人操作自动化设备执行不可逆物理动作，是目前最接近的真实编码类比。</p>
+
+        <div class="example-panel" style="margin-top:1.75rem" aria-label="Pharmacy ADC override scenario">
+          <p class="eyebrow en" style="margin-bottom:.9rem">Real-world scenario · Medical automation</p>
+          <p class="eyebrow zh" style="margin-bottom:.9rem">现实场景 · 医疗自动化</p>
+          <p class="en">A bedside nurse needs to sedate a patient before a scan. The ordered drug isn't indexed under its brand name, so the cabinet search comes up empty. The nurse triggers an override — which opens a much wider drug range — searches again, and the cabinet offers a different, high-alert drug.</p>
+          <p class="zh">床边护士需要在检查前给患者用镇静剂。医嘱药品在自动配药柜（ADC）里没有按商品名收录，搜索落空。护士触发 override——打开了远超当前医嘱范围的药品库——再次搜索，柜子这次给出了一个完全不同的高警示药品。</p>
+          <p class="small en" style="margin-top:1rem"><strong style="color:var(--color-error)">Nurse convicted of criminally negligent homicide</strong> — Vanderbilt University Medical Center, 2022, after this exact sequence in 2017. Once the drug is administered, there is no undo.</p>
+          <p class="small zh" style="margin-top:1rem"><strong style="color:var(--color-error)">护士被判过失杀人罪成立</strong> —— 范德堡大学医学中心，2022 年判决，源于 2017 年真实发生的这一序列。药物一旦给下去，没有撤销。</p>
+
+          <p class="en" style="margin-top:1.5rem;font-weight:600">Does the override go through — or does the gate stop it first?</p>
+          <p class="zh" style="margin-top:1.5rem;font-weight:600">Override 会直接放行，还是先被门拦下？</p>
+
+          <div class="compare-row">
+            <div class="compare-col">
+              <span class="mini en" style="color:var(--color-error)">Without governance</span>
+              <span class="mini zh" style="color:var(--color-error)">无治理</span>
+              <p class="small en">Override succeeds, drug administered. Real 2017 outcome: patient died.</p>
+              <p class="small zh">Override 成功，药物给下去。2017 年真实结果：患者死亡。</p>
+            </div>
+            <div class="compare-col">
+              <span class="mini en" style="color:var(--color-primary)">With GateFix</span>
+              <span class="mini zh" style="color:var(--color-primary)">有 GateFix</span>
+              <p class="small en">ESCALATE — evidence checked before dispensing: drug name vs. verified order, high-alert-drug confirmation, patient-ID barcode scan, order verified before override. Coverage insufficient → routed to pharmacist/second-check nurse, dispense paused.</p>
+              <p class="small zh">ESCALATE —— 给药前查验证据：药品名称是否与医嘱一致、高警示药品确认、患者身份条码核对、医嘱是否先于 override 完成核验。覆盖度不足 → 升级至药师/第二核对护士终审，给药暂停。</p>
+            </div>
+          </div>
+
+          <p class="small en" style="margin-top:1.2rem;color:var(--color-text-faint);font-style:italic">The incident is real and publicly adjudicated — Vanderbilt University Medical Center, 2017-12-26, nurse RaDonda Vaught, patient Charlene Murphey; conviction 2022-03-25 (Wikipedia · KFF Health News · UNC Journal of Law &amp; Technology). The specific evidence field values below are a representative construction built from its reported structural facts, not a verbatim transcription of trial records — see the case's source files on GitHub.</p>
+          <p class="small zh" style="margin-top:1.2rem;color:var(--color-text-faint);font-style:italic">事故真实、已公开审理判决 —— 范德堡大学医学中心，2017-12-26，护士 RaDonda Vaught，患者 Charlene Murphey；2022-03-25 定罪（Wikipedia · KFF Health News · 北卡法律科技期刊）。以下具体证据字段取值是基于事故已报道结构性事实构造的代表性证据，不是判决记录的逐字转录 —— 详见 GitHub 上该 case 的源文件。</p>
+
+          <p class="small en" style="margin-top:.9rem;color:var(--color-text-faint)">This is the same judgment rule that ran on the Sydney lease case and the cross-border-transfer scenario above, unchanged — its third domain, and the first where the commit is a physical action executed by a human operating automation equipment, not a screen-only decision.</p>
+          <p class="small zh" style="margin-top:.9rem;color:var(--color-text-faint)">这是套用在悉尼退租案例、以及上方跨境传输场景里的同一套判定规则，原样运行——它的第三个领域，也是第一个 commit 是人操作自动化设备执行的物理动作、而非纯屏幕决策的领域。</p>
+
+          <p class="mini en" style="margin-top:1.6rem">Real engine output — not a mockup</p>
+          <p class="mini zh" style="margin-top:1.6rem">真实引擎输出 —— 非页面模拟</p>
+          <div class="code-block">
+            <div class="code-block__cmd">$ python engine.py run --case=pharmacy_dispensing</div>
+            <pre>R=0.10  C=0.20  O=0.40  Ro=0.30  →  Q=0.250  route=ESCALATE
+说明: 药品名称与医嘱不一致；高警示药品确认缺失/身份条码核对缺失/医嘱核验未先于 override 完成 —— 药品身份或安全核对缺口未闭合，需药师/第二核对护士现场核实后终审
+→ 升级给人：床边护士（Bedside Nurse）→ 药房药师 / 第二核对护士（Pharmacist / Second-Check Nurse） 终审</pre>
+          </div>
+          <p style="margin-top:1rem">
+            <a class="text-link en" href="https://github.com/Sherry-py/gatefix-engine/blob/main/preconditions/pharmacy_dispensing.py" target="_blank" rel="noopener">View real source &amp; regression test on GitHub →</a>
+            <a class="text-link zh" href="https://github.com/Sherry-py/gatefix-engine/blob/main/preconditions/pharmacy_dispensing.py" target="_blank" rel="noopener">查看真实源码与回归测试 →</a>
+          </p>
+        </div>
 
         <div class="quote-block" style="margin-top:2.5rem">
           <p class="en" style="font-size:var(--text-lg)">Most people are working on making agents smarter — better diagnosis. GateFix works on the layer in between: execution authorization. Same action — pass it when context is sufficient, repair, escalate, or hand it to a human when it isn't. This doesn't limit what the agent can do; it gives it a brake on irreversible actions, so it can actually be trusted to act on its own.</p>
